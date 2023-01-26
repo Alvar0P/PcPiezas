@@ -7,3 +7,13 @@ Web para la compra de ordenadores a piezas
 * Venta de ordenadores montados con piezas preconfiguradas.
 * Venta de periferícos y otros accesorios
 
+##Entidades
+
+* Productos: tienen un precio, características y piezas compatibles. 
+
+* Comprador: puede adquirir productos.
+* Comprador VIP: puede adquirir productos con descuentos especiales y sin gastos de envio.
+* Vendedor: puede poner añadir, retirar y editar sus productos.
+* Administrador: acceso completo a la web puede añadir, retirar y editar productos.
+
+
