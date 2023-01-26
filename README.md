@@ -7,7 +7,7 @@ Web para la compra de ordenadores a piezas
 * Venta de ordenadores montados con piezas preconfiguradas.
 * Venta de periferícos y otros accesorios
 
-##Entidades
+## Entidades
 
 * Productos: tienen un precio, características y piezas compatibles. 
 
