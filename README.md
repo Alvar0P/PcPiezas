@@ -14,10 +14,10 @@ Web para la compra de ordenadores a piezas y perifericos.
 * Configuración: Ordenadores ya montados que el usuario podrá editar.
 * Venta: Guarda los datos de la venta (Dirección de envío,total a pagar, fecha de la compra, productos comprados).
 * Usuario: usuarios con distintos roles (Comprador, comprador VIP, vendedor, administrador).
-**   Comprador: puede adquirir productos.
-**   Comprador VIP: puede adquirir productos con descuentos especiales y sin gastos de envio.
-**   Vendedor: puede poner añadir, retirar y editar sus productos.
-**   Administrador: acceso completo a la web puede añadir, retirar y editar productos.
+** Comprador: puede adquirir productos.
+** Comprador VIP: puede adquirir productos con descuentos especiales y sin gastos de envio.
+** Vendedor: puede poner añadir, retirar y editar sus productos.
+** Administrador: acceso completo a la web puede añadir, retirar y editar productos.
 * Item: para el carrito.
 * Carrito: para los productos que se desean comprar.
 
