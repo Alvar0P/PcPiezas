@@ -16,7 +16,7 @@ public class MustacheController {
     public String basic(Model model) {
 
 
-        return "mans_clothes";
+        return "shopping_cart";
     }
 
 
