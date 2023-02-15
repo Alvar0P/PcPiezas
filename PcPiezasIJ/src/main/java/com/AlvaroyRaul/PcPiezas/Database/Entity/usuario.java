@@ -13,6 +13,10 @@ public class usuario {
     private String username;
     private String email;
     private String password;
+    private boolean VIP;
+    private long tarjeta;
+    private String direccion;
+    private long tlf;
     private LocalDate FechaCreacion;
 
     public usuario(String username, String email, String password) {
@@ -39,6 +43,14 @@ public class usuario {
         this.password = password;
     }
 
+    public void setVIP(boolean VIP) {this.VIP = VIP;}
+
+    public void setTarjeta(long tarjeta) {this.tarjeta = tarjeta;}
+
+    public void setDireccion(String direccion) {this.direccion = direccion;}
+
+    public void setTlf(long tlf) {this.tlf = tlf;}
+
     public String getUsername() {
         return username;
     }
@@ -50,4 +62,15 @@ public class usuario {
     public LocalDate getFechaCreacion() {
         return FechaCreacion;
     }
+
+    public boolean isVIP() {return VIP;}
+
+    public long getTarjeta() {return tarjeta;}
+
+    public String getDireccion() {return direccion;}
+
+    public long getTlf() {return tlf;}
+
+
+
 }

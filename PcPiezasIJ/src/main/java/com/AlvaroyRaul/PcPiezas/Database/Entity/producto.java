@@ -11,16 +11,16 @@ public class producto {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private String fabricante;
-    private String distribuidor;
+    private String vendedor;
     private String nombre;
     private String Descripcion;
     private int valoracion;
     private String categoria;
     private float precio;
 
-    public producto(String fabricante, String distribuidor, String nombre, String descripcion, int valoracion, float precio) {
+    public producto(String fabricante, String vendedor, String nombre, String descripcion, int valoracion, float precio) {
         this.fabricante = fabricante;
-        this.distribuidor = distribuidor;
+        this.vendedor = vendedor;
         this.nombre = nombre;
         Descripcion = descripcion;
         this.valoracion = valoracion;
@@ -35,8 +35,8 @@ public class producto {
         return fabricante;
     }
 
-    public String getDistribuidor() {
-        return distribuidor;
+    public String getvendedor() {
+        return vendedor;
     }
 
     public String getNombre() {
@@ -63,8 +63,8 @@ public class producto {
         this.fabricante = fabricante;
     }
 
-    public void setDistribuidor(String distribuidor) {
-        this.distribuidor = distribuidor;
+    public void setvendedor(String vendedor) {
+        this.vendedor = vendedor;
     }
 
     public void setNombre(String nombre) {
