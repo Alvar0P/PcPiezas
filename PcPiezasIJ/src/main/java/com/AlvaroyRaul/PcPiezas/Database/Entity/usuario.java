@@ -1,8 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.Database.Entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -50,4 +47,20 @@ public class usuario {
     public LocalDate getFechaCreacion() {
         return FechaCreacion;
     }
+<<<<<<< Updated upstream
+=======
+
+    public boolean isVIP() {return VIP;}
+
+    public long getTarjeta() {return tarjeta;}
+
+    public String getDireccion() {return direccion;}
+
+    public long getTlf() {return tlf;}
+
+    @ManyToOne
+    @JoinColumn(name = "carrito_Id")
+    private carrito carrito;
+
+>>>>>>> Stashed changes
 }
