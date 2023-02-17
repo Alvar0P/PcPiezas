@@ -1,8 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.Database.Entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -18,6 +15,9 @@ public class usuario {
     private String direccion;
     private long tlf;
     private LocalDate FechaCreacion;
+    //@ManyToOne
+    @OneToOne(cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
+    private carrito Carrito;
 
     public usuario(String username, String email, String password) {
         this.id = 34;
@@ -70,6 +70,8 @@ public class usuario {
     public String getDireccion() {return direccion;}
 
     public long getTlf() {return tlf;}
+
+
 
 
 

@@ -1,8 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.Database.Entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,6 +14,10 @@ public class producto {
     private int valoracion;
     private String categoria;
     private float precio;
+    @ManyToOne//Varios productos para un vendedor
+    private vendedor Vendedor;
+    @OneToOne(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado(por ver)
+    private item Item;
 
     public producto(String fabricante, String vendedor, String nombre, String descripcion, int valoracion, float precio) {
         this.fabricante = fabricante;

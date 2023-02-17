@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MustacheController {
 
+
     @GetMapping("/basic")
     public String basic(Model model) {
 
 
-        return "shopping_cart";
+        return "login";
     }
 
 
