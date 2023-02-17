@@ -56,7 +56,29 @@
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>2.2.3</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.wso2.bps</groupId>
+            <artifactId>UserService</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ubirch.user</groupId>
+            <artifactId>userservice_2.11</artifactId>
+            <version>0.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.iep</groupId>
+            <artifactId>iep-spring-userservice</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.iep</groupId>
+            <artifactId>iep-module-userservice</artifactId>
+            <version>3.0.21</version>
+        </dependency>
+
+
+    </dependencies>
 
 
     <build>

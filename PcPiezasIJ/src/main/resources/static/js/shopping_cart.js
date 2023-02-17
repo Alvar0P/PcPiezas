@@ -57,7 +57,7 @@ function recalculateCart(onlyTotal) {
     if (subtotal >= 10) {
       total -= promoPrice;
     } else {
-      alert('Order must be more than £10 for Promo code to apply.');
+      alert('Order must be more than €10 for Promo code to apply.');
       $('.summary-promo').addClass('hide');
     }
   }
