@@ -8,7 +8,8 @@ public class item {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
-    @OneToOne//Es una copia del producto por si se añade al carrito pero no se compra que no se elimine o se reduzca la cantidad
+    @ManyToOne//Es una copia del producto por si se añade al carrito pero no se compra que no se elimine o se reduzca la cantidad
+    @JoinColumn(name="idProducto",nullable = false)
     private producto Producto;
     @ManyToOne//Muchos items en un carrito
     private carrito Carrito;

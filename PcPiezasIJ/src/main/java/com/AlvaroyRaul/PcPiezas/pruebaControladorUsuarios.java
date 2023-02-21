@@ -21,7 +21,7 @@ public class pruebaControladorUsuarios {
             , @RequestParam String email, @RequestParam String password) {
 
 
-        usuario n = new usuario(name, email, password);
+        usuario n = new usuario(name,email, password);
         usuarioRepo.save(n);
         return "Saved";
     }

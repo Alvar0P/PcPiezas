@@ -16,10 +16,10 @@ public class venta {
     @OneToOne
     private carrito Carrito; //Un carrito por venta. Del carrito se coge el Set que pertenezca al usuario.
     @OneToOne
-    private vendedor Vendedor;//Un vendedor, si en el carrito hay productos de otros vendedores se crea otro venta y luego se une en unico pdf(por ver)
+    private usuario Vendedor;//Un vendedor, si en el carrito hay productos de otros vendedores se crea otro venta y luego se une en unico pdf(por ver)
     @OneToOne
     private usuario comprador;//Un comprador
-    public venta(String dirEnvio, float total, LocalDate FechaCompra,carrito Carrito,vendedor Vendedor, usuario comprador){
+    public venta(String dirEnvio, float total, LocalDate FechaCompra,carrito Carrito,usuario Vendedor, usuario comprador){
         this.dirEnvio = dirEnvio;
         this.total = total;
         this.FechaCompra = FechaCompra;
@@ -53,9 +53,9 @@ public class venta {
 
     public void setCarrito(carrito carrito) {Carrito = carrito;}
 
-    public vendedor getVendedor() {return Vendedor;}
+    public usuario getVendedor() {return Vendedor;}
 
-    public void setVendedor(vendedor vendedor) {Vendedor = vendedor;}
+    public void setVendedor(usuario vendedor) {Vendedor = vendedor;}
 
     public usuario getComprador() {return comprador;}
 

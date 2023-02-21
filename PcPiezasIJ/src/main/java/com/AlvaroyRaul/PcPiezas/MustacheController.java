@@ -1,9 +1,5 @@
 package com.AlvaroyRaul.PcPiezas;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +20,7 @@ public class MustacheController {
     public String inicio(Model model) {
 
 
-        return "index";
+        return "inicio";
     }
     @GetMapping("/pcs")
     public String pcs(Model model) {
@@ -43,6 +39,12 @@ public class MustacheController {
 
 
         return "contact";
+    }
+    @GetMapping("/basic")
+    public String basic(Model model) {
+
+
+        return "mans_clothes";
     }
 
 }

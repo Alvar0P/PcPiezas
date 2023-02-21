@@ -1,12 +1,12 @@
 package com.AlvaroyRaul.PcPiezas.Database.Entity;
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class producto {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;
+    private long idProducto;
     private String fabricante;
     private String vendedor;
     private String nombre;
@@ -15,9 +15,9 @@ public class producto {
     private String categoria;
     private float precio;
     @ManyToOne//Varios productos para un vendedor
-    private vendedor Vendedor;
-    @OneToOne(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado(por ver)
-    private item Item;
+    private usuario Vendedor;
+    @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado(por ver)
+    private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
     public producto(String fabricante, String vendedor, String nombre, String descripcion, int valoracion, float precio) {
         this.fabricante = fabricante;
