@@ -1,4 +1,4 @@
-package com.AlvaroyRaul.PcPiezas.Database.Entity;
+package com.AlvaroyRaul.PcPiezas.database.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package com.AlvaroyRaul.PcPiezas.Database.Repository;
+package com.AlvaroyRaul.PcPiezas.database.repository;
 
-import com.AlvaroyRaul.PcPiezas.Database.Entity.item;
+import com.AlvaroyRaul.PcPiezas.database.entity.item;
 import org.springframework.data.repository.CrudRepository;
 
 public interface itemRepo extends CrudRepository<item,Long> {

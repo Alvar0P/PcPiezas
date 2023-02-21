@@ -1,6 +1,6 @@
 package com.AlvaroyRaul.PcPiezas;
-import com.AlvaroyRaul.PcPiezas.Database.Repository.usuarioRepo;
-import com.AlvaroyRaul.PcPiezas.Database.Entity.usuario;
+import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
+import com.AlvaroyRaul.PcPiezas.database.entity.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

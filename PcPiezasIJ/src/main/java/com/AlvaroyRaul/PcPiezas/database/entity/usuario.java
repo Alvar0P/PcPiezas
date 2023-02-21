@@ -1,8 +1,7 @@
-package com.AlvaroyRaul.PcPiezas.Database.Entity;
+package com.AlvaroyRaul.PcPiezas.database.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity

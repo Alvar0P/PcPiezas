@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Productos</title>
+</head>
+<h1>
+    Productos
+</h1>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fabricante</th>
+                <th>Vendedor</th>
+                <th>Nombre</th>
+                <th>Valoracion</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#productos}}
+            <tr>
+                <td>{{idProducto}}</td>
+                <td>{{fabricante}}</td>
+                <td>{{vendedor}}</td>
+                <td>{{nombre}}</td>
+                <td>{{valoracion}}</td>
+                <td>{{precio}}</td>
+            </tr>
+            {{/productos}}
+        </tbody>
+    </table>
+
+    <form action="/nuevo-producto" method="post">
+        <label for="fabricante">Fabricante:</label><br>
+        <input type="text" id="fabricante" name="fabricante" value=""><br>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value=""><br>
+        <label for="precio">Precio:</label><br>
+        <input type="number" id="precio" name="precio" value=""><br>
+        <input type="submit"  value="Añadir">
+      </form> 
+
+</body>
+
+</html>

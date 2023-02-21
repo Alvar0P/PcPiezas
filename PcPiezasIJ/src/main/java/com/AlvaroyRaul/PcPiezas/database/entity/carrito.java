@@ -1,8 +1,6 @@
-package com.AlvaroyRaul.PcPiezas.Database.Entity;
+package com.AlvaroyRaul.PcPiezas.database.entity;
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 
