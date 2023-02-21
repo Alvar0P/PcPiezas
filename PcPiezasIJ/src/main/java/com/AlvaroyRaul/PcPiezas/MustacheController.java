@@ -22,11 +22,29 @@ public class MustacheController {
 
         return "inicio";
     }
-    @GetMapping("/pcs")
+    @GetMapping("/ordenadores")
     public String pcs(Model model) {
 
 
-        return "computers";
+        return "ordenadores";
+    }
+    @GetMapping("/componentes")
+    public String componentes(Model model) {
+
+
+        return "componentes";
+    }
+    @GetMapping("/moviles")
+    public String moviles(Model model) {
+
+
+        return "moviles";
+    }
+    @GetMapping("/perifericos")
+    public String perifericos(Model model) {
+
+
+        return "perifericos";
     }
     @GetMapping("/carrito")
     public String carrito(Model model) {
@@ -40,12 +58,7 @@ public class MustacheController {
 
         return "contact";
     }
-    @GetMapping("/basic")
-    public String basic(Model model) {
 
-
-        return "mans_clothes";
-    }
 
 }
 

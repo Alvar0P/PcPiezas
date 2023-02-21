@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Frica</title>
+      <title>PcPiezas</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -40,11 +40,11 @@
             <nav class="navbar navbar-light bg-light justify-content-between">
                <div id="mySidenav" class="sidenav">
                   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                  <a href="inicio.html">Home</a>
-                  <a href="computers.html">Computers</a>
-                  <a href="mans_clothes.html">Mans Clothes</a>
-                  <a href="womans_clothes.html">Womans Clothes</a>
-                  <a href="contact.html">Contact</a>
+                   <a href="/inicio">Home</a>
+                   <a href="/ordenadores">Ordenadores</a>
+                   <a href="/perifericos">Periféricos</a>
+                   <a href="/moviles">Móviles</a>
+                   <a href="/componentes">Componentes</a>
                </div>
                <span style="font-size:30px;cursor:pointer; color: #fff;" onclick="openNav()"><img src="/images/toggle-icon.png"></span>
                <a class="navbar-brand" href="inicio.html"><img src="/images/logo.png"></a></a>
@@ -52,7 +52,7 @@
                   <div class="login_text">
                      <ul>
                         <li><a href="#"><img src="/images/user-icon.png"></a></li>
-                        <li><a href="#"><img src="/images/trolly-icon.png"></a></li>
+                        <li><a href="/carrito"><img src="/images/trolly-icon.png"></a></li>
                         <li><a href="#"><img src="/images/search-icon.png"></a></li>
                      </ul>
                   </div>
@@ -69,12 +69,29 @@
                   <div class="container">
                      <div class="row border_1">
                         <div class="col-md-4">
-                           <div class="image_1"><img src="/images/img-1.png" style="width:100%"></div>
+                          <!-- <div class="image_1"><img src="/images/Nvida-rtx.jpg" style="width:100%"></div>-->
                         </div>
                         <div class="col-md-4">
                            <h1 class="banner_taital">Big Sale Offer</h1>
                            <div class="buynow_bt active"><a href="#">Buy Now</a></div>
-                           <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                            <!-- <div class="contact_bt"><a href="/contacto">Contact Us</a></div> -->
+                          </div>
+                          <div class="col-md-4">
+                             <div class="image_2"><img src="/images/img-2.png" style="width:100%"></div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="carousel-item">
+                    <div class="container">
+                       <div class="row border_1">
+                          <div class="col-md-4">
+                              <!-- <div class="image_1"><img src="/images/Nvida-rtx.jpg" style="width:100%"></div>-->
+                        </div>
+                        <div class="col-md-4">
+                           <h1 class="banner_taital">Big Sale Offer</h1>
+                           <div class="buynow_bt active"><a href="#">Buy Now</a></div>
+                            <!-- <div class="contact_bt"><a href="/contacto">Contact Us</a></div> -->
                         </div>
                         <div class="col-md-4">
                            <div class="image_2"><img src="/images/img-2.png" style="width:100%"></div>
@@ -86,29 +103,12 @@
                   <div class="container">
                      <div class="row border_1">
                         <div class="col-md-4">
-                           <div class="image_1"><img src="/images/img-1.png" style="width:100%"></div>
+                           <!--<div class="image_1"><img src="/images/img-1.png" style="width:100%"></div>-->
                         </div>
                         <div class="col-md-4">
                            <h1 class="banner_taital">Big Sale Offer</h1>
                            <div class="buynow_bt active"><a href="#">Buy Now</a></div>
-                           <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="image_2"><img src="/images/img-2.png" style="width:100%"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="row border_1">
-                        <div class="col-md-4">
-                           <div class="image_1"><img src="/images/img-1.png" style="width:100%"></div>
-                        </div>
-                        <div class="col-md-4">
-                           <h1 class="banner_taital">Big Sale Offer</h1>
-                           <div class="buynow_bt active"><a href="#">Buy Now</a></div>
-                           <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                            <!-- <div class="contact_bt"><a href="/contacto">Contact Us</a></div> -->
                         </div>
                         <div class="col-md-4">
                            <div class="image_2"><img src="/images/img-2.png" style="width:100%"></div>
@@ -134,12 +134,12 @@
                   <h2 class="categary_text">Categorias</h2>
                </div>
                <div class="catagary_right">
-                  <div class="catagary_menu">
+                  <div class="catagary_menu"><!--Intentar cambiar por scrollear hacia esa sección del inicio-->
                      <ul>
-                        <li><a href="#">Perifericos</a></li>
-                        <li><a href="#">Componentes</a></li>
-                        <li><a href="#">Móviles</a></li>
-                        <li><a href="#">Ordenadores</a></li>
+                        <li><a href="/perifericos">Perifericos</a></li>
+                        <li><a href="/componentes">Componentes</a></li>
+                        <li><a href="/moviles">Móviles</a></li>
+                        <li><a href="/ordenadores">Ordenadores</a></li>
                      </ul>
                   </div>
                </div>
@@ -192,7 +192,7 @@
       <!-- computers section start -->
       <div class="computers_section layout_padding">
          <div class="container">
-            <h1 class="computers_taital">Computers & Laptop</h1>
+            <h1 class="computers_taital">Ordenadores</h1>
          </div>
       </div>
       <div class="computers_section_2">
@@ -264,11 +264,11 @@
             <div class="womans_section_2">
                <div class="row">
                   <div class="col-md-6">
-                     <h1 class="Get_offer_text">Get <br>offer Every Iteams</h1>
+                     <h1 class="Get_offer_text">Get <br>offer Every Items</h1>
                      <div class="read_bt"><a href="#">Buy Now</a></div>
                   </div>
                   <div class="col-md-6">
-                     <div class="image_4"><img src="/images/img-4.png"></div>
+                     <div class="image_4"><img src="/images/camera-img.png"></div>
                   </div>
                </div>
             </div>
@@ -282,11 +282,11 @@
               <div class="womans_section_2">
                   <div class="row">
                       <div class="col-md-6">
-                          <h1 class="Get_offer_text">Get <br>offer Every Iteams</h1>
+                          <h1 class="Get_offer_text">Get <br>offer Every Items</h1>
                           <div class="read_bt"><a href="#">Buy Now</a></div>
                       </div>
                       <div class="col-md-6">
-                          <div class="image_4"><img src="/images/img-4.png"></div>
+                          <div class="image_4"><img src="/images/mobile-img.png"></div>
                       </div>
                   </div>
               </div>
@@ -319,11 +319,11 @@
                      <h4 class="adderss_text">Menu</h4>
                      <div class="footer_menu">
                         <ul>
-                           <li><a href="inicio.html">Home</a></li>
-                           <li><a href="computers.html">Computers</a></li>
-                           <li><a href="Mans_clothes.html">Mans Clothes</a></li>
-                           <li><a href="womans_clothes.html">Womans Clothes</a></li>
-                           <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="/inicio">Home</a></li>
+                            <li><a href="/ordenadores">Ordenadores</a></li>
+                            <li><a href="/perifericos">Periféricos</a></li>
+                            <li><a href="/moviles">Móviles</a></li>
+                            <li><a href="/componentes">Componentes</a></li>
                         </ul>
                      </div>
                   </div>

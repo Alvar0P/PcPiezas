@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+/*
 @Controller
 @RequestMapping(path="/usuarios") // This means URL's start with /demo (after Application path)
 public class pruebaControladorUsuarios {
@@ -31,4 +31,4 @@ public class pruebaControladorUsuarios {
         // This returns a JSON or XML with the users
         return usuarioRepo.findAll();
     }
-}
+}*/
