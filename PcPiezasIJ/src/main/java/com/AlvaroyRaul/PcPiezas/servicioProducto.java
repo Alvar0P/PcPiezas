@@ -1,8 +1,11 @@
 package com.AlvaroyRaul.PcPiezas;
 
 
+import com.AlvaroyRaul.PcPiezas.database.entity.rol;
 import com.AlvaroyRaul.PcPiezas.database.entity.producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +20,18 @@ import java.util.Base64;
 public class servicioProducto {
     @Autowired
     private productoRepo repo;
+    private usuarioRepo urepo;
 
-    public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,int precio){
+    public void saveProductToDBDNoPicture(String nombre, String descripcion,String fabricant,int precio, usuario vendedor){
 
-        producto p = new producto(nombre,descripcion,fabricant,"PcPiezas",precio);
+        producto p = new producto(nombre,descripcion,fabricant, vendedor,precio);
+        repo.save(p);
+
+    }
+
+    public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,int precio, usuario vendedor){
+
+        producto p = new producto(nombre,descripcion,fabricant, vendedor,precio);
 
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -38,4 +49,6 @@ public class servicioProducto {
         repo.save(p);
 
     }
+
+
 }

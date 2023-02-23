@@ -15,6 +15,8 @@ public class usuario {
     private String username;//Para todos
     @NotNull
     private String password;//Para todos
+    @NotNull
+    private rol rol;
     @Column(unique = true)
     @NotNull
     private String email;//Para todos
@@ -32,16 +34,30 @@ public class usuario {
     @OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
     private List<carrito> Carrito;
 
-    public usuario(String username,String email ,String password) {
-
+    public usuario(String username,String email ,String password, rol Rol) {
+        this.rol = Rol;
         this.username = username;
         this.email = email;
         this.password = password;
 
     }
 
+
+
     protected usuario() {
 
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public rol getRol() {
+        return rol;
+    }
+
+    public void setRol(rol rol) {
+        rol = rol;
     }
 
     public void setUsername(String username) {

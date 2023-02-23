@@ -14,9 +14,9 @@ public class carrito {
     @ManyToOne(fetch = FetchType.LAZY)//Un usuario tiene varias entradas en la tabla carrito
     @JoinColumn(name = "IdUsuario",  referencedColumnName="IdUsuario") //Un usuario tiene varias entradas en la tabla carrito
     private usuario Usuario;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) //un carrito tiene una lista de productos, cuando se procese la compra estos pasan a ser items, usamos join table para poder estableceer el nombre del la columna
-    @JoinColumn(name="idproducto")
-    private List<producto> listaProductos;
+    @ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
+    @JoinColumn(name="idproducto", nullable = true)
+    private producto Producto;
 
 
     protected carrito() {

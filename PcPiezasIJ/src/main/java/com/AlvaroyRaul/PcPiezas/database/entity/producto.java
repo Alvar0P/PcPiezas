@@ -10,7 +10,6 @@ public class producto {
     @Column(name = "idproducto")
     private long idProducto;
     private String fabricante;
-    private String vendedor;
     private String nombre;
     private String descripcion;
     private String categoria;
@@ -24,12 +23,12 @@ public class producto {
     private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
 
-    public producto(String nombre, String descripcion,String fabricante, String vendedor, float precio) {
+    public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
 
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fabricante = fabricante;
-        this.vendedor = vendedor;
+        this.Vendedor = vendedor;
         this.precio = precio;
     }
 
@@ -37,12 +36,16 @@ public class producto {
 
     }
 
+    public long getIdProducto() {
+        return idProducto;
+    }
+
     public String getFabricante() {
         return fabricante;
     }
 
-    public String getvendedor() {
-        return vendedor;
+    public usuario getvendedor() {
+        return Vendedor;
     }
 
     public String getNombre() {
@@ -69,8 +72,8 @@ public class producto {
         this.fabricante = fabricante;
     }
 
-    public void setvendedor(String vendedor) {
-        this.vendedor = vendedor;
+    public void setvendedor(usuario vendedor) {
+        this.Vendedor = vendedor;
     }
 
     public void setNombre(String nombre) {
