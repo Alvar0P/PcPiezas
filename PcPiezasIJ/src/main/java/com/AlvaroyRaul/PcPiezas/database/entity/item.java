@@ -3,16 +3,17 @@ package com.AlvaroyRaul.PcPiezas.database.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "item")
 public class item {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;
+    private long idItem;
 
-    @ManyToOne//Es una copia del producto por si se añade al carrito pero no se compra que no se elimine o se reduzca la cantidad
+    @ManyToOne//Es una copia del producto que representa la unidad que tenemos en el almacen
     @JoinColumn(name="idProducto",nullable = false)
     private producto Producto;
-    @ManyToOne//Muchos items en un carrito
-    private carrito Carrito;
+
+    private long ventaId; //Relacion uni-direccional entre venta e item
 
 
 
