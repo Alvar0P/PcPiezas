@@ -58,6 +58,16 @@ public class MustacheController {
 
         return "contact";
     }
+    @GetMapping("/register")
+    public String registroCliente(Model model){
+        return "registerClient";
+    }
+    @GetMapping("/addProduct")
+    public String registroProducto(Model model){
+        return "addProducto";
+    }
+    @GetMapping("/lista")
+    public String lista(Model model){return "listProducts";}
 
 
 }

@@ -10,21 +10,24 @@ public class producto {
     private String fabricante;
     private String vendedor;
     private String nombre;
-    private String Descripcion;
-    private int valoracion;
+    private String descripcion;
     private String categoria;
     private float precio;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String imagen;
     @ManyToOne//Varios productos para un vendedor
     private usuario Vendedor;
     @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado(por ver)
     private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
-    public producto(String fabricante, String vendedor, String nombre, String descripcion, int valoracion, float precio) {
+
+    public producto(String nombre, String descripcion,String fabricante, String vendedor, float precio) {
+
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.fabricante = fabricante;
         this.vendedor = vendedor;
-        this.nombre = nombre;
-        Descripcion = descripcion;
-        this.valoracion = valoracion;
         this.precio = precio;
     }
 
@@ -45,13 +48,13 @@ public class producto {
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
-
-    public int getValoracion() {
-        return valoracion;
-    }
-
+    /*
+        public int getValoracion() {
+            return valoracion;
+        }
+    */
     public String getCategoria() {
         return categoria;
     }
@@ -73,18 +76,22 @@ public class producto {
     }
 
     public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
+        this.descripcion = descripcion;
     }
-
+/*
     public void setValoracion(int valoracion) {
         this.valoracion = valoracion;
     }
-
+*/
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public void setImagen(String imagen){
+        this.imagen = imagen;
     }
 }
