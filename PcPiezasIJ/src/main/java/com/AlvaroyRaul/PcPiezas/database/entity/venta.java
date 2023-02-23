@@ -2,29 +2,28 @@ package com.AlvaroyRaul.PcPiezas.database.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
+@Table(name = "venta")
 public class venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;
+    private long idVenta;
     private String dirEnvio;
     private float total;
     private LocalDate FechaCompra;
-    @OneToOne
-    private carrito Carrito; //Un carrito por venta. Del carrito se coge el Set que pertenezca al usuario.
-    @OneToOne
-    private usuario Vendedor;//Un vendedor, si en el carrito hay productos de otros vendedores se crea otro venta y luego se une en unico pdf(por ver)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ventaId")
+    private List<item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
     @OneToOne
     private usuario comprador;//Un comprador
     public venta(String dirEnvio, float total, LocalDate FechaCompra,carrito Carrito,usuario Vendedor, usuario comprador){
         this.dirEnvio = dirEnvio;
         this.total = total;
         this.FechaCompra = FechaCompra;
-        this.Carrito = Carrito;
-        this.Vendedor = Vendedor;
         this.comprador = comprador;
 
     }
@@ -33,9 +32,9 @@ public class venta {
 
     }
 
-    public long getId() {return id;}
+    public long getId() {return idVenta;}
 
-    public void setId(long id) {this.id = id;}
+    public void setId(long id) {this.idVenta = id;}
 
     public String getDirEnvio() {return dirEnvio;}
 
@@ -49,13 +48,6 @@ public class venta {
 
     public void setFechaCompra(LocalDate fechaCompra) {FechaCompra = fechaCompra;}
 
-    public carrito getCarrito() {return Carrito;}
-
-    public void setCarrito(carrito carrito) {Carrito = carrito;}
-
-    public usuario getVendedor() {return Vendedor;}
-
-    public void setVendedor(usuario vendedor) {Vendedor = vendedor;}
 
     public usuario getComprador() {return comprador;}
 

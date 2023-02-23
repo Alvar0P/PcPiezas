@@ -3,9 +3,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "producto")
 public class producto {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "idproducto")
     private long idProducto;
     private String fabricante;
     private String vendedor;
@@ -16,7 +18,7 @@ public class producto {
     private float precio;
     @ManyToOne//Varios productos para un vendedor
     private usuario Vendedor;
-    @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado(por ver)
+    @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
     private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
     public producto(String fabricante, String vendedor, String nombre, String descripcion, int valoracion, float precio) {

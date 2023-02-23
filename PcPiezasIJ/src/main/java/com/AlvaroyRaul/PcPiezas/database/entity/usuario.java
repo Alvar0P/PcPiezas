@@ -5,10 +5,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "usuario")
 public class usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;//Para todos
+    private long idUsuario;//Para todos
     @Column(unique = true)
     @NotNull
     private String username;//Para todos
@@ -24,10 +25,12 @@ public class usuario {
     private long cuentaBancaria;//Solo vendedor
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<producto> productos;//Solo vendedor
+    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Productos en la tabla carrito asociados al usuario
+    private List<carrito> articulosCarrito;
 
     //@ManyToOne
-    @OneToOne(cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
-    private carrito Carrito;
+    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
+    private List<carrito> Carrito;
 
     public usuario(String username,String email ,String password) {
 
@@ -59,7 +62,6 @@ public class usuario {
     public String getUsername() {
         return username;
     }//Para todos
-    public long getId(){return id;}//Todos
     public String getEmail() {
         return email;
     }//Para todos
