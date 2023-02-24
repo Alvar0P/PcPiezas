@@ -72,15 +72,22 @@
             <div class="computer_main">
                <div class="row">
                   <div class="col-md-4">
-                     <div class="computer_img"><img src="/images/cpu.jpg"></div>
-                     <h4 class="computer_text">COMPUTER</h4>
-                     <div class="computer_text_main">
-                        <h4 class="dell_text">Samsung</h4>
-                        <h6 class="price_text"><a href="#">$500</a></h6>
-                        <h6 class="price_text_1"><a href="#">$1000</a></h6>
-                     </div>
-                     <div class="cart_bt_1"><a href="#">Add To Cart</a></div>
+                      <ul>
+                          {{#productos}}
+                            <div class="computer_img"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 300px;height: 300px;"></div>
+                            <h4 class="computer_text">{{nombre}}</h4>
+                            <div class="computer_text_main">
+                              <h4 class="dell_text">{{fabricante}}</h4>
+                              <h4 class="price_text">{{precio}}</h4>
+
+                            </div>
+                            <div class="cart_bt_1"><a href="#">Add To Cart</a></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          {{/productos}}
+                      </ul>
+
                   </div>
+                   <!--
                   <div class="col-md-4">
                      <div class="computer_img"><img src="/images/cpu.jpg"></div>
                      <h4 class="computer_text">LAPTOP</h4>
@@ -104,7 +111,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div>-->
       <!-- computers section end -->
       <!-- footer section start -->
       <div class="footer_section layout_padding margin_top_90">

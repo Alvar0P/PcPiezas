@@ -1,13 +1,19 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
+import com.AlvaroyRaul.PcPiezas.database.entity.producto;
+import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 
 @Controller
 public class MustacheController {
-
+    @Autowired
+    private servicioProducto servicioProduct;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -30,7 +36,8 @@ public class MustacheController {
     }
     @GetMapping("/componentes")
     public String componentes(Model model) {
-
+        List<producto> listaProductos = servicioProduct.getAllProduct();
+        model.addAttribute("productos", listaProductos);
 
         return "componentes";
     }

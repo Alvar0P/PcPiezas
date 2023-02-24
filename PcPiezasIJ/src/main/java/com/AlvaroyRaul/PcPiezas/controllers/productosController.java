@@ -50,14 +50,14 @@ public class productosController {
                               @RequestParam("newPname") String name)
     {
         servicioProduct.changeProductName(id, name);
-        return "/listaProductos";
+        return "redirect:/listaProductos";
     }
     @PostMapping("/changeDescription")
     public String changeDescription(@RequestParam("id") Long id ,
                                     @RequestParam("newDescription") String description)
     {
         servicioProduct.changeProductDescription(id, description);
-        return "/listaProductos";
+        return "redirect:/listaProductos";
     }
 
     @PostMapping("/changePrice")
@@ -65,7 +65,14 @@ public class productosController {
                               @RequestParam("newPrice") int price)
     {
         servicioProduct.changeProductPrice(id, price);
-        return "/listaProductos";
+        return "redirect/listaProductos";
+    }
+    @PostMapping("/changeFabricante")
+    public String changePrice(@RequestParam("id") Long id ,
+                              @RequestParam("newFabricant") String Fabricante)
+    {
+        servicioProduct.changeProductFabricante(id, Fabricante);
+        return "redirect/listaProductos";
     }
 
 

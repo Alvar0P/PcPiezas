@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>productos</title>
     <meta charset="ISO-8859-1">
@@ -38,9 +37,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <ul>
-                    {{#productos}}
+            <ul>
+                {{#productos}}
+                <tr>
                     <th scope="row"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 100px;height: 100px;"></th>
                     <td>{{nombre}}
                         <!-- Button trigger modal --> <br>
@@ -164,42 +163,40 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{precio}} <!-- Button trigger modal --> <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2"
-                                data-toggle="modal"
-                                attr="data-target=#exampleModalCenterPrice+{{idProducto}">change
-                            price</button> <!-- Modal -->
-                        <div class="modal fade"
-                            id="exampleModalCenterPrice+{{idProducto}}" tabindex="-1"
-                            role="dialog" aria-labelledby="exampleModalCenterTitle"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                    <td>{{precio}} <!-- Button trigger modal -->
+                        <br>
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" attr="data-target=#exampleModalCenterPrice+{{idProducto}}">
+                            Cambiar precio
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">change
-                                            producto price</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">cambiar precio producto</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-
                                         <form action="/changePrice" method="post">
                                             <div class="form-group">
-                                                <label>producto id</label> <input type="text"
-                                                                                value="{{idProducto}}" class="form-control" name="id">
-                                                <label>new producto price</label> <input type="text"
-                                                                                        name="newPrice" class="form-control"> <br>
-                                                <button type="submit" class="btn btn-primary">submit</button>
+                                                <label>producto id</label> <input type="text" value="{{idProducto}}" class="form-control" name="id">
+                                                <label>new producto price</label> <input type="text" name="newPrice" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">
+                                                    submit
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save
-                                            changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary">
+                                            Save changes
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -208,15 +205,16 @@
                     <td><a href="/deleteProd/{{idProducto}}"
                         class="btn btn-danger mt-4">delete</a>
                     </td>
+
+                </tr>
                 {{/productos}}
-                </ul>
-            </tr>
+            </ul>
             </tbody>
         </table>
         <hr>
     </div>
 </div>
-<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>
 </html>

@@ -81,6 +81,12 @@ public class servicioProducto {
         p.setDescripcion(description);
         productRepo.save(p);
     }
+    public void changeProductFabricante(long id, String fabricante){
+        producto p = new producto();
+        p= productRepo.findById(id).get();
+        p.setFabricante(fabricante);
+        productRepo.save(p);
+    }
     public void changeProductPrice(long id,int price)
     {
         producto p = new producto();
