@@ -64,24 +64,24 @@ public class servicioProducto {
     {
         return productRepo.findAll();
     }
-    public void deleteProductById(Long id) {
+    public void deleteProductById(long id) {
         productRepo.deleteById(id);
     }
-    public void changeProductName(Long id ,String name)
+    public void changeProductName(long id ,String name)
     {
         producto p = new producto();
         p = productRepo.findById(id).get();
         p.setNombre(name);
         productRepo.save(p);
     }
-    public void changeProductDescription(Long id , String description)
+    public void changeProductDescription(long id , String description)
     {
         producto p = new producto();
         p = productRepo.findById(id).get();
         p.setDescripcion(description);
         productRepo.save(p);
     }
-    public void changeProductPrice(Long id,int price)
+    public void changeProductPrice(long id,int price)
     {
         producto p = new producto();
         p = productRepo.findById(id).get();
