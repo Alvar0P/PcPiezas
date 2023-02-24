@@ -69,7 +69,7 @@ public class usuario {
     }
 
     public void setRol(rol rol) {
-        rol = rol;
+        this.rol = rol;
     }
 
     public void setUsername(String username) {
