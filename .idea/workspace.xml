@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ce88ee3e-5ea8-485a-b9df-787167ed7f9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PcPiezasIJ/src/main/java/com/AlvaroyRaul/PcPiezas/controllers/productosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PcPiezasIJ/src/main/java/com/AlvaroyRaul/PcPiezas/controllers/productosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PcPiezasIJ/src/main/resources/templates/listProducts.html" beforeDir="false" afterPath="$PROJECT_DIR$/PcPiezasIJ/src/main/resources/templates/listProducts.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MBJI6AAUJdPhpNMhgirqCNPtjN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/alvaro/Documents/GitHub/PcPiezas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "f7e4a749341280043f09b2a2df1abe74",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.Normal">
+    <configuration name="Normal" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PcPiezas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.AlvaroyRaul.PcPiezas.PcPiezasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="buildUsers" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PcPiezas" />
+      <option name="PROGRAM_PARAMETERS" value="buildUsers" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.AlvaroyRaul.PcPiezas.PcPiezasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.Normal" />
+      <item itemvalue="Spring Boot.buildUsers" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce88ee3e-5ea8-485a-b9df-787167ed7f9d" name="Changes" comment="" />
+      <created>1677234961589</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677234961589</updated>
+      <workItem from="1677234964281" duration="210000" />
+      <workItem from="1677235196180" duration="32000" />
+      <workItem from="1677235254236" duration="2430000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
