@@ -34,7 +34,7 @@ public class productosController {
 
         servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,precio);
 
-        return "/listaProductos";
+        return "redirect:/listaProductos";
 
     }
     @GetMapping("/deleteProd/{id}")
@@ -42,7 +42,7 @@ public class productosController {
     {
 
         servicioProduct.deleteProductById(id);
-        return "/listaProductos";
+        return "redirect:/listaProductos";
     }
 
     @PostMapping("/changeName")

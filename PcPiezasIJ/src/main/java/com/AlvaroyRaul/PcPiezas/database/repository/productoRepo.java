@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface productoRepo extends JpaRepository<producto, Long> {
+
     public List<producto> findAll();
 
 }

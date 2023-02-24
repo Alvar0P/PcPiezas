@@ -19,7 +19,7 @@
                     <a class="nav-link font-weight-bold" href="/addProduct" >Registrar Producto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/lista">Lista de productos</a>
+                    <a class="nav-link font-weight-bold" href="/listaProductos">Lista de productos</a>
                 </li>
             </ul>
         </nav>
@@ -44,16 +44,16 @@
                     <th scope="row"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 100px;height: 100px;"></th>
                     <td>{{nombre}}
                         <!-- Button trigger modal --> <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" attr="data-target='#exampleModalCenter'+*{producto.id}">change name</button> <!-- Modal -->
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" attr="data-target=#exampleModalCenter+{{idProducto}}">change name</button> <!-- Modal -->
 
                         <div class="modal fade"
-                            id="*{'exampleModalCenter'+{producto.id}}" tabindex="-1"
+                            id="exampleModalCenter+{{idProducto}}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">change
+                                        <h5 class="modal-title" id="cambiar Nombre">change
                                             producto name</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
@@ -64,7 +64,7 @@
                                         <form action="/changeName" method="post">
                                             <div class="form-group">
                                                 <label>producto id</label> <input type="hidden"
-                                                                             value="*{producto.id}" class="form-control" name="id">
+                                                                             value="{{idProducto}}" class="form-control" name="id">
                                                 <label>new producto name</label> <input type="text"
                                                                                    name="newPname" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">submit</button>
@@ -82,20 +82,20 @@
                         </div>
 
                     </td>
-                    <td>{{descripcion}}} <!-- Button trigger modal -->
+                    <td>{{descripcion}} <!-- Button trigger modal -->
                         <br>
                         <button type="button" class="btn btn-success btn-sm mt-2"
                                 data-toggle="modal"
-                                th:attr="data-target='#exampleModalCenterDesc'+${producto.id}">change
+                                attr="data-target=#exampleModalCenterDesc+{{idProducto}}">change
                             description</button> <!-- Modal -->
                         <div class="modal fade"
-                            th:id="*{'exampleModalCenterDesc'+{producto.id}}" tabindex="-1"
+                            id="exampleModalCenterDesc+{{idProducto}}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">change
+                                        <h5 class="modal-title" id="cambiar Descripcion">change
                                         producto description</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
@@ -107,7 +107,7 @@
                                         <form action="/changeDescription" method="post">
                                             <div class="form-group">
                                                 <label>producto id</label> <input type="text"
-                                                                                th:value="*{producto.id}" class="form-control" name="id">
+                                                                                value="{{idProducto}}}" class="form-control" name="id">
                                                 <label>new producto description</label> <input type="text"
                                                                                             name="newDescription" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">submit</button>
@@ -123,21 +123,21 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{fabricante}}} <!-- Button trigger modal -->
+                    <td>{{fabricante}} <!-- Button trigger modal -->
                         <br>
                         <button type="button" class="btn btn-success btn-sm mt-2"
                                 data-toggle="modal"
-                                th:attr="data-target='#exampleModalCenterDesc'+${producto.id}">change
+                                attr="data-target=#exampleModalCenterDesc+{{idProducto}}">change
                             description</button> <!-- Modal -->
                         <div class="modal fade"
-                             th:id="*{'exampleModalCenterDesc'+{producto.id}}" tabindex="-1"
+                             id="exampleModalCenterFabri+{{idProducto}}" tabindex="-1"
                              role="dialog" aria-labelledby="exampleModalCenterTitle"
                              aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">change
-                                            producto description</h5>
+                                        <h5 class="modal-title" id="cambiar Fabricante">change
+                                            producto fabricante</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -145,10 +145,10 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <form action="/changeDescription" method="post">
+                                        <form action="/changeFabricante" method="post">
                                             <div class="form-group">
                                                 <label>producto id</label> <input type="text"
-                                                                                  th:value="*{producto.id}" class="form-control" name="id">
+                                                                                  value="{idProducto}" class="form-control" name="id">
                                                 <label>new producto description</label> <input type="text"
                                                                                                name="newDescription" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">submit</button>
@@ -167,10 +167,10 @@
                     <td>{{precio}} <!-- Button trigger modal --> <br>
                         <button type="button" class="btn btn-success btn-sm mt-2"
                                 data-toggle="modal"
-                                th:attr="data-target='#exampleModalCenterPrice'+${producto.id}">change
+                                attr="data-target=#exampleModalCenterPrice+{{idProducto}">change
                             price</button> <!-- Modal -->
                         <div class="modal fade"
-                            th:id="*{'exampleModalCenterPrice'+{producto.id}}" tabindex="-1"
+                            id="exampleModalCenterPrice+{{idProducto}}" tabindex="-1"
                             role="dialog" aria-labelledby="exampleModalCenterTitle"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -188,7 +188,7 @@
                                         <form action="/changePrice" method="post">
                                             <div class="form-group">
                                                 <label>producto id</label> <input type="text"
-                                                                                th:value="*{producto.id}" class="form-control" name="id">
+                                                                                value="{{idProducto}}" class="form-control" name="id">
                                                 <label>new producto price</label> <input type="text"
                                                                                         name="newPrice" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">submit</button>
@@ -205,7 +205,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><a th:href="@{/deleteProd/{id}(id=${producto.id})}"
+                    <td><a href="/deleteProd/{id}(id={{idProducto}})"
                         class="btn btn-danger mt-4">delete</a>
                     </td>
                 {{/productos}}
