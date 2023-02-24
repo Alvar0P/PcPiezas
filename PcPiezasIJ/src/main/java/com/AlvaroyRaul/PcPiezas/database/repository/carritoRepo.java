@@ -1,7 +1,8 @@
 package com.AlvaroyRaul.PcPiezas.database.repository;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.carrito;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface carritoRepo extends CrudRepository<carrito,Long> {
+
+public interface carritoRepo extends JpaRepository<carrito,Long> {
 }

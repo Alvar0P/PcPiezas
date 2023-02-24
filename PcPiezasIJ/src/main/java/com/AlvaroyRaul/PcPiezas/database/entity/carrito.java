@@ -14,9 +14,10 @@ public class carrito {
     @ManyToOne(fetch = FetchType.LAZY)//Un usuario tiene varias entradas en la tabla carrito
     @JoinColumn(name = "IdUsuario",  referencedColumnName="IdUsuario") //Un usuario tiene varias entradas en la tabla carrito
     private usuario Usuario;
+    /*
     @ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
     @JoinColumn(name="idproducto", nullable = true)
-    private producto Producto;
+    private producto Producto; //De momento lo quito */
 
 
     protected carrito() {

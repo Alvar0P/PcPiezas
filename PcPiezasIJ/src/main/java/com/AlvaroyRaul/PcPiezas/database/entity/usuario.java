@@ -33,7 +33,7 @@ public class usuario {
     //@ManyToOne
     @OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
     private List<carrito> Carrito;
-
+    /*
     public usuario(String username,String email ,String password, rol Rol) {
         this.rol = Rol;
         this.username = username;
@@ -45,6 +45,18 @@ public class usuario {
 
 
     protected usuario() {
+
+    }*/
+    public usuario() {
+
+    }
+    public void anadirUser(String username,String email ,String password, rol Rol){
+
+        setRol(Rol);
+        setEmail(email);
+        setPassword(password);
+        setUsername(username);
+
 
     }
 

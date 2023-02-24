@@ -5,6 +5,7 @@ import java.util.List;
 @Entity
 @Table(name = "producto")
 public class producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idproducto")
@@ -22,8 +23,7 @@ public class producto {
     @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
     private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
-
-    public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
+    /*public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
 
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -33,6 +33,15 @@ public class producto {
     }
 
     protected producto() {
+
+    }*/
+
+    public producto() {
+
+    }
+    @Override
+    public String toString(){
+        return "Producto{"+ "id="+idProducto+"nombre="+nombre+"descricion="+descripcion+"fabricant="+fabricante+"vendedor="+Vendedor+"precio="+precio+"imagen="+imagen +" }";
 
     }
 
@@ -44,7 +53,7 @@ public class producto {
         return fabricante;
     }
 
-    public usuario getvendedor() {
+    public usuario getVendedor() {
         return Vendedor;
     }
 
@@ -72,7 +81,7 @@ public class producto {
         this.fabricante = fabricante;
     }
 
-    public void setvendedor(usuario vendedor) {
+    public void setVendedor(usuario vendedor) {
         this.Vendedor = vendedor;
     }
 
@@ -99,4 +108,5 @@ public class producto {
     public void setImagen(String imagen){
         this.imagen = imagen;
     }
+
 }

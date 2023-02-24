@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 @Order(1)
 public class inicializaUsers implements CommandLineRunner {
     @Autowired
-    private usuarioRepo usuarioRepo;
+    private usuarioRepo userRepo;
     public static usuario admin;
     public static usuario comprador;
     public static usuario vendedor;
@@ -27,12 +27,17 @@ public class inicializaUsers implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if(args.length >= 1) {
             if(args[0].equalsIgnoreCase("buildUsers")) {
-                admin = new usuario("PcPiezas","admin@pcpiezas.es", "12345", rol.ADMINISTRADOR);
-                usuarioRepo.save(admin);
-                comprador = new usuario("Juan", "juan@gmail.com", "12345", rol.COMPRADOR);
-                usuarioRepo.save(comprador);
-                vendedor = new usuario("Pro1Performance", "ramon@pro1performance.com", "12345", rol.VENDEDOR);
-                usuarioRepo.save(vendedor);
+                admin = new usuario();
+                admin.anadirUser("PcPiezas","admin@pcpiezas.es", "12345", rol.ADMINISTRADOR);
+                userRepo.save(admin);
+
+                comprador = new usuario();
+                comprador.anadirUser("Juan", "juan@gmail.com", "12345", rol.COMPRADOR);
+                userRepo.save(comprador);
+
+                vendedor = new usuario();
+                vendedor.anadirUser("Pro1Performance", "ramon@pro1performance.com", "12345", rol.VENDEDOR);
+                userRepo.save(vendedor);
 
             }}
     }

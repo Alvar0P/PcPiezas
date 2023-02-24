@@ -1,4 +1,4 @@
-package com.AlvaroyRaul.PcPiezas;
+package com.AlvaroyRaul.PcPiezas.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,11 +63,9 @@ public class MustacheController {
         return "registerClient";
     }
     @GetMapping("/addProduct")
-    public String registroProducto(Model model){
-        return "addProducto";
-    }
-    @GetMapping("/lista")
-    public String lista(Model model){return "listProducts";}
+    public String registroProducto(Model model){return "addProducto";}
+    //@GetMapping("/listaProductos")
+    //public String lista(Model model){return "listProducts";}
 
 
 }
