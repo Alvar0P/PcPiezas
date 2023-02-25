@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/Other resources/PcPiezasLogo.png?raw=true" alt="PcPiezasLogo"/>
+</p>
+
 # PcPiezas
 Web para la compra de ordenadores a piezas y perifericos.
 
