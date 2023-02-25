@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>productos</title>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="col-12">
+        <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+            <!-- Navbar content -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold" href="/addItem" >Añadir Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold" href="/listaItems">Lista de items</a>
+                </li>
+            </ul>
+        </nav>
+        <hr>
+        <h3 class="text-center">Lista de stock</h3>
+        <hr>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Nº de serie</th>
+                <th scope="col">eliminar item</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ul> {{#productos}}
+                <tr>
+                    <th scope="row"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 100px;height: 100px;"></th>
+                    <td>{{nombre}}
+                        
+                        <div class="modal fade"
+                            id="exampleModalCenter+{{idProducto}}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="cambiar Nombre">change
+                                            producto name</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/changeName" method="post">
+                                            <div class="form-group">
+                                                <label>producto id</label> <input type="hidden"
+                                                                             value="{{idProducto}}" class="form-control" name="id">
+                                                <label>new producto name</label> <input type="text"
+                                                                                   name="newPname" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">submit</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                {{/productos}}
+                {{#items}}
+                <tr>
+                    <td>{{nSerie}} <!-- Button trigger modal -->
+                        <div class="modal fade"
+                            id="exampleModalCenterDesc+{{nSerie}}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="cambiar Descripcion">Nº de serie</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form action="/changeDescription" method="post">
+                                            <div class="form-group">
+                                                <label>producto id</label> <input type="text"
+                                                                                value="{{nSerie}}}" class="form-control" name="id">
+                                                <label>new producto description</label> <input type="text"
+                                                                                            name="newDescription" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td><a href="/deleteItem/{{nSerie}}"
+                        class="btn btn-danger mt-4">Borrar</a>
+                    </td>
+
+                </tr>
+                {{/items}}
+            </ul>
+            </tbody>
+        </table>
+        <hr>
+    </div>
+</div>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

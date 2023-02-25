@@ -16,7 +16,7 @@ public class venta {
     private float total;
     private LocalDate FechaCompra;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "ventaId")
+    @JoinColumn(name = "ventaId", nullable = true)
     private List<item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
     @OneToOne
     private usuario comprador;//Un comprador

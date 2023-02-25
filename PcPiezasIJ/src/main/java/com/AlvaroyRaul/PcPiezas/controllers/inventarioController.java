@@ -1,8 +1,10 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
+import com.AlvaroyRaul.PcPiezas.database.entity.item;
 import com.AlvaroyRaul.PcPiezas.database.entity.producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.itemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
+import com.AlvaroyRaul.PcPiezas.servicies.servicioItem;
 import com.google.common.net.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,71 +14,43 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class inventarioController {
     @Autowired
-    private productoRepo productoRepo;
+    private itemRepo itemRepo;
     @Autowired
-    private servicioProducto servicioProduct;
-    @GetMapping("/listaProductos")
-    public String verListaProductos(Model model) {
+    private servicioItem sItem;
+    @GetMapping("/listaItems")
+    public String verListaItems(Model model) {
 
-        List<producto> listaProductos = servicioProduct.getAllProduct();
+        List<item> listaItems = sItem.getAllItems();
+        List<producto> listaProductos = new ArrayList<producto>();
+        for(item itemP : listaItems) {
+            listaProductos.add(itemP.getProducto());
+        }
         model.addAttribute("productos", listaProductos);
-        return "listProducts";
+        model.addAttribute("items", listaItems);
+        return "listInventario";
     }
-    @PostMapping("/addP")
-    public String guardarProducto(@RequestParam("file") MultipartFile file,@RequestParam("name") String nombre,
+    @PostMapping("/addItem")
+    public String guardarItem(@RequestParam("file") MultipartFile file,@RequestParam("name") String nombre,
                                   @RequestParam("desc") String descripcion,@RequestParam("fabri") String fabricante,@RequestParam("vendedor") String vendedor,//Todo cambiar por "usuario vendedor" al final
                                   @RequestParam("price") int precio) {
 
-        servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,precio);
 
-        return "redirect:/listaProductos";
+
+        return "";
 
     }
-    @GetMapping("/deleteProd/{id}")
-    public String deleteProduct(@PathVariable long id)
+    @GetMapping("/deleteItem/{nSerie}")
+    public String deleteItem(@PathVariable long id)
     {
 
-        servicioProduct.deleteProductById(id);
-        return "redirect:/listaProductos";
+
+        return "";
     }
-
-    @PostMapping("/changeName")
-    public String changePname(@RequestParam("id") Long id,
-                              @RequestParam("newPname") String name)
-    {
-        servicioProduct.changeProductName(id, name);
-        return "redirect:/listaProductos";
-    }
-    @PostMapping("/changeDescription")
-    public String changeDescription(@RequestParam("id") Long id ,
-                                    @RequestParam("newDescription") String description)
-    {
-        servicioProduct.changeProductDescription(id, description);
-        return "redirect:/listaProductos";
-    }
-
-    @PostMapping("/changePrice")
-    public String changePrice(@RequestParam("id") Long id ,
-                              @RequestParam("newPrice") int price)
-    {
-        servicioProduct.changeProductPrice(id, price);
-        return "redirect/listaProductos";
-    }
-    @PostMapping("/changeFabricante")
-    public String changePrice(@RequestParam("id") Long id ,
-                              @RequestParam("newFabricant") String Fabricante)
-    {
-        servicioProduct.changeProductFabricante(id, Fabricante);
-        return "redirect/listaProductos";
-    }
-
-
-
-
 
 }
