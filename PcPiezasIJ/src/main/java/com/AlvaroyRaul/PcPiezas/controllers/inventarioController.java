@@ -22,6 +22,8 @@ public class inventarioController {
     @Autowired
     private itemRepo itemRepo;
     @Autowired
+    private productoRepo productoRepo;
+    @Autowired
     private servicioItem sItem;
     @GetMapping("/listaItems")
     public String verListaItems(Model model) {
@@ -33,16 +35,24 @@ public class inventarioController {
         }
         model.addAttribute("productos", listaProductos);
         model.addAttribute("items", listaItems);
-        return "listInventario";
+        return "listItems";
     }
-    @PostMapping("/addItem")
-    public String guardarItem(@RequestParam("file") MultipartFile file,@RequestParam("name") String nombre,
-                                  @RequestParam("desc") String descripcion,@RequestParam("fabri") String fabricante,@RequestParam("vendedor") String vendedor,//Todo cambiar por "usuario vendedor" al final
-                                  @RequestParam("price") int precio) {
 
+    @GetMapping("/addItem")
+    public String verGuardarItem(Model model) {
 
-
-        return "";
+        model.addAttribute("productos", productoRepo.findAll());
+        return "addItem";
+    }
+    @PostMapping("/addI")
+    public String guardarItem(@RequestParam("productoSel") String producto,
+                                  @RequestParam("nSerie") String nSerie) {
+        producto = producto.replaceAll("\\D+","");
+        long idProducto = Long.getLong(producto);
+        producto pItem = productoRepo.findById(idProducto).get();
+        item itemNuevo = new item(nSerie, pItem);
+        itemRepo.save(itemNuevo);
+        return "redirect:/listaItems";
 
     }
     @GetMapping("/deleteItem/{nSerie}")
