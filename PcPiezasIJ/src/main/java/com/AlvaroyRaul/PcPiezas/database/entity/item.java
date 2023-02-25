@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "item")
 public class item {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private long idItem;
+    private String nSerie;
 
     @ManyToOne//Es una copia del producto que representa la unidad que tenemos en el almacen
     @JoinColumn(name="idProducto",nullable = false)
