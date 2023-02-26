@@ -45,34 +45,34 @@ public class productosController {
         return "redirect:/listaProductos";
     }
 
-    @PostMapping("/changeName")
-    public String changePname(@RequestParam("id") Long id,
+    @PostMapping("/changeName/{id}")
+    public String changePname(@PathVariable("id") Long id,
                               @RequestParam("newPname") String name)
     {
         servicioProduct.changeProductName(id, name);
         return "redirect:/listaProductos";
     }
-    @PostMapping("/changeDescription")
-    public String changeDescription(@RequestParam("id") Long id ,
+    @PostMapping("/changeDescription/{id}")
+    public String changeDescription(@PathVariable("id") Long id ,
                                     @RequestParam("newDescription") String description)
     {
         servicioProduct.changeProductDescription(id, description);
         return "redirect:/listaProductos";
     }
 
-    @PostMapping("/changePrice")
-    public String changePrice(@RequestParam("id") Long id ,
+    @PostMapping("/changePrice/{id}")
+    public String changePrice(@PathVariable("id") Long id ,
                               @RequestParam("newPrice") int price)
     {
         servicioProduct.changeProductPrice(id, price);
-        return "redirect/listaProductos";
+        return "redirect:/listaProductos";
     }
-    @PostMapping("/changeFabricante")
-    public String changePrice(@RequestParam("id") Long id ,
+    @PostMapping("/changeFabricante/{id}")
+    public String changePrice(@PathVariable("id") Long id ,
                               @RequestParam("newFabricant") String Fabricante)
     {
         servicioProduct.changeProductFabricante(id, Fabricante);
-        return "redirect/listaProductos";
+        return "redirect:/listaProductos";
     }
 
 

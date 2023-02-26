@@ -60,7 +60,7 @@ public class inventarioController {
     {
 
 
-        return "";
+        return "redirect:/listaItems";
     }
 
 }

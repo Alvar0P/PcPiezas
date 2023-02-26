@@ -41,151 +41,29 @@
                 {{#productos}}
                 <tr>
                     <th scope="row"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 100px;height: 100px;"></th>
-                    <td>{{nombre}}
-                        <!-- Button trigger modal --> <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" attr="data-target=#exampleModalCenter+{{idProducto}}">change name</button> <!-- Modal -->
-
-                        <div class="modal fade"
-                            id="exampleModalCenter+{{idProducto}}" tabindex="-1"
-                            role="dialog" aria-labelledby="exampleModalCenterTitle"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="cambiar Nombre">change
-                                            producto name</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/changeName" method="post">
-                                            <div class="form-group">
-                                                <label>producto id</label> <input type="hidden"
-                                                                             value="{{idProducto}}" class="form-control" name="id">
-                                                <label>new producto name</label> <input type="text"
-                                                                                   name="newPname" class="form-control"> <br>
-                                                <button type="submit" class="btn btn-primary">submit</button>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td>{{descripcion}} <!-- Button trigger modal -->
+                    <td>{{nombre}} <!-- Button trigger modal -->
                         <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2"
-                                data-toggle="modal"
-                                attr="data-target=#exampleModalCenterDesc+{{idProducto}}">change
-                            description</button> <!-- Modal -->
-                        <div class="modal fade"
-                            id="exampleModalCenterDesc+{{idProducto}}" tabindex="-1"
-                            role="dialog" aria-labelledby="exampleModalCenterTitle"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="cambiar Descripcion">change
-                                        producto description</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <form action="/changeDescription" method="post">
-                                            <div class="form-group">
-                                                <label>producto id</label> <input type="text"
-                                                                                value="{{idProducto}}}" class="form-control" name="id">
-                                                <label>new producto description</label> <input type="text"
-                                                                                            name="newDescription" class="form-control"> <br>
-                                                <button type="submit" class="btn btn-primary">submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{fabricante}} <!-- Button trigger modal -->
-                        <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2"
-                                data-toggle="modal"
-                                attr="data-target=#exampleModalCenterDesc+{{idProducto}}">change
-                            description</button> <!-- Modal -->
-                        <div class="modal fade"
-                             id="exampleModalCenterFabri+{{idProducto}}" tabindex="-1"
-                             role="dialog" aria-labelledby="exampleModalCenterTitle"
-                             aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="cambiar Fabricante">change
-                                            producto fabricante</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <form action="/changeFabricante" method="post">
-                                            <div class="form-group">
-                                                <label>producto id</label> <input type="text"
-                                                                                  value="{idProducto}" class="form-control" name="id">
-                                                <label>new producto description</label> <input type="text"
-                                                                                               name="newDescription" class="form-control"> <br>
-                                                <button type="submit" class="btn btn-primary">submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{precio}} <!-- Button trigger modal -->
-                        <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" attr="data-target=#exampleModalCenterPrice+{{idProducto}}">
-                            Cambiar precio
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarNombre{{idProducto}}">
+                            Cambiar nombre
                         </button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="CambiarNombre{{idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">cambiar precio producto</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                        <h5 class="modal-title" id="Cambiar nombre">
+                                            Cambiar nombre producto
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/changePrice" method="post">
+                                        <form action="/changeName/{{idProducto}}" method="post">
                                             <div class="form-group">
-                                                <label>producto id</label> <input type="text" value="{{idProducto}}" class="form-control" name="id">
-                                                <label>new producto price</label> <input type="text" name="newPrice" class="form-control"> <br>
+                                                <label>Nuevo nombre</label> <input type="text" name="newPname" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">
-                                                    submit
+                                                    Submit
                                                 </button>
                                             </div>
                                         </form>
@@ -194,8 +72,113 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                             Close
                                         </button>
-                                        <button type="button" class="btn btn-primary">
-                                            Save changes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{descripcion}} <!-- Button trigger modal -->
+                        <br>
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarDescripcion{{idProducto}}">
+                            Cambiar descripcion
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="CambiarDescripcion{{idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="Cambiar descripcion">
+                                            Cambiar descripcion producto
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/changeDescription/{{idProducto}}" method="post">
+                                            <div class="form-group">
+                                                <label>Nueva descripcion</label> <input type="text" name="newDescription" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{fabricante}} <!-- Button trigger modal -->
+                        <br>
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarFabricante{{idProducto}}">
+                            Cambiar fabricante
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="CambiarFabricante{{idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="Cambiar fabricante">
+                                            Cambiar fabricante producto
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/changeFabricante/{{idProducto}}" method="post">
+                                            <div class="form-group">
+                                                <label>Nuevo fabricante</label> <input type="text" name="newFabricant" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{precio}} <!-- Button trigger modal -->
+                        <br>
+                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarPrecio{{idProducto}}">
+                            Cambiar precio
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="CambiarPrecio{{idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="Cambiar precio">
+                                            Cambiar precio producto
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/changePrice/{{idProducto}}" method="post">
+                                            <div class="form-group">
+                                                <label>Nuevo precio</label> <input type="text" name="newPrice" class="form-control"> <br>
+                                                <button type="submit" class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
                                         </button>
                                     </div>
                                 </div>
@@ -205,7 +188,6 @@
                     <td><a href="/deleteProd/{{idProducto}}"
                         class="btn btn-danger mt-4">delete</a>
                     </td>
-
                 </tr>
                 {{/productos}}
             </ul>
@@ -214,7 +196,23 @@
         <hr>
     </div>
 </div>
-<script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
+
+
+<!-- JS code -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+<!--modal-->
+<script>
+    $('#myModal').on('shown.bs.modal', function() {
+    $('#myInput').focus()
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $("#myModal").modal();
+    });
+</script>
+
 </body>
 </html>
