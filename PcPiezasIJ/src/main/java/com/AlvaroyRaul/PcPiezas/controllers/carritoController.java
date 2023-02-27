@@ -10,10 +10,7 @@ import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -43,7 +40,7 @@ public class carritoController {
         return "redirect:/listaCarrito";
 
     }
-    @GetMapping("/DeleteFromCarrito/{id}")//Solo funciona con GET idk
+    @GetMapping("/DeleteFromCarrito/{id}")
     public String borrarDelCarrito(@PathVariable("id") long id) {
 
 
