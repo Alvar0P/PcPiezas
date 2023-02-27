@@ -23,6 +23,7 @@ public class item {
 
     }
 
+
     public String getnSerie() {
         return nSerie;
     }

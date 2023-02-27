@@ -1,6 +1,8 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,10 @@ import java.util.List;
 public class MustacheController {
     @Autowired
     private servicioProducto servicioProduct;
+    @Autowired
+    private servicioCarrito servCarrito;
+    @Autowired
+    private usuarioRepo userRep;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -24,6 +30,13 @@ public class MustacheController {
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
+        /*
+        for (int i=5;i<12;i++){
+            servCarrito.deleteCarritoById(i);
+        }//PRUEBAS*/
+        //servCarrito.deleteCarritoById(11);
+        //servCarrito.saveProductoEnCarrito((long)4);
+
 
 
         return "inicio";
@@ -53,12 +66,7 @@ public class MustacheController {
 
         return "perifericos";
     }
-    @GetMapping("/carrito")
-    public String carrito(Model model) {
 
-
-        return "shopping_cart";
-    }
     @GetMapping("/contacto")
     public String contacto(Model model) {
 
