@@ -43,26 +43,29 @@ public class MustacheController {
     }
     @GetMapping("/ordenadores")
     public String pcs(Model model) {
-
+        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Ordenadores");
+        model.addAttribute("productos", listaProductos);
 
         return "ordenadores";
     }
     @GetMapping("/componentes")
     public String componentes(Model model) {
-        List<producto> listaProductos = servicioProduct.getAllProduct();
+        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Componentes");
         model.addAttribute("productos", listaProductos);
 
         return "componentes";
     }
     @GetMapping("/moviles")
     public String moviles(Model model) {
-
+        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Movil");
+        model.addAttribute("productos", listaProductos);
 
         return "moviles";
     }
     @GetMapping("/perifericos")
     public String perifericos(Model model) {
-
+        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Perifericos");
+        model.addAttribute("productos", listaProductos);
 
         return "perifericos";
     }

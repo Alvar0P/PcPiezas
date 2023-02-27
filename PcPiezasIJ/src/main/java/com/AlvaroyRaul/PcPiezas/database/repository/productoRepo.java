@@ -10,5 +10,6 @@ import java.util.List;
 public interface productoRepo extends JpaRepository<producto, Long> {
 
     public List<producto> findAll();
+    public List<producto> findByCategoria(String categoria);
 
 }

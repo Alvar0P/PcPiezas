@@ -39,12 +39,13 @@ public class productosController {
 
         return "listProducts";
     }
+
     @PostMapping("/addP")
     public String guardarProducto(@RequestParam("file") MultipartFile file,@RequestParam("name") String nombre,
-                             @RequestParam("desc") String descripcion,@RequestParam("fabri") String fabricante,@RequestParam("vendedor") String vendedor,//Todo cambiar por "usuario vendedor" al final
-                             @RequestParam("price") int precio) {
+                             @RequestParam("desc") String descripcion,@RequestParam("fabri") String fabricante,@RequestParam("vendedor") String vendedor,
+                                  @RequestParam("categoria") String categoria,@RequestParam("price") int precio) {
 
-        servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,precio);
+        servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,categoria,precio);
 
 
         return "redirect:/listaProductos";
@@ -88,6 +89,13 @@ public class productosController {
         return "redirect:/listaProductos";
     }
 
+    @PostMapping("/changeCategoria/{id}")
+    public String changeCategoria(@PathVariable("id") Long id ,
+                              @RequestParam("newCategoria") String categoria)
+    {
+        servicioProduct.changeProductCategoria(id, categoria);
+        return "redirect:/listaProductos";
+    }
 
 
 

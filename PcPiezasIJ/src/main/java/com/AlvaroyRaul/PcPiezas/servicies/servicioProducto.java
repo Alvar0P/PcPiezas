@@ -34,7 +34,7 @@ public class servicioProducto {
 
     }
 
-    public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,String vendedor,int precio){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
+    public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,String vendedor,String categoria,int precio){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
         //Todo cambiar por "usuario vendedor" al final
         producto p = new producto();
         p.setNombre(nombre);
@@ -44,6 +44,7 @@ public class servicioProducto {
         u = userRepo.findByUsername(vendedor);
         p.setVendedor(u);
         p.setPrecio(precio);
+        p.setCategoria(categoria);
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -63,6 +64,10 @@ public class servicioProducto {
     public List<producto> getAllProduct()
     {
         return productRepo.findAll();
+    }
+    public List<producto> getProductoPorCategoria(String categoria)
+    {
+        return productRepo.findByCategoria(categoria);
     }
     public void deleteProductById(long id) {
         productRepo.deleteById(id);
@@ -92,6 +97,13 @@ public class servicioProducto {
         producto p = new producto();
         p = productRepo.findById(id).get();
         p.setPrecio(price);
+        productRepo.save(p);
+    }
+
+    public void changeProductCategoria(long id, String categoria){
+        producto p = new producto();
+        p = productRepo.findById(id).get();
+        p.setCategoria(categoria);
         productRepo.save(p);
     }
 
