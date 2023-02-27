@@ -40,8 +40,16 @@ public class servicioItem {
     {
         producto productoItem = pRepo.findById(idProducto).get();
 
-        //return iRepo.findByIdproducto(productoItem).stream().toList();
-        return null;
+        return iRepo.findByProducto(productoItem).stream().toList();
+
+    }
+
+    public long getItemCountForProduct(long idProducto)
+    {
+        producto productoItem = pRepo.findById(idProducto).get();
+
+        return iRepo.findByProducto(productoItem).stream().count();
+
     }
     public void deleteItemBynSerie(String nSerie) {iRepo.findById(nSerie);}
 }

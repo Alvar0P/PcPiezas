@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Inventario</title>
     <meta charset="ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
             <!-- Navbar content -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/addItem" >Añadir Item</a>
+                    <a class="nav-link font-weight-bold" href="/addItem" >AÃ±adir Item</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bold" href="/listaItems">Lista de items</a>
@@ -23,14 +24,14 @@
             </ul>
         </nav>
         <hr>
-        <h3 class="text-center">Lista de stock</h3>
+        <h3 class="text-center">Lista de stock {{nombreProducto}}</h3>
         <hr>
         <table class="table">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Nº de serie</th>
+                <th scope="col">NÂº de serie</th>
                 <th scope="col">eliminar item</th>
             </tr>
             </thead>

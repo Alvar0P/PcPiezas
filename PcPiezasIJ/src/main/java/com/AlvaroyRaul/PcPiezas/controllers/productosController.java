@@ -3,6 +3,7 @@ package com.AlvaroyRaul.PcPiezas.controllers;
 import com.AlvaroyRaul.PcPiezas.database.entity.producto;
 import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
+import com.AlvaroyRaul.PcPiezas.servicies.servicioItem;
 import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
 import com.google.common.net.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,11 +25,18 @@ public class productosController {
     private servicioProducto servicioProduct;
     @Autowired
     private servicioCarrito servCarrito;
+    @Autowired
+    private servicioItem servItem;
     @GetMapping("/listaProductos")
     public String verListaProductos(Model model) {
-
+        List<Long> stockProductos = new ArrayList<Long>();
         List<producto> listaProductos = servicioProduct.getAllProduct();
+        for(producto p : listaProductos) {
+            stockProductos.add(servItem.getItemCountForProduct(p.getIdProducto()));
+        }
+        model.addAttribute("stockProductos", stockProductos);
         model.addAttribute("productos", listaProductos);
+
         return "listProducts";
     }
     @PostMapping("/addP")

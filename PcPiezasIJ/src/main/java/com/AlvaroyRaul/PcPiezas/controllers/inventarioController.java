@@ -33,6 +33,20 @@ public class inventarioController {
         for(item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
         }
+        model.addAttribute("nombreProducto","");
+        model.addAttribute("productos", listaProductos);
+        model.addAttribute("items", listaItems);
+        return "listItems";
+    }
+    @GetMapping("/listaItems(id={id})")
+    public String verListaItemsParaProducto(Model model, @PathVariable long id) {
+
+        List<item> listaItems = sItem.getAllItemsForProduct(id);
+        List<producto> listaProductos = new ArrayList<producto>();
+        for(item itemP : listaItems) {
+            listaProductos.add(itemP.getProducto());
+        }
+        model.addAttribute("nombreProducto", listaProductos.get(0).getFabricante() + " " + listaProductos.get(0).getNombre()  );
         model.addAttribute("productos", listaProductos);
         model.addAttribute("items", listaItems);
         return "listItems";
