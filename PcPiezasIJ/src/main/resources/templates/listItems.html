@@ -15,7 +15,7 @@
             <!-- Navbar content -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/addItem" >AÃ±adir Item</a>
+                    <a class="nav-link font-weight-bold" href="/addItem" >Añadir Item</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bold" href="/listaItems">Lista de items</a>
@@ -30,12 +30,12 @@
             <tr>
                 <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">NÂº de serie</th>
+                <th scope="col">Nº de serie</th>
                 <th scope="col">eliminar item</th>
             </tr>
             </thead>
             <tbody>
-            <ul> {{#productos}}
+            <ul> {{#productos}}{{#items}}
                 <tr>
                     <th scope="row"><img alt="" src="data:image/jpeg;base64,{{imagen}}" style="width: 100px;height: 100px;"></th>
                     <td>{{nombre}}
@@ -88,7 +88,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="cambiar Descripcion">NÂº de serie</h5>
+                                        <h5 class="modal-title" id="cambiar Descripcion">Nº de serie</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
