@@ -15,9 +15,26 @@ public class producto {
     private String descripcion;
     private String categoria;
     private float precio;
+
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String imagen;
+
+    @ManyToMany(fetch = FetchType.LAZY)//Un producto puede estar en varios carritos.
+    @JoinTable(name = "productosEnCarritos", joinColumns = {
+            @JoinColumn(name = "producto_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "carrito_id",
+                    nullable = false, updatable = false) })
+    private List<carrito> carritos;
+
+    public List<carrito> getCarritos() {
+        return carritos;
+    }
+
+    public void setCarritos(List<carrito> carritos) {
+        this.carritos = carritos;
+    }
+
     @ManyToOne//Varios productos para un vendedor
     private usuario Vendedor;
     @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
@@ -64,11 +81,7 @@ public class producto {
     public String getDescripcion() {
         return descripcion;
     }
-    /*
-        public int getValoracion() {
-            return valoracion;
-        }
-    */
+
     public String getCategoria() {
         return categoria;
     }
@@ -76,6 +89,7 @@ public class producto {
     public float getPrecio() {
         return precio;
     }
+    public String getImagen() {return imagen;}
 
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
@@ -92,11 +106,7 @@ public class producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-/*
-    public void setValoracion(int valoracion) {
-        this.valoracion = valoracion;
-    }
-*/
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }

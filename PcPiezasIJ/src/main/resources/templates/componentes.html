@@ -52,7 +52,7 @@
                   <div class="login_text">
                      <ul>
                         <li><a href="#"><img src="/images/user-icon.png"></a></li>
-                        <li><a href="/carrito"><img src="/images/trolly-icon.png"></a></li>
+                        <li><a href="/listaCarrito"><img src="/images/trolly-icon.png"></a></li>
                         <li><a href="#"><img src="/images/search-icon.png"></a></li>
                      </ul>
                   </div>
@@ -81,43 +81,21 @@
                               <h4 class="price_text">{{precio}}</h4>
 
                             </div>
-                            <div class="cart_bt_1"><a href="#">Add To Cart</a></div>
+                            <div class="cart_bt_1"><a href="/AddToCart/{{idProducto}}" methods="POST">Add To Cart</a></div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           {{/productos}}
                       </ul>
-
-                  </div>
-                   <!--
-                  <div class="col-md-4">
-                     <div class="computer_img"><img src="/images/cpu.jpg"></div>
-                     <h4 class="computer_text">LAPTOP</h4>
-                     <div class="computer_text_main">
-                        <h4 class="dell_text">Dell</h4>
-                        <h6 class="price_text"><a href="#">$500</a></h6>
-                        <h6 class="price_text_1"><a href="#">$1000</a></h6>
-                     </div>
-                     <div class="cart_bt_1"><a href="#">Add To Cart</a></div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="computer_img"><img src="/images/cpu.jpg"></div>
-                     <h4 class="computer_text">macOS</h4>
-                     <div class="computer_text_main">
-                        <h4 class="dell_text">Apple</h4>
-                        <h6 class="price_text"><a href="#">$500</a></h6>
-                        <h6 class="price_text_1"><a href="#">$1000</a></h6>
-                     </div>
-                     <div class="cart_bt_1"><a href="#">Add To Cart</a></div>
                   </div>
                </div>
             </div>
          </div>
-      </div>-->
+      </div>
       <!-- computers section end -->
       <!-- footer section start -->
       <div class="footer_section layout_padding margin_top_90">
          <div class="container">
             <div class="footer_logo_main">
-               <div class="footer_logo"><a href="inicio.html"><img src="/images/footer-logo.png"></a></div>
+               <div class="footer_logo"><a href="/inicio"><img src="/images/footer-logo.png"></a></div>
                <div class="social_icon">
                   <ul>
                      <li><a href="#"><img src="/images/fb-icon.png"></a></li>

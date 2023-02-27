@@ -27,12 +27,16 @@ public class usuario {
     private long cuentaBancaria;//Solo vendedor
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<producto> productos;//Solo vendedor
-    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Productos en la tabla carrito asociados al usuario
-    private List<carrito> articulosCarrito;
+    //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Productos en la tabla carrito asociados al usuario
+    //private List<carrito> articulosCarrito;
 
-    //@ManyToOne
-    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
-    private List<carrito> Carrito;
+
+
+
+    //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
+    //private List<carrito> Carrito;
+    @OneToOne(cascade = CascadeType.ALL)//Si se borra el usuario se borra el carrito
+    private carrito Carrito;
     /*
     public usuario(String username,String email ,String password, rol Rol) {
         this.rol = Rol;
@@ -100,6 +104,14 @@ public class usuario {
     public long getTarjeta() {return tarjeta;}//Solo usuario
     public long getCuentaBancaria() {return cuentaBancaria;}//Solo vendedor
     public List<producto> getProductos() {return productos;}//Solo vendedor
+
+    public carrito getCarrito() {
+        return Carrito;
+    }
+
+    public void setCarrito(carrito carrito) {
+        this.Carrito = carrito;
+    }
 
 
 

@@ -2,6 +2,7 @@ package com.AlvaroyRaul.PcPiezas.controllers;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.producto;
 import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
 import com.google.common.net.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class productosController {
     private productoRepo productoRepo;
     @Autowired
     private servicioProducto servicioProduct;
+    @Autowired
+    private servicioCarrito servCarrito;
     @GetMapping("/listaProductos")
     public String verListaProductos(Model model) {
 
@@ -33,6 +36,7 @@ public class productosController {
                              @RequestParam("price") int precio) {
 
         servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,precio);
+
 
         return "redirect:/listaProductos";
 
