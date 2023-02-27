@@ -30,6 +30,8 @@ public class servicioItem {
         item item = new item(nSerie, productoItem);
 
     }
+
+
     public List<item> getAllItems()
     {
         return iRepo.findAll();

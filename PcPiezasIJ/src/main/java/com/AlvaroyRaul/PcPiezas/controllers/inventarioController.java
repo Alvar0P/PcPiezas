@@ -45,20 +45,20 @@ public class inventarioController {
         return "addItem";
     }
     @PostMapping("/addI")
-    public String guardarItem(@RequestParam("productoSel") String producto,
+    public String guardarItem(@RequestParam("productoSeleccionado") long productoId,
                                   @RequestParam("nSerie") String nSerie) {
-        producto = producto.replaceAll("\\D+","");
-        long idProducto = Long.getLong(producto);
-        producto pItem = productoRepo.findById(idProducto).get();
+        /*producto = producto.replaceAll("\\D+","");
+        long idProducto = Long.getLong(producto);*/
+        producto pItem = productoRepo.findById(productoId).get();
         item itemNuevo = new item(nSerie, pItem);
         itemRepo.save(itemNuevo);
         return "redirect:/listaItems";
 
     }
     @GetMapping("/deleteItem/{nSerie}")
-    public String deleteItem(@PathVariable long id)
+    public String deleteItem(@PathVariable String nSerie)
     {
-
+        itemRepo.deleteById(nSerie);
 
         return "redirect:/listaItems";
     }
