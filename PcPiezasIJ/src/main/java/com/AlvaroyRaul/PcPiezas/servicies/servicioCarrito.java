@@ -57,7 +57,7 @@ public class servicioCarrito {
             c =u.getCarrito();
         }
         c.getProductos().add(p);
-        c.setIdProducto(p);
+
         if(p.getCarritos().equals(null)){
             List<carrito> carr = new ArrayList<>();
             p.setCarritos(carr);
@@ -80,12 +80,17 @@ public class servicioCarrito {
         carritRepo.deleteById(id);
     }
     public void deleteProductoInCarritoById(long idProducto){
-
+        usuario u = new usuario();
+        u = userRepo.findById((long)2).get();//Prueba
         carrito c = new carrito();
-        c = carritRepo.findById((long)7).get();//Prueba
+        c = u.getCarrito();
         producto p = new producto();
         p = productRepo.findById(idProducto).get();
+        p.getCarritos().remove(c);
         c.getProductos().remove(p);
+        u.getCarrito().getProductos().remove(p);
+        userRepo.save(u);
+        productRepo.save(p);
         carritRepo.save(c);
 
 

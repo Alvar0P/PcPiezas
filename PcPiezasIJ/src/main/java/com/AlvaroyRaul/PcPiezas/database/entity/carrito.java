@@ -19,9 +19,9 @@ public class carrito {
     private usuario Usuario;
 
 
-    @ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
-    @JoinColumn(name="idproducto", nullable = true)
-    private producto idProducto;
+    //@ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
+    //@JoinColumn(name="idproducto", nullable = true)
+    //private producto idProducto;
 
 
 
@@ -72,13 +72,7 @@ public class carrito {
         this.productos = productos;
     }
 
-    public producto getIdProducto() {
-        return idProducto;
-    }
 
-    public void setIdProducto(producto idProducto) {
-        this.idProducto = idProducto;
-    }
 
 
 }
