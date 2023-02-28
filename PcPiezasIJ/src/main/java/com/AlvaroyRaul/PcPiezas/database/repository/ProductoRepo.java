@@ -1,5 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.database.repository;
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Repository
 @Transactional
-public interface productoRepo extends JpaRepository<producto, Long> {
+public interface ProductoRepo extends JpaRepository<Producto, Long> {
 
-    public List<producto> findAll();
-    public List<producto> findByCategoria(String categoria);
+    public List<Producto> findAll();
+    public List<Producto> findByCategoria(String categoria);
 
 }

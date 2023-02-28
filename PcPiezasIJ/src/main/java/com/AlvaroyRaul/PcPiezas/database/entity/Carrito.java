@@ -5,7 +5,7 @@ import java.util.List;
 @Entity
 
 //@Table(name = "carrito", uniqueConstraints = { @UniqueConstraint(columnNames = { "IdUsuario", "IdProducto" }) }) //Reestriccion que permite una unica fila con cierta combinacion de producto y usuario
-public class carrito {
+public class Carrito {
 
 
 
@@ -16,7 +16,7 @@ public class carrito {
     //@ManyToOne(fetch = FetchType.LAZY)//Un usuario tiene varias entradas en la tabla carrito
     //@JoinColumn(name = "IdUsuario",  referencedColumnName="IdUsuario") //Un usuario tiene varias entradas en la tabla carrito
     @OneToOne
-    private usuario Usuario;
+    private com.AlvaroyRaul.PcPiezas.database.entity.Usuario Usuario;
 
 
     //@ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
@@ -26,10 +26,10 @@ public class carrito {
 
 
     @ManyToMany(fetch =FetchType.LAZY, mappedBy = "carritos")//Un carrito puede tener varios productos
-    private List<producto> productos;
+    private List<Producto> productos;
 
 
-    public carrito() {
+    public Carrito() {
     }
 
     public long getIdCarrito() {
@@ -48,11 +48,11 @@ public class carrito {
         this.cantidad = cantidad;
     }
 
-    public usuario getUsuario() {
+    public com.AlvaroyRaul.PcPiezas.database.entity.Usuario getUsuario() {
         return Usuario;
     }
 
-    public void setUsuario(usuario usuario) {
+    public void setUsuario(com.AlvaroyRaul.PcPiezas.database.entity.Usuario usuario) {
         Usuario = usuario;
     }
 /*
@@ -64,11 +64,11 @@ public class carrito {
         this.idProducto = idProducto;
     }
 */
-    public List<producto> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<producto> productos) {
+    public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
 

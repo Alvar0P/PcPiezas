@@ -4,7 +4,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "producto")
-public class producto {
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -25,20 +25,20 @@ public class producto {
             @JoinColumn(name = "producto_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "carrito_id",
                     nullable = false, updatable = false) })
-    private List<carrito> carritos;
+    private List<Carrito> carritos;
 
-    public List<carrito> getCarritos() {
+    public List<Carrito> getCarritos() {
         return carritos;
     }
 
-    public void setCarritos(List<carrito> carritos) {
+    public void setCarritos(List<Carrito> carritos) {
         this.carritos = carritos;
     }
 
     @ManyToOne//Varios productos para un vendedor
-    private usuario Vendedor;
+    private Usuario Vendedor;
     @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
-    private List<item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
+    private List<com.AlvaroyRaul.PcPiezas.database.entity.Item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
     /*public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
 
@@ -53,7 +53,7 @@ public class producto {
 
     }*/
 
-    public producto() {
+    public Producto() {
 
     }
     @Override
@@ -70,7 +70,7 @@ public class producto {
         return fabricante;
     }
 
-    public usuario getVendedor() {
+    public Usuario getVendedor() {
         return Vendedor;
     }
 
@@ -95,7 +95,7 @@ public class producto {
         this.fabricante = fabricante;
     }
 
-    public void setVendedor(usuario vendedor) {
+    public void setVendedor(Usuario vendedor) {
         this.Vendedor = vendedor;
     }
 

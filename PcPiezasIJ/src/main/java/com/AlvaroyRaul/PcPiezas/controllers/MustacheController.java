@@ -1,9 +1,9 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +15,11 @@ import java.util.List;
 @Controller
 public class MustacheController {
     @Autowired
-    private servicioProducto servicioProduct;
+    private ServicioProducto servicioProduct;
     @Autowired
-    private servicioCarrito servCarrito;
+    private ServicioCarrito servCarrito;
     @Autowired
-    private usuarioRepo userRep;
+    private UsuarioRepo userRep;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -43,28 +43,28 @@ public class MustacheController {
     }
     @GetMapping("/ordenadores")
     public String pcs(Model model) {
-        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Ordenadores");
+        List<Producto> listaProductos = servicioProduct.getProductoPorCategoria("Ordenadores");
         model.addAttribute("productos", listaProductos);
 
         return "ordenadores";
     }
     @GetMapping("/componentes")
     public String componentes(Model model) {
-        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Componentes");
+        List<Producto> listaProductos = servicioProduct.getProductoPorCategoria("Componentes");
         model.addAttribute("productos", listaProductos);
 
         return "componentes";
     }
     @GetMapping("/moviles")
     public String moviles(Model model) {
-        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Movil");
+        List<Producto> listaProductos = servicioProduct.getProductoPorCategoria("Movil");
         model.addAttribute("productos", listaProductos);
 
         return "moviles";
     }
     @GetMapping("/perifericos")
     public String perifericos(Model model) {
-        List<producto> listaProductos = servicioProduct.getProductoPorCategoria("Perifericos");
+        List<Producto> listaProductos = servicioProduct.getProductoPorCategoria("Perifericos");
         model.addAttribute("productos", listaProductos);
 
         return "perifericos";

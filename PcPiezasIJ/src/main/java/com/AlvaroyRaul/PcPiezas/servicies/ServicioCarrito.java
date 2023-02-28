@@ -1,11 +1,11 @@
 package com.AlvaroyRaul.PcPiezas.servicies;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.carrito;
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.entity.usuario;
-import com.AlvaroyRaul.PcPiezas.database.repository.carritoRepo;
-import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
-import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
+import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
+import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +15,22 @@ import java.util.List;
 
 
 @Service
-public class servicioCarrito {
+public class ServicioCarrito {
     @Autowired
-    private productoRepo productRepo;
+    private ProductoRepo productRepo;
     @Autowired
-    private carritoRepo carritRepo;
+    private CarritoRepo carritRepo;
     @Autowired
-    private usuarioRepo userRepo;
+    private UsuarioRepo userRepo;
 
     public void saveCarritoToDB(){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
-        usuario u = new usuario();//Prueba
+        Usuario u = new Usuario();//Prueba
         u = userRepo.findById((long)2).get();
 
 
-        carrito c = new carrito();
+        Carrito c = new Carrito();
         c.setUsuario(u);
-        List<producto> productos = new ArrayList<>();
+        List<Producto> productos = new ArrayList<>();
         c.setProductos(productos);
         carritRepo.save(c);
 
@@ -42,14 +42,14 @@ public class servicioCarrito {
     }
     public void saveProductoEnCarrito(Long idProducto){
 
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(idProducto).get();
 
 
-        usuario u = new usuario();//Prueba
+        Usuario u = new Usuario();//Prueba
         u = userRepo.findById((long)2).get();
 
-        carrito c = new carrito();
+        Carrito c = new Carrito();
         c =u.getCarrito();
 
         if (c==null){
@@ -59,7 +59,7 @@ public class servicioCarrito {
         c.getProductos().add(p);
 
         if(p.getCarritos().equals(null)){
-            List<carrito> carr = new ArrayList<>();
+            List<Carrito> carr = new ArrayList<>();
             p.setCarritos(carr);
         }
         p.getCarritos().add(c);
@@ -68,10 +68,10 @@ public class servicioCarrito {
         productRepo.save(p);
     }
 
-    public List<producto> getAllProductInCarrito()
+    public List<Producto> getAllProductInCarrito()
     {
         //Aquí luego habrá que buscar por usuario su carrito con la lista de productos
-        carrito c= new carrito();//Prueba
+        Carrito c= new Carrito();//Prueba
         c = userRepo.findById((long)2).get().getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
@@ -80,11 +80,11 @@ public class servicioCarrito {
         carritRepo.deleteById(id);
     }
     public void deleteProductoInCarritoById(long idProducto){
-        usuario u = new usuario();
+        Usuario u = new Usuario();
         u = userRepo.findById((long)2).get();//Prueba
-        carrito c = new carrito();
+        Carrito c = new Carrito();
         c = u.getCarrito();
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(idProducto).get();
         p.getCarritos().remove(c);
         c.getProductos().remove(p);

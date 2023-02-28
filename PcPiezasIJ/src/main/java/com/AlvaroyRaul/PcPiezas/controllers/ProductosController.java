@@ -1,37 +1,34 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioItem;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioProducto;
-import com.google.common.net.HttpHeaders;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class productosController {
+public class ProductosController {
     @Autowired
-    private productoRepo productoRepo;
+    private ProductoRepo productoRepo;
     @Autowired
-    private servicioProducto servicioProduct;
+    private ServicioProducto servicioProduct;
     @Autowired
-    private servicioCarrito servCarrito;
+    private ServicioCarrito servCarrito;
     @Autowired
-    private servicioItem servItem;
+    private ServicioItem servItem;
     @GetMapping("/listaProductos")
     public String verListaProductos(Model model) {
         List<Long> stockProductos = new ArrayList<Long>();
-        List<producto> listaProductos = servicioProduct.getAllProduct();
-        for(producto p : listaProductos) {
+        List<Producto> listaProductos = servicioProduct.getAllProduct();
+        for(Producto p : listaProductos) {
             stockProductos.add(servItem.getItemCountForProduct(p.getIdProducto()));
         }
         model.addAttribute("stockProductos", stockProductos);

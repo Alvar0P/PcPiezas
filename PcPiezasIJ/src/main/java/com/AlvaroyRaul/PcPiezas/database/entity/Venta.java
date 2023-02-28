@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "venta")
-public class venta {
+public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -17,10 +17,10 @@ public class venta {
     private LocalDate FechaCompra;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ventaId", nullable = true)
-    private List<item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
+    private List<Item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
     @OneToOne
-    private usuario comprador;//Un comprador
-    public venta(String dirEnvio, float total, LocalDate FechaCompra,carrito Carrito,usuario Vendedor, usuario comprador){
+    private Usuario comprador;//Un comprador
+    public Venta(String dirEnvio, float total, LocalDate FechaCompra, Carrito Carrito, Usuario Vendedor, Usuario comprador){
         this.dirEnvio = dirEnvio;
         this.total = total;
         this.FechaCompra = FechaCompra;
@@ -28,7 +28,7 @@ public class venta {
 
     }
 
-    protected venta() {
+    protected Venta() {
 
     }
 
@@ -49,9 +49,9 @@ public class venta {
     public void setFechaCompra(LocalDate fechaCompra) {FechaCompra = fechaCompra;}
 
 
-    public usuario getComprador() {return comprador;}
+    public Usuario getComprador() {return comprador;}
 
-    public void setComprador(usuario comprador) {this.comprador = comprador;}
+    public void setComprador(Usuario comprador) {this.comprador = comprador;}
 
 
 

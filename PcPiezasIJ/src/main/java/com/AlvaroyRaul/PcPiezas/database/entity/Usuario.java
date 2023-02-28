@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuario")
-public class usuario {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long idUsuario;//Para todos
@@ -16,7 +16,7 @@ public class usuario {
     @NotNull
     private String password;//Para todos
     @NotNull
-    private rol rol;
+    private Rol rol;
     @Column(unique = true)
     @NotNull
     private String email;//Para todos
@@ -26,7 +26,7 @@ public class usuario {
     private long tarjeta;//Solo usuario
     private long cuentaBancaria;//Solo vendedor
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
-    private List<producto> productos;//Solo vendedor
+    private List<Producto> productos;//Solo vendedor
     //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Productos en la tabla carrito asociados al usuario
     //private List<carrito> articulosCarrito;
 
@@ -36,7 +36,7 @@ public class usuario {
     //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
     //private List<carrito> Carrito;
     @OneToOne(cascade = CascadeType.ALL)//Si se borra el usuario se borra el carrito
-    private carrito Carrito;
+    private com.AlvaroyRaul.PcPiezas.database.entity.Carrito Carrito;
     /*
     public usuario(String username,String email ,String password, rol Rol) {
         this.rol = Rol;
@@ -51,10 +51,10 @@ public class usuario {
     protected usuario() {
 
     }*/
-    public usuario() {
+    public Usuario() {
 
     }
-    public void anadirUser(String username,String email ,String password, rol Rol){
+    public void anadirUser(String username,String email ,String password, Rol Rol){
 
         setRol(Rol);
         setEmail(email);
@@ -68,11 +68,11 @@ public class usuario {
         return idUsuario;
     }
 
-    public rol getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(rol rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 
@@ -90,7 +90,7 @@ public class usuario {
     public void setVIP(boolean VIP) {this.VIP = VIP;}//Solo usuario
     public void setTarjeta(long tarjeta) {this.tarjeta = tarjeta;}//Solo usuario
     public void setCuentaBancaria(long cuentaBancaria) {this.cuentaBancaria = cuentaBancaria;}//Solo vendedor
-    public void setProductos(List<producto> productos) {this.productos = productos;}//Solo vendedor
+    public void setProductos(List<Producto> productos) {this.productos = productos;}//Solo vendedor
     public String getUsername() {
         return username;
     }//Para todos
@@ -103,13 +103,13 @@ public class usuario {
     public boolean isVIP() {return VIP;}//Solo usuario
     public long getTarjeta() {return tarjeta;}//Solo usuario
     public long getCuentaBancaria() {return cuentaBancaria;}//Solo vendedor
-    public List<producto> getProductos() {return productos;}//Solo vendedor
+    public List<Producto> getProductos() {return productos;}//Solo vendedor
 
-    public carrito getCarrito() {
+    public com.AlvaroyRaul.PcPiezas.database.entity.Carrito getCarrito() {
         return Carrito;
     }
 
-    public void setCarrito(carrito carrito) {
+    public void setCarrito(com.AlvaroyRaul.PcPiezas.database.entity.Carrito carrito) {
         this.Carrito = carrito;
     }
 

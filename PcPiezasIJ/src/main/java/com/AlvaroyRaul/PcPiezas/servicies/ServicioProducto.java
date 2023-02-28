@@ -1,11 +1,10 @@
 package com.AlvaroyRaul.PcPiezas.servicies;
 
 
-import com.AlvaroyRaul.PcPiezas.database.entity.rol;
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.entity.usuario;
-import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
-import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
+import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,15 +15,15 @@ import java.util.List;
 
 
 @Service
-public class servicioProducto {
+public class ServicioProducto {
     @Autowired
-    private productoRepo productRepo;
+    private ProductoRepo productRepo;
     @Autowired
-    private usuarioRepo userRepo;
+    private UsuarioRepo userRepo;
 
-    public void saveProductToDBDNoPicture(String nombre, String descripcion,String fabricant,usuario vendedor,int precio){
+    public void saveProductToDBDNoPicture(String nombre, String descripcion, String fabricant, Usuario vendedor, int precio){
 
-        producto p = new producto();
+        Producto p = new Producto();
         p.setNombre(nombre);
         p.setDescripcion(descripcion);
         p.setFabricante(fabricant);
@@ -36,11 +35,11 @@ public class servicioProducto {
 
     public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,String vendedor,String categoria,int precio){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
         //Todo cambiar por "usuario vendedor" al final
-        producto p = new producto();
+        Producto p = new Producto();
         p.setNombre(nombre);
         p.setDescripcion(descripcion);
         p.setFabricante(fabricant);
-        usuario u = new usuario();
+        Usuario u = new Usuario();
         u = userRepo.findByUsername(vendedor);
         p.setVendedor(u);
         p.setPrecio(precio);
@@ -61,11 +60,11 @@ public class servicioProducto {
         productRepo.save(p);
 
     }
-    public List<producto> getAllProduct()
+    public List<Producto> getAllProduct()
     {
         return productRepo.findAll();
     }
-    public List<producto> getProductoPorCategoria(String categoria)
+    public List<Producto> getProductoPorCategoria(String categoria)
     {
         return productRepo.findByCategoria(categoria);
     }
@@ -74,34 +73,34 @@ public class servicioProducto {
     }
     public void changeProductName(long id ,String name)
     {
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(id).get();
         p.setNombre(name);
         productRepo.save(p);
     }
     public void changeProductDescription(long id , String description)
     {
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(id).get();
         p.setDescripcion(description);
         productRepo.save(p);
     }
     public void changeProductFabricante(long id, String fabricante){
-        producto p = new producto();
+        Producto p = new Producto();
         p= productRepo.findById(id).get();
         p.setFabricante(fabricante);
         productRepo.save(p);
     }
     public void changeProductPrice(long id,int price)
     {
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(id).get();
         p.setPrecio(price);
         productRepo.save(p);
     }
 
     public void changeProductCategoria(long id, String categoria){
-        producto p = new producto();
+        Producto p = new Producto();
         p = productRepo.findById(id).get();
         p.setCategoria(categoria);
         productRepo.save(p);

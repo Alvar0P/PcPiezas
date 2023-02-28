@@ -1,7 +1,7 @@
 package com.AlvaroyRaul.PcPiezas.database.repository;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.venta;
+import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ventaRepo extends JpaRepository<venta,Long> {
+public interface VentaRepo extends JpaRepository<Venta,Long> {
 }

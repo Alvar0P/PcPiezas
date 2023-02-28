@@ -1,6 +1,6 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 
-public enum rol
+public enum Rol
 {
     ADMINISTRADOR, VENDEDOR, COMPRADOR
 }

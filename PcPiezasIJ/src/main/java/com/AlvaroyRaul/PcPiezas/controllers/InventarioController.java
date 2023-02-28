@@ -1,36 +1,32 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.item;
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.repository.itemRepo;
-import com.AlvaroyRaul.PcPiezas.database.repository.productoRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioItem;
-import com.google.common.net.HttpHeaders;
+import com.AlvaroyRaul.PcPiezas.database.entity.Item;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class inventarioController {
+public class InventarioController {
     @Autowired
-    private itemRepo itemRepo;
+    private ItemRepo itemRepo;
     @Autowired
-    private productoRepo productoRepo;
+    private ProductoRepo productoRepo;
     @Autowired
-    private servicioItem sItem;
+    private ServicioItem sItem;
     @GetMapping("/listaItems")
     public String verListaItems(Model model) {
 
-        List<item> listaItems = sItem.getAllItems();
-        List<producto> listaProductos = new ArrayList<producto>();
-        for(item itemP : listaItems) {
+        List<Item> listaItems = sItem.getAllItems();
+        List<Producto> listaProductos = new ArrayList<Producto>();
+        for(Item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
         }
         model.addAttribute("nombreProducto","");
@@ -41,9 +37,9 @@ public class inventarioController {
     @GetMapping("/listaItems(id={id})")
     public String verListaItemsParaProducto(Model model, @PathVariable long id) {
 
-        List<item> listaItems = sItem.getAllItemsForProduct(id);
-        List<producto> listaProductos = new ArrayList<producto>();
-        for(item itemP : listaItems) {
+        List<Item> listaItems = sItem.getAllItemsForProduct(id);
+        List<Producto> listaProductos = new ArrayList<Producto>();
+        for(Item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
         }
         model.addAttribute("nombreProducto", listaProductos.get(0).getFabricante() + " " + listaProductos.get(0).getNombre()  );
@@ -63,8 +59,8 @@ public class inventarioController {
                                   @RequestParam("nSerie") String nSerie) {
         /*producto = producto.replaceAll("\\D+","");
         long idProducto = Long.getLong(producto);*/
-        producto pItem = productoRepo.findById(productoId).get();
-        item itemNuevo = new item(nSerie, pItem);
+        Producto pItem = productoRepo.findById(productoId).get();
+        Item itemNuevo = new Item(nSerie, pItem);
         itemRepo.save(itemNuevo);
         return "redirect:/listaItems";
 

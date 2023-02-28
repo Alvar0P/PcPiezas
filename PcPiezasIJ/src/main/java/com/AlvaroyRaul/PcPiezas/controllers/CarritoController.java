@@ -1,12 +1,9 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.carrito;
-import com.AlvaroyRaul.PcPiezas.database.entity.producto;
-import com.AlvaroyRaul.PcPiezas.database.entity.usuario;
-import com.AlvaroyRaul.PcPiezas.database.repository.usuarioRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.servicioCarrito;
-import com.AlvaroyRaul.PcPiezas.database.repository.carritoRepo;
-import org.mockito.internal.matchers.Null;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
+import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,19 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
-public class carritoController {
+public class CarritoController {
     @Autowired
-    private servicioCarrito servCarrito;
+    private ServicioCarrito servCarrito;
     @Autowired
-    private carritoRepo carritRepo;
+    private CarritoRepo carritRepo;
     @Autowired
-    private usuarioRepo userRepo;
+    private UsuarioRepo userRepo;
 
 
     @GetMapping("/listaCarrito")
     public String verCarrito(Model model) {
 
-        List<producto> listaProductosCarrito = servCarrito.getAllProductInCarrito();
+        List<Producto> listaProductosCarrito = servCarrito.getAllProductInCarrito();
         model.addAttribute("productos", listaProductosCarrito);
         return "shopping_cart";
     }
