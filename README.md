@@ -49,10 +49,10 @@ Web para la compra de ordenadores a piezas y perifericos.
 * Usar el configurador
 # Fase 2
 
-##Diagrama UML
+## Diagrama UML
 
 <p align="center">
-  <img src="/Other resources/Diagrama UML.png?raw=true" alt="Diagrama EER"/>
+  <img src="/Other resources/class diagram.png?raw=true" alt="Diagrama UML"/>
 </p>
 
 ## Diagrama Entidad Relación
