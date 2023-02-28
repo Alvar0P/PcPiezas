@@ -47,17 +47,49 @@ Web para la compra de ordenadores a piezas y perifericos.
 * Comprar
 * Vender
 * Usar el configurador
+# Fase 2
 
+##Diagrama UML
+
+<p align="center">
+  <img src="/Other resources/Diagrama UML.png?raw=true" alt="Diagrama EER"/>
+</p>
+
+## Diagrama Entidad Relación
+
+<p align="center">
+  <img src="/Other resources/Diagrama EER.png?raw=true" alt="Diagrama EER"/>
+</p>
+
+## Capturas de pantalla.
+
+### Caractersticas implementadas
+* Añadir eliminar y ver productos
+* Consultar y gestionar el inventario para todos los productos o un producto en concreto
+* Añadir elementos al carrito para realizar una compra
+* Gestión de usuarios
+
+### Gestión de inventario
 ![11ListaStock](https://user-images.githubusercontent.com/104164229/221727882-c91a2bea-0945-40c9-83a1-881d5784fa6c.png)
+### Página de Inicio
 ![1inicio](https://user-images.githubusercontent.com/104164229/221727884-15d80769-454b-4c53-b8a5-021e4528018d.png)
+### Menu desplegable
 ![2MenuDesplegable](https://user-images.githubusercontent.com/104164229/221727885-297e5215-5e81-4fb4-887f-ea80cc08c7d4.png)
+### Página de Componentes
 ![3componentes](https://user-images.githubusercontent.com/104164229/221727886-9a14b5fc-5933-46fc-b081-69513f222547.png)
+### Página de Móviles
 ![4moviles](https://user-images.githubusercontent.com/104164229/221727887-306a0755-8a81-45c4-8a9b-d7ba2aa969d8.png)
+### Página de Ordenadores
 ![5ordenadores](https://user-images.githubusercontent.com/104164229/221727888-1926f37e-e523-4449-a6b4-e2844edfff21.png)
+### Página de Periféricos
 ![6perifericos](https://user-images.githubusercontent.com/104164229/221727890-504b3ca3-62c9-4893-9196-d9b10d6c3a07.png)
+### Carrito
 ![7carrito](https://user-images.githubusercontent.com/104164229/221727892-a4e79d8a-be4b-4424-9975-f0e1f3a2f10c.png)
+### Añadir Producto
 ![8RegistrarProductos](https://user-images.githubusercontent.com/104164229/221727895-486b644c-2f29-442e-b17c-46e7c9329a22.png)
+### Ver Todos los Productos
 ![9ListaProductos](https://user-images.githubusercontent.com/104164229/221727897-a5fbe192-ba28-4e47-9961-1222b505a3d4.png)
+### Añadir Stock a los Productos
 ![10AnadirStock](https://user-images.githubusercontent.com/104164229/221727898-9102e867-41d7-44ab-aa5f-3261bf2e5713.png)
 
 
