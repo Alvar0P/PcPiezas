@@ -10,4 +10,5 @@ import java.util.List;
 public interface ItemRepo extends JpaRepository<Item,String> {
    @Query("SELECT i FROM Item i WHERE i.Producto = ?1")
    List<Item> findByProducto(Producto Producto);
+
 }
