@@ -48,6 +48,14 @@ Web para la compra de ordenadores a piezas y perifericos.
 * Vender
 * Usar el configurador
 
+## Diagrama Entidad Relación
+
+<p align="center">
+  <img src="/Other resources/Diagrama EER.png?raw=true" alt="Diagrama EER"/>
+</p>
+
+## Capturas de pantalla.
+
 ![11ListaStock](https://user-images.githubusercontent.com/104164229/221727882-c91a2bea-0945-40c9-83a1-881d5784fa6c.png)
 ![1inicio](https://user-images.githubusercontent.com/104164229/221727884-15d80769-454b-4c53-b8a5-021e4528018d.png)
 ![2MenuDesplegable](https://user-images.githubusercontent.com/104164229/221727885-297e5215-5e81-4fb4-887f-ea80cc08c7d4.png)
