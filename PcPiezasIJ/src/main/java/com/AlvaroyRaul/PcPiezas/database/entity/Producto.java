@@ -62,6 +62,14 @@ public class Producto {
 
     }
 
+    public long getStockProducto() {
+        return Item.stream().count();
+    }
+
+    public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItem() {
+        return Item;
+    }
+
     public long getIdProducto() {
         return idProducto;
     }

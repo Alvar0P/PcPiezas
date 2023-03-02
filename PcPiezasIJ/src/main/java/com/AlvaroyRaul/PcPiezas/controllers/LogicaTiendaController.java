@@ -49,19 +49,18 @@ public class LogicaTiendaController {
 
         List<Item> listaItems = new ArrayList<>();
 
-
+        List<Item> itemsAdquiridos = new ArrayList<>();
         for (Producto p:listaProductos) {
-            int randomNumber = random.nextInt(100);
-
-             Item i = new Item("PcP"+randomNumber,p);
-             listaItems.add(i);
-             itemRepo.save(i);
+            
+             if(p.getStockProducto() > 0) {
+                 itemsAdquiridos.add(p.getItem().get(0));
+             }
         }
         Venta v = new Venta();
-        v = servVenta.nuevaVenta(listaItems,u);
+        v = servVenta.nuevaVenta(itemsAdquiridos,u);
         servTienda.generaFactura(v);
 
-        for (Item i:listaItems) {
+        for (Item i:itemsAdquiridos) {
             itemRepo.deleteById(i.getnSerie());
             itemRepo.save(i);
         }
