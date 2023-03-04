@@ -2,6 +2,8 @@ package com.AlvaroyRaul.PcPiezas.database.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static java.sql.Types.NULL;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -56,6 +58,20 @@ public class Producto {
     public Producto() {
 
     }
+
+    public Producto(Producto producto) {
+        this.idProducto = producto.getIdProducto();
+        this.fabricante = producto.getFabricante();
+        this.nombre = producto.getNombre();
+        this.descripcion = producto.getDescripcion();
+        this.categoria = producto.getCategoria();
+        this.precio = producto.getPrecio();
+        this.imagen = producto.getImagen();
+        this.carritos = producto.getCarritos();
+        Vendedor = producto.getVendedor();
+        Item = producto.getItems();
+    }
+
     @Override
     public String toString(){
         return "Producto{"+ "id="+idProducto+"nombre="+nombre+"descricion="+descripcion+"fabricant="+fabricante+"vendedor="+Vendedor+"categoria"+categoria+"precio="+precio+"imagen="+imagen +" }";
@@ -63,10 +79,14 @@ public class Producto {
     }
 
     public long getStockProducto() {
-        return Item.stream().count();
+        return Item.stream().filter(i -> i.getVenta() == null).count();
     }
 
-    public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItem() {
+    public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItemsForSale() {
+        return Item.stream().filter(i -> i.getVenta() == null).toList();
+    }
+
+    public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItems() {
         return Item;
     }
 

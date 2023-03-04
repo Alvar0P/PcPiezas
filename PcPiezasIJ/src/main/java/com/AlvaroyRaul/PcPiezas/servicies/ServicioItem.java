@@ -31,11 +31,23 @@ public class ServicioItem {
     {
         return iRepo.findAll();
     }
+    public List<Item> getAllItemsInStock()
+    {
+        return iRepo.findByVenta(null).stream().toList();
+    }
     public List<Item> getAllItemsForProduct(long idProducto)
     {
         Producto productoItem = pRepo.findById(idProducto).get();
 
         return iRepo.findByProducto(productoItem).stream().toList();
+
+    }
+
+    public List<Item> getAllItemsInStockForProduct(long idProducto)
+    {
+        Producto productoItem = pRepo.findById(idProducto).get();
+
+        return iRepo.findByProducto(productoItem).stream().filter(i -> i.getVenta() == null).toList();
 
     }
 

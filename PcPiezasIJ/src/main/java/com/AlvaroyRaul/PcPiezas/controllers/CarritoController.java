@@ -10,9 +10,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 @Controller
 public class CarritoController {
+
+    public class FilaCarrito extends Producto {
+        public String  mensajeStock;
+
+        public FilaCarrito(Producto producto, String mensajeStock) {
+            super(producto);
+            this.mensajeStock = mensajeStock;
+        }
+
+        public String getMensajeStock() {
+            return mensajeStock;
+        }
+    }
     @Autowired
     private ServicioCarrito servCarrito;
     @Autowired
@@ -24,7 +38,14 @@ public class CarritoController {
     @GetMapping("/listaCarrito")
     public String verCarrito(Model model) {
 
-        List<Producto> listaProductosCarrito = servCarrito.getAllProductInCarrito();
+        List<FilaCarrito> listaProductosCarrito = new ArrayList<>();
+        for(Producto p : servCarrito.getAllProductInCarrito()) {
+            String stock = "";
+            if(p.getStockProducto() == 0) stock = "Este producto no se encuentra en stock. \n";
+            else if(p.getStockProducto() < 2) stock = "Quedan pocas unidades en stock. \n";
+            FilaCarrito fila = new FilaCarrito(p, stock);
+            listaProductosCarrito.add(fila);
+        }
         model.addAttribute("productos", listaProductosCarrito);
         return "shopping_cart";
     }

@@ -45,6 +45,7 @@
                   <div class="product-details">
                       <h1>{{nombre}}</h1>
                       <p><strong>{{descripcion}}</strong></p>
+                      <p style="color:#FF0000"><strong>{{mensajeStock}}</strong></p>
                   </div>
               </div>
               <div class="price">{{precio}}</div>
@@ -58,9 +59,10 @@
               <div class="remove">
                  <button><a href="/DeleteFromCarrito/{{idProducto}}">Eliminar</a></button>
               </div>
-
           </div>
           {{/productos}}
+
+
       </ul>
 
     </div>

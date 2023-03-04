@@ -22,6 +22,7 @@ public class ServicioVenta {
         float total = 0;
         for (Item i:items) {
            total+= i.getProducto().getPrecio();
+           i.setVenta(v);
         }
         v.setTotal(total);
         LocalDate hoy = LocalDate.now();

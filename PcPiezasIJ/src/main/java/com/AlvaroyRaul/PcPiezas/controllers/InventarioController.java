@@ -24,7 +24,7 @@ public class InventarioController {
     @GetMapping("/listaItems")
     public String verListaItems(Model model) {
 
-        List<Item> listaItems = sItem.getAllItems();
+        List<Item> listaItems = sItem.getAllItemsInStock();
         List<Producto> listaProductos = new ArrayList<Producto>();
         for(Item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
@@ -37,7 +37,7 @@ public class InventarioController {
     @GetMapping("/listaItems(id={id})")
     public String verListaItemsParaProducto(Model model, @PathVariable long id) {
 
-        List<Item> listaItems = sItem.getAllItemsForProduct(id);
+        List<Item> listaItems = sItem.getAllItemsInStockForProduct(id);
         List<Producto> listaProductos = new ArrayList<Producto>();
         for(Item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
