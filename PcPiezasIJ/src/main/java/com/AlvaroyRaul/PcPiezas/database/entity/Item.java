@@ -10,11 +10,11 @@ public class Item {
 
     @ManyToOne//Es una copia del producto que representa la unidad que tenemos en el almacen
     @JoinColumn(name="idproducto", referencedColumnName = "idproducto", nullable = false)
-    private com.AlvaroyRaul.PcPiezas.database.entity.Producto Producto;
+    private Producto Producto;
     @OneToOne(cascade = CascadeType.ALL, optional = true)
     private Venta venta; //Relacion uni-direccional entre venta e item
 
-    public Item(String nSerie, com.AlvaroyRaul.PcPiezas.database.entity.Producto producto) {
+    public Item(String nSerie,Producto producto) {
         this.nSerie = nSerie;
         Producto = producto;
     }
@@ -35,7 +35,7 @@ public class Item {
         return nSerie;
     }
 
-    public com.AlvaroyRaul.PcPiezas.database.entity.Producto getProducto() {
+    public Producto getProducto() {
         return Producto;
     }
 }

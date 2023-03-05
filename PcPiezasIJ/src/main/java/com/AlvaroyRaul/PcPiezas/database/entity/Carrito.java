@@ -15,8 +15,8 @@ public class Carrito {
     private long cantidad;
     //@ManyToOne(fetch = FetchType.LAZY)//Un usuario tiene varias entradas en la tabla carrito
     //@JoinColumn(name = "IdUsuario",  referencedColumnName="IdUsuario") //Un usuario tiene varias entradas en la tabla carrito
-    @OneToOne
-    private com.AlvaroyRaul.PcPiezas.database.entity.Usuario Usuario;
+    //@OneToOne(orphanRemoval = true)
+    //private Usuario Usuario;
 
 
     //@ManyToOne(fetch = FetchType.LAZY) //Un producto tambien puede tener varias entradas
@@ -25,7 +25,7 @@ public class Carrito {
 
 
 
-    @ManyToMany(fetch =FetchType.LAZY, mappedBy = "carritos")//Un carrito puede tener varios productos
+    @ManyToMany(fetch =FetchType.LAZY, mappedBy = "carritos",cascade = CascadeType.REMOVE)//Un carrito puede tener varios productos
     private List<Producto> productos;
 
 
@@ -47,23 +47,23 @@ public class Carrito {
     public void setCantidad(long cantidad) {
         this.cantidad = cantidad;
     }
+    /*
+        public Usuario getUsuario() {
+            return Usuario;
+        }
 
-    public com.AlvaroyRaul.PcPiezas.database.entity.Usuario getUsuario() {
-        return Usuario;
-    }
+        public void setUsuario(Usuario usuario) {
+            Usuario = usuario;
+        }
 
-    public void setUsuario(com.AlvaroyRaul.PcPiezas.database.entity.Usuario usuario) {
-        Usuario = usuario;
-    }
-/*
-    public producto getIdProducto() {
-        return idProducto;
-    }
+        public producto getIdProducto() {
+            return idProducto;
+        }
 
-    public void setIdProducto(producto idProducto) {
-        this.idProducto = idProducto;
-    }
-*/
+        public void setIdProducto(producto idProducto) {
+            this.idProducto = idProducto;
+        }
+    */
     public List<Producto> getProductos() {
         return productos;
     }

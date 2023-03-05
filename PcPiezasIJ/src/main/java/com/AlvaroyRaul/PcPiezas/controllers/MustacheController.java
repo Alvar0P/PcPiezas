@@ -1,6 +1,9 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
+import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
+import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
@@ -18,6 +21,8 @@ public class MustacheController {
     private ServicioProducto servicioProduct;
     @Autowired
     private ServicioCarrito servCarrito;
+    @Autowired
+    private CarritoRepo carritoRepo;
     @Autowired
     private UsuarioRepo userRep;
 
@@ -41,6 +46,7 @@ public class MustacheController {
 
         return "inicio";
     }
+
     @GetMapping("/ordenadores")
     public String pcs(Model model) {
         List<Producto> listaProductos = servicioProduct.getProductoPorCategoria("Ordenadores");

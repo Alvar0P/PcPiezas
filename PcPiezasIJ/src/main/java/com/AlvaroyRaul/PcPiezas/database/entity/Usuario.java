@@ -35,8 +35,8 @@ public class Usuario {
 
     //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.REMOVE)//Si se borra el usuario se borra el carrito
     //private List<carrito> Carrito;
-    @OneToOne(cascade = CascadeType.ALL)//Si se borra el usuario se borra el carrito
-    private com.AlvaroyRaul.PcPiezas.database.entity.Carrito Carrito;
+    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//Si se borra el usuario se borra el carrito
+    private Carrito carrito;
     /*
     public usuario(String username,String email ,String password, rol Rol) {
         this.rol = Rol;
@@ -105,12 +105,12 @@ public class Usuario {
     public long getCuentaBancaria() {return cuentaBancaria;}//Solo vendedor
     public List<Producto> getProductos() {return productos;}//Solo vendedor
 
-    public com.AlvaroyRaul.PcPiezas.database.entity.Carrito getCarrito() {
-        return Carrito;
+    public Carrito getCarrito() {
+        return carrito;
     }
 
-    public void setCarrito(com.AlvaroyRaul.PcPiezas.database.entity.Carrito carrito) {
-        this.Carrito = carrito;
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
 

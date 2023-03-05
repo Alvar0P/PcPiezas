@@ -20,7 +20,7 @@ public class ServicioLogicaTienda {
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fn = hoy.format(formatoCorto);
 
-        String rutaFicheroFactura = "./Ventas/venta "+venta.getId()+"(" + fn.replace('/', '_') + ").pdf";
+        String rutaFicheroFactura = "./Ventas/venta "+venta.getId()+"(" + fn.replace('/', '_') + ").txt";
         double importe =  venta.getTotal();
         try {
             //Si no existe el directorio Facturas, lo creamos
@@ -41,7 +41,7 @@ public class ServicioLogicaTienda {
                 for (Item i: venta.getListaItems()) {
                     salida.println("Nombre: " + i.getProducto().getNombre());
                     salida.println("Nserie: " + i.getnSerie());
-                    salida.println("Vendedor: " + i.getProducto().getVendedor());
+                    salida.println("Vendedor: " + i.getProducto().getVendedor().getUsername());
                     salida.println("Precio: " + i.getProducto().getPrecio());
                     salida.println("\n");
 

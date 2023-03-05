@@ -1,6 +1,7 @@
 package com.AlvaroyRaul.PcPiezas.servicies;
 
 
+import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
@@ -69,6 +70,11 @@ public class ServicioProducto {
         return productRepo.findByCategoria(categoria);
     }
     public void deleteProductById(long id) {
+        Producto p = productRepo.findById(id).get();
+
+        p.setCarritos(null);
+        productRepo.save(p);
+
         productRepo.deleteById(id);
     }
     public void changeProductName(long id ,String name)

@@ -1,4 +1,6 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
+import org.checkerframework.checker.units.qual.C;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,25 +24,19 @@ public class Producto {
     @Column(columnDefinition = "MEDIUMBLOB")
     private String imagen;
 
-    @ManyToMany(fetch = FetchType.LAZY)//Un producto puede estar en varios carritos.
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)//Un producto puede estar en varios carritos.
     @JoinTable(name = "productosEnCarritos", joinColumns = {
             @JoinColumn(name = "producto_id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "carrito_id",
                     nullable = false, updatable = false) })
     private List<Carrito> carritos;
 
-    public List<Carrito> getCarritos() {
-        return carritos;
-    }
 
-    public void setCarritos(List<Carrito> carritos) {
-        this.carritos = carritos;
-    }
 
     @ManyToOne//Varios productos para un vendedor
     private Usuario Vendedor;
     @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
-    private List<com.AlvaroyRaul.PcPiezas.database.entity.Item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
+    private List<Item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
     /*public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
 
@@ -145,6 +141,13 @@ public class Producto {
 
     public void setImagen(String imagen){
         this.imagen = imagen;
+    }
+    public List<Carrito> getCarritos() {
+        return carritos;
+    }
+
+    public void setCarritos(List<Carrito> carritos) {
+        this.carritos = carritos;
     }
 
 }

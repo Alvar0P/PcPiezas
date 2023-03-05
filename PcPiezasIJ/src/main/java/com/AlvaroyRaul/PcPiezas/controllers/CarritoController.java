@@ -1,6 +1,8 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
+import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
@@ -37,7 +39,15 @@ public class CarritoController {
 
     @GetMapping("/listaCarrito")
     public String verCarrito(Model model) {
-
+        Usuario u = userRepo.findById((long)2).get();//Prueba
+        if (u.getCarrito()==null){//
+            Carrito c = new Carrito();//Unicamente hasta incluir los roles, la idea es que al hacer login se inicie uno.
+            u.setCarrito(c);//
+            List<Producto>productos = new ArrayList<>();
+            c.setProductos(productos);
+            carritRepo.save(c);
+            userRepo.save(u);
+        }//
         List<FilaCarrito> listaProductosCarrito = new ArrayList<>();
         for(Producto p : servCarrito.getAllProductInCarrito()) {
             String stock = "";
@@ -65,6 +75,13 @@ public class CarritoController {
         servCarrito.deleteProductoInCarritoById(id);
 
         return "redirect:/listaCarrito";
+
+    }
+    @GetMapping("/VaciarCarrito")
+    public String vaciarCarrito(){
+        servCarrito.vaciarCarritoByIdUsuario((long) 2);
+
+        return "/listaCarrito";
 
     }
 

@@ -29,7 +29,7 @@ public class ServicioCarrito {
 
 
         Carrito c = new Carrito();
-        c.setUsuario(u);
+        //c.setUsuario(u);
         List<Producto> productos = new ArrayList<>();
         c.setProductos(productos);
         carritRepo.save(c);
@@ -75,9 +75,30 @@ public class ServicioCarrito {
         c = userRepo.findById((long)2).get().getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
-    public void deleteCarritoById(long id) {//Borra el carrito
+    public void deleteCarritoByIdUsuario(long id) {//Borra el carrito
 
-        carritRepo.deleteById(id);
+
+        Usuario u = userRepo.findById((long)2).get();//Prueba
+        Carrito c = u.getCarrito();
+        vaciarCarritoByIdUsuario(id);//Se pasaria el ID de usuario
+        u.setCarrito(null);
+
+        carritRepo.deleteById(c.getIdCarrito());
+    }
+    public void vaciarCarritoByIdUsuario(long id){
+        Usuario  u = userRepo.findById((long)2).get();//Prueba
+        List<Producto> productos = u.getCarrito().getProductos();
+
+        for (Producto p:productos) {
+            p.getCarritos().remove(u.getCarrito());
+            productRepo.save(p);
+        }
+
+        u.getCarrito().getProductos().removeAll(productos);
+        userRepo.save(u);
+        carritRepo.save(u.getCarrito());
+
+
     }
     public void deleteProductoInCarritoById(long idProducto){
         Usuario u = new Usuario();
