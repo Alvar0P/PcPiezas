@@ -75,7 +75,9 @@ public class Carrito {
     public float calcularSubtotal(){
         float subtotal =0;
         for (Producto p:productos) {
-            subtotal += p.getPrecio();
+            if(p.getStockProducto() > 0) {
+                subtotal += p.getPrecio();
+            }
         }
         return subtotal;
     }
