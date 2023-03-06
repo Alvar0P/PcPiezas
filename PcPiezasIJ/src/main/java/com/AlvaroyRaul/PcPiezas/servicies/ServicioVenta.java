@@ -4,17 +4,22 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Item;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
+import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ServicioVenta {
     @Autowired
     private VentaRepo ventaRepo;
+
+    @Autowired
+    private ItemRepo itemRepo;
     public Venta nuevaVenta(List<Item> items, Usuario user){
         Venta v = new Venta();
         v.setComprador(user);
@@ -31,5 +36,14 @@ public class ServicioVenta {
 
         return v;
 
+    }
+
+    public List<Item> getProductosForVenta(Venta venta) {
+        List<Item> productosComprados = itemRepo.findByVenta(venta).stream().toList();
+        return productosComprados;
+    }
+
+    public List<Venta> getAllVentas() {
+        return ventaRepo.findAll();
     }
 }

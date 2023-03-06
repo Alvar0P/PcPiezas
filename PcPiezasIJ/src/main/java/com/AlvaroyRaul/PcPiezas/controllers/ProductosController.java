@@ -16,6 +16,19 @@ import java.util.List;
 
 @Controller
 public class ProductosController {
+
+    public class productosLista extends Producto {
+        long cantidadStock;
+
+        public productosLista(Producto p, long stock){
+            super(p);
+            this.cantidadStock = stock;
+        }
+
+        public long getCantidadStock() {
+            return cantidadStock;
+        }
+    }
     @Autowired
     private ProductoRepo productoRepo;
     @Autowired
@@ -26,12 +39,10 @@ public class ProductosController {
     private ServicioItem servItem;
     @GetMapping("/listaProductos")
     public String verListaProductos(Model model) {
-        List<Long> stockProductos = new ArrayList<Long>();
-        List<Producto> listaProductos = servicioProduct.getAllProduct();
-        for(Producto p : listaProductos) {
-            stockProductos.add(servItem.getItemCountForProduct(p.getIdProducto()));
+        List<productosLista> listaProductos = new ArrayList<>();
+        for(Producto p : servicioProduct.getAllProduct()) {
+            listaProductos.add(new productosLista(p, p.getStockProducto()));
         }
-        model.addAttribute("stockProductos", stockProductos);
         model.addAttribute("productos", listaProductos);
 
         return "listProducts";

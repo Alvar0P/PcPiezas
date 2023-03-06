@@ -42,9 +42,11 @@ public class InventarioController {
         for(Item itemP : listaItems) {
             listaProductos.add(itemP.getProducto());
         }
-        model.addAttribute("nombreProducto", listaProductos.get(0).getFabricante() + " " + listaProductos.get(0).getNombre()  );
-        model.addAttribute("productos", listaProductos);
-        model.addAttribute("items", listaItems);
+        if(listaProductos.size() != 0) {
+            model.addAttribute("nombreProducto", listaProductos.get(0).getFabricante() + " " + listaProductos.get(0).getNombre());
+            model.addAttribute("productos", listaProductos);
+            model.addAttribute("items", listaItems);
+        }
         return "listItems";
     }
 

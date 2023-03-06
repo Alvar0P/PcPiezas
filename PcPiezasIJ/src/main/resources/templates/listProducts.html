@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>productos</title>
     <meta charset="ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +16,21 @@
             <!-- Navbar content -->
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link font-weight-bold" href="/inicio">Ir a inicio</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link font-weight-bold" href="/addProduct" >Registrar Producto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bold" href="/listaProductos">Lista de productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/inicio">Ir a inicio</a>
+                    <a class="nav-link font-weight-bold" href="/listaItems">Gestión de Inventario</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold" href="/listaVentas">Historico de Ventas</a>
+                </li>
+
             </ul>
         </nav>
         <hr>
@@ -31,13 +39,13 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Imagen</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Fabricante</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Borrar</th>
+                <th scope="col">imagen</th>
+                <th scope="col">nombre</th>
+                <th scope="col">descripcion</th>
+                <th scope="col">fabricante</th>
+                <th scope="col">precio</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Borrar Producto</th>
             </tr>
             </thead>
             <tbody>
@@ -153,48 +161,6 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{categoria}} <!-- Button trigger modal -->
-                        <br>
-                        <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarCategoria{{idProducto}}">
-                            Cambiar categoria
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="CambiarCategoria{{idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="Cambiar Categoria">
-                                            Cambiar categoria producto
-                                        </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/changeCategoria/{{idProducto}}" method="post">
-                                            <div class="form-group">
-                                                <label >Nueva categoria</label>
-                                                <select name="newCategoria">
-                                                    <option value="Ordenadores">Ordenadores</option>
-                                                    <option value="Componentes">Componentes</option>
-                                                    <option value="Perifericos">Perifericos</option>
-                                                    <option value="Movil">Movil</option>
-                                                </select><br>
-                                                <button type="submit" class="btn btn-primary">
-                                                    Submit
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                            Close
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
                     <td>{{precio}} <!-- Button trigger modal -->
                         <br>
                         <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#CambiarPrecio{{idProducto}}">
@@ -231,9 +197,14 @@
                             </div>
                         </div>
                     </td>
-                    <td><a href="/deleteProd/{{idProducto}}"
-                        class="btn btn-danger mt-4">delete</a>
+                    <td>{{stockProducto}}<br>
+                        <a href="/listaItems(id={{idProducto}})"
+                           class="btn btn-secondary mt-4">Consultar Stock</a>
                     </td>
+                    <td><a href="/deleteProd/{{idProducto}}"
+                           class="btn btn-danger mt-4">Borrar</a>
+                    </td>
+
                 </tr>
                 {{/productos}}
             </ul>
@@ -251,7 +222,7 @@
 <!--modal-->
 <script>
     $('#myModal').on('shown.bs.modal', function() {
-    $('#myInput').focus()
+        $('#myInput').focus()
     })
 </script>
 <script>
