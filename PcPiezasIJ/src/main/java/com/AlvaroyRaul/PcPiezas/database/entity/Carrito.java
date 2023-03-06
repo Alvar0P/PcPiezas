@@ -72,6 +72,14 @@ public class Carrito {
         this.productos = productos;
     }
 
+    public float calcularSubtotal(){
+        float subtotal =0;
+        for (Producto p:productos) {
+            subtotal += p.getPrecio();
+        }
+        return subtotal;
+    }
+
 
 
 

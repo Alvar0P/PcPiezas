@@ -56,6 +56,9 @@ public class CarritoController {
             FilaCarrito fila = new FilaCarrito(p, stock);
             listaProductosCarrito.add(fila);
         }
+
+        float subtotal = u.getCarrito().calcularSubtotal();
+        model.addAttribute("subtotal",subtotal);
         model.addAttribute("productos", listaProductosCarrito);
         return "shopping_cart";
     }
