@@ -33,7 +33,7 @@ public class ServicioItem {
     }
     public List<Item> getAllItemsInStock()
     {
-        return iRepo.findByVenta(null).stream().toList();
+        return iRepo.findByVenta(null);
     }
     public List<Item> getAllItemsForProduct(long idProducto)
     {
