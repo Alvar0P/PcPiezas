@@ -1,0 +1,32 @@
+-------------------------------- Venta Producto --------------------------------
+
+
+-------------------------------- Fecha: 07/03/2023 -------------------------------
+
+
+
+
+Comprador: Juan
+Nombre: Core i7
+Nserie: FFSH787
+Vendedor: PcPiezas
+Precio: 250.0
+
+
+Nombre: Omen X
+Nserie: 23FGHIO
+Vendedor: Pro1Performance
+Precio: 3400.0
+
+
+Nombre: Galaxy A53 5G
+Nserie: S34DF
+Vendedor: PcPiezas
+Precio: 300.0
+
+
+---------------------------------------------------------------------------------
+IMPORTE: 3950.0
+
+
+-------------------------------------------------------------------------------
