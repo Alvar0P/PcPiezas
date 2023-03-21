@@ -55,7 +55,7 @@ public class LogicaTiendaController {
         }
 
 
-        return "/inicio";
+        return "redirect:/inicio";
     }
 
 

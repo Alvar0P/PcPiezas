@@ -39,17 +39,7 @@ public class InicializaUsers implements CommandLineRunner {
                 comprador = new Usuario();
                 comprador.anadirUser("Juan", "juan@gmail.com", "12345", Rol.COMPRADOR);
                 userRepo.save(comprador);
-                /*
-                carr = new carrito();
-                carr.setUsuario(comprador);
-                List<producto> productos = new ArrayList<>();
-                carr.setProductos(productos);
-                carritRepo.save(carr);
-                comprador.setCarrito(carr);
-                carritRepo.save(carr);
-                userRepo.save(comprador);
 
-                 */
 
                 vendedor = new Usuario();
                 vendedor.anadirUser("Pro1Performance", "ramon@pro1performance.com", "12345", Rol.VENDEDOR);

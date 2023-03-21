@@ -1,10 +1,8 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
-import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
 import java.util.List;
-
-import static java.sql.Types.NULL;
+import java.util.Optional;
 
 @Entity
 @Table(name = "producto")

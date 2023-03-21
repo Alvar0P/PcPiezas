@@ -25,6 +25,10 @@ public class Usuario {
     private boolean VIP;//Solo usuario
     private long tarjeta;//Solo usuario
     private long cuentaBancaria;//Solo vendedor
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
+
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<Producto> productos;//Solo vendedor
     //@OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Productos en la tabla carrito asociados al usuario
@@ -114,7 +118,13 @@ public class Usuario {
     }
 
 
+    public List<String> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
 
 
