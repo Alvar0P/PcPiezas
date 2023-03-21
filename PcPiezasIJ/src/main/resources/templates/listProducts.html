@@ -19,16 +19,16 @@
                     <a class="nav-link font-weight-bold" href="/inicio">Ir a inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/addProduct" >Registrar Producto</a>
+                    <a class="nav-link font-weight-bold" href="/admin/addProduct" >Registrar Producto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/listaProductos">Lista de productos</a>
+                    <a class="nav-link font-weight-bold" href="/admin/listaProductos">Lista de productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/listaItems">Gestión de Inventario</a>
+                    <a class="nav-link font-weight-bold" href="/admin/listaItems">Gestión de Inventario</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/listaVentas">Historico de Ventas</a>
+                    <a class="nav-link font-weight-bold" href="/admin/listaVentas">Historico de Ventas</a>
                 </li>
 
             </ul>
@@ -71,7 +71,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/changeName/{{idProducto}}" method="post">
+                                        <form action="/admin/changeName/{{idProducto}}" method="post">
                                             <div class="form-group">
                                                 <label>Nuevo nombre</label> <input type="text" name="newPname" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">
@@ -107,7 +107,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/changeDescription/{{idProducto}}" method="post">
+                                        <form action="/admin/changeDescription/{{idProducto}}" method="post">
                                             <div class="form-group">
                                                 <label>Nueva descripcion</label> <input type="text" name="newDescription" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">
@@ -143,7 +143,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/changeFabricante/{{idProducto}}" method="post">
+                                        <form action="/admin/changeFabricante/{{idProducto}}" method="post">
                                             <div class="form-group">
                                                 <label>Nuevo fabricante</label> <input type="text" name="newFabricant" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">
@@ -179,7 +179,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/changePrice/{{idProducto}}" method="post">
+                                        <form action="/admin/changePrice/{{idProducto}}" method="post">
                                             <div class="form-group">
                                                 <label>Nuevo precio</label> <input type="text" name="newPrice" class="form-control"> <br>
                                                 <button type="submit" class="btn btn-primary">
@@ -198,10 +198,10 @@
                         </div>
                     </td>
                     <td>{{stockProducto}}<br>
-                        <a href="/listaItems(id={{idProducto}})"
+                        <a href="/admin/listaItems(id={{idProducto}})"
                            class="btn btn-secondary mt-4">Consultar Stock</a>
                     </td>
-                    <td><a href="/deleteProd/{{idProducto}}"
+                    <td><a href="/admin/deleteProd/{{idProducto}}"
                            class="btn btn-danger mt-4">Borrar</a>
                     </td>
 

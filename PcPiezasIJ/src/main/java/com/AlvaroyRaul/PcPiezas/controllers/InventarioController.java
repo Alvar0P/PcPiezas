@@ -21,7 +21,7 @@ public class InventarioController {
     private ProductoRepo productoRepo;
     @Autowired
     private ServicioItem sItem;
-    @GetMapping("/listaItems")
+    @GetMapping("/admin/listaItems")
     public String verListaItems(Model model) {
 
         List<Item> listaItems = sItem.getAllItemsInStock();
@@ -34,7 +34,7 @@ public class InventarioController {
         model.addAttribute("items", listaItems);
         return "listItems";
     }
-    @GetMapping("/listaItems(id={id})")
+    @GetMapping("/admin/listaItems(id={id})")
     public String verListaItemsParaProducto(Model model, @PathVariable long id) {
 
         List<Item> listaItems = sItem.getAllItemsInStockForProduct(id);
@@ -50,7 +50,7 @@ public class InventarioController {
         return "listItems";
     }
 
-    @GetMapping("/addItem")
+    @GetMapping("/admin/addItem")
     public String verGuardarItem(Model model) {
 
         model.addAttribute("productos", productoRepo.findAll());
@@ -67,7 +67,7 @@ public class InventarioController {
         return "redirect:/listaItems";
 
     }
-    @GetMapping("/deleteItem/{nSerie}")
+    @GetMapping("/admin/deleteItem/{nSerie}")
     public String deleteItem(@PathVariable String nSerie)
     {
         itemRepo.deleteById(nSerie);

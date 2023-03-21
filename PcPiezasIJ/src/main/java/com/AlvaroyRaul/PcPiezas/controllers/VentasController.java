@@ -23,7 +23,7 @@ import java.util.List;
 public class VentasController {
     @Autowired
     private ServicioVenta servicioVenta;
-    @GetMapping("/listaVentas")
+    @GetMapping("admin/listaVentas")
     public String verListaVentas(Model model) {
         model.addAttribute("ventas", servicioVenta.getAllVentas());
 

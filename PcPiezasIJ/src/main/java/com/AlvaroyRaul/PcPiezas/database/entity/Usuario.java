@@ -16,7 +16,7 @@ public class Usuario {
     @NotNull
     private String password;//Para todos
     @NotNull
-    private Rol rol;
+    private String rol;
     @Column(unique = true)
     @NotNull
     private String email;//Para todos
@@ -58,7 +58,7 @@ public class Usuario {
     public Usuario() {
 
     }
-    public void anadirUser(String username,String email ,String password, Rol Rol){
+    public void anadirUser(String username,String email ,String password, String Rol){
 
         setRol(Rol);
         setEmail(email);
@@ -72,11 +72,11 @@ public class Usuario {
         return idUsuario;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
