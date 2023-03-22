@@ -66,11 +66,10 @@
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>2.2.3</version>
 		</dependency>
-        <dependency>
-            <groupId>org.wso2.bps</groupId>
-            <artifactId>UserService</artifactId>
-            <version>3.5.1</version>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
         <dependency>
             <groupId>com.ubirch.user</groupId>
             <artifactId>userservice_2.11</artifactId>
