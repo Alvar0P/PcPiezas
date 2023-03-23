@@ -10,6 +10,8 @@ import com.AlvaroyRaul.PcPiezas.servicies.ServicioVenta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +33,9 @@ public class LogicaTiendaController {
     private ServicioCarrito servCarrito;
 
     @GetMapping("/compra")//id del carrito
-    public String checkOut() throws IOException {
+    public String checkOut(HttpServletRequest request) throws IOException {
 
-        Usuario u = userRepo.findById((long)2).get();//Prueba
+        Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba
         List<Producto> listaProductos = u.getCarrito().getProductos();
         Carrito c = u.getCarrito();
 
@@ -48,7 +50,7 @@ public class LogicaTiendaController {
             Venta v = new Venta();
             v = servVenta.nuevaVenta(itemsAdquiridos, u);
             servTienda.generaFactura(v);
-            servCarrito.deleteCarritoByIdUsuario(c.getIdCarrito());
+            servCarrito.deleteCarritoByUsuario(u);
 
             //userRepo.save(u);
             //carritoRepo.save(c);

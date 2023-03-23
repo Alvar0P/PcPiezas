@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 @Controller
@@ -38,8 +40,11 @@ public class CarritoController {
 
 
     @GetMapping("/listaCarrito")
-    public String verCarrito(Model model) {
-        Usuario u = userRepo.findById((long)2).get();//Prueba
+    public String verCarrito(Model model, HttpServletRequest request) {
+
+
+        Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
+
         if (u.getCarrito()==null){//
             Carrito c = new Carrito();//Unicamente hasta incluir los roles, la idea es que al hacer login se inicie uno.
             u.setCarrito(c);//
@@ -49,7 +54,7 @@ public class CarritoController {
             userRepo.save(u);
         }//
         List<FilaCarrito> listaProductosCarrito = new ArrayList<>();
-        for(Producto p : servCarrito.getAllProductInCarrito()) {
+        for(Producto p : servCarrito.getAllProductInCarrito(u)) {
             String stock = "";
             if(p.getStockProducto() == 0) stock = "Este producto no se encuentra en stock. \n";
             else if(p.getStockProducto() < 2) stock = "Quedan pocas unidades en stock. \n";
@@ -63,26 +68,27 @@ public class CarritoController {
         return "shopping_cart";
     }
     @GetMapping("/AddToCart/{id}")//Solo funciona con GET idk
-    public String anadirACarrito(@PathVariable("id") long id) {
+    public String anadirACarrito(@PathVariable("id") long id,HttpServletRequest request) {
 
 
-        servCarrito.saveProductoEnCarrito(id);
+        servCarrito.saveProductoEnCarrito(id,request);
 
         return "redirect:/listaCarrito";
 
     }
     @GetMapping("/DeleteFromCarrito/{id}")
-    public String borrarDelCarrito(@PathVariable("id") long id) {
+    public String borrarDelCarrito(@PathVariable("id") long id,HttpServletRequest request) {
 
 
-        servCarrito.deleteProductoInCarritoById(id);
+        servCarrito.deleteProductoInCarritoById(id,request);
 
         return "redirect:/listaCarrito";
 
     }
     @GetMapping("/VaciarCarrito")
-    public String vaciarCarrito(){
-        servCarrito.vaciarCarritoByIdUsuario((long) 2);
+    public String vaciarCarrito(HttpServletRequest request){
+        Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
+        servCarrito.vaciarCarritoByUsuario(u);
 
         return "/listaCarrito";
 

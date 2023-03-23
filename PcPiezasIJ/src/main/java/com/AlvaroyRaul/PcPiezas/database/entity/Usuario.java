@@ -25,7 +25,7 @@ public class Usuario {
     private boolean VIP;//Solo usuario
     private long tarjeta;//Solo usuario
     private long cuentaBancaria;//Solo vendedor
-
+    @NotNull
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
@@ -54,6 +54,12 @@ public class Usuario {
 
     protected usuario() {
 
+    }
+    public Usuario(String username,String email ,String password,List<String> roles) {
+            this.username=username;
+            this.email=email;
+            this.password=password;
+            this.roles=roles;
     }*/
     public Usuario() {
 

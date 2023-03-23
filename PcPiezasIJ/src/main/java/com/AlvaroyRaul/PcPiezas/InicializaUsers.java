@@ -1,5 +1,6 @@
 package com.AlvaroyRaul.PcPiezas;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
@@ -37,6 +38,7 @@ public class InicializaUsers implements CommandLineRunner {
                 admin = new Usuario();
                 admin.anadirUser("PcPiezas","admin@pcpiezas.es", passwordEncoder.encode("12345"), "ADMINISTRADOR");
                 userRepo.save(admin);
+
 
                 comprador = new Usuario();
                 comprador.anadirUser("Juan", "juan@gmail.com", passwordEncoder.encode("12345"), "COMPRADOR");

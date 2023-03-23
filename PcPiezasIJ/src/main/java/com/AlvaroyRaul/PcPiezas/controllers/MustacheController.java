@@ -1,6 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
@@ -11,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -33,19 +35,28 @@ public class MustacheController {
         return "login";
     }
 
+
     @GetMapping("/inicio")
     public String inicio(Model model) {
-        /*
-        for (int i=5;i<12;i++){
-            servCarrito.deleteCarritoById(i);
-        }//PRUEBAS*/
-        //servCarrito.deleteCarritoById(11);
-        //servCarrito.saveProductoEnCarrito((long)4);
+
 
 
 
         return "inicio";
     }
+    @GetMapping("/private")
+    public String inicio2(Model model, HttpServletRequest request) {
+
+        String nomnbre = request.getUserPrincipal().getName();
+        Usuario user = userRep.findByUsername(nomnbre);
+
+        model.addAttribute("username",user.getUsername());
+        model.addAttribute("comprador",request.isUserInRole("COMPRADOR"));
+
+
+        return "inicio2";
+    }
+
 
     @GetMapping("/ordenadores")
     public String pcs(Model model) {
@@ -82,14 +93,10 @@ public class MustacheController {
 
         return "contact";
     }
-    @GetMapping("/register")
-    public String registroCliente(Model model){
-        return "registerClient";
-    }
-    @GetMapping("/addProduct")
+
+    @GetMapping("/admin/addProduct")
     public String registroProducto(Model model){return "addProducto";}
-    //@GetMapping("/listaProductos")
-    //public String lista(Model model){return "listProducts";}
+
 
 
 }

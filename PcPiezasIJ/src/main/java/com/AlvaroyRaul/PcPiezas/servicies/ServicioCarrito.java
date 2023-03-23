@@ -9,6 +9,7 @@ import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,14 +41,14 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-    public void saveProductoEnCarrito(Long idProducto){
+    public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
         p = productRepo.findById(idProducto).get();
 
 
         Usuario u = new Usuario();//Prueba
-        u = userRepo.findById((long)2).get();
+        u = userRepo.findByUsername(request.getUserPrincipal().getName());
 
         Carrito c = new Carrito();
         c =u.getCarrito();
@@ -68,25 +69,25 @@ public class ServicioCarrito {
         productRepo.save(p);
     }
 
-    public List<Producto> getAllProductInCarrito()
+    public List<Producto> getAllProductInCarrito(Usuario u)
     {
         //Aquí luego habrá que buscar por usuario su carrito con la lista de productos
         Carrito c= new Carrito();//Prueba
-        c = userRepo.findById((long)2).get().getCarrito();//Probamos con el carrito de juan
+        c = u.getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
-    public void deleteCarritoByIdUsuario(long id) {//Borra el carrito
+    public void deleteCarritoByUsuario(Usuario u) {//Borra el carrito
 
 
-        Usuario u = userRepo.findById((long)2).get();//Prueba
+
         Carrito c = u.getCarrito();
-        vaciarCarritoByIdUsuario(id);//Se pasaria el ID de usuario
+        vaciarCarritoByUsuario(u);//Se pasaria el ID de usuario
         u.setCarrito(null);
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-    public void vaciarCarritoByIdUsuario(long id){
-        Usuario  u = userRepo.findById((long)2).get();//Prueba
+    public void vaciarCarritoByUsuario(Usuario u){
+        //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
 
         for (Producto p:productos) {
@@ -100,9 +101,9 @@ public class ServicioCarrito {
 
 
     }
-    public void deleteProductoInCarritoById(long idProducto){
+    public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();
-        u = userRepo.findById((long)2).get();//Prueba
+        u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba
         Carrito c = new Carrito();
         c = u.getCarrito();
         Producto p = new Producto();

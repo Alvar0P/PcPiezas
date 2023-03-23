@@ -7,10 +7,13 @@ import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +40,7 @@ public class ProductosController {
     private ServicioCarrito servCarrito;
     @Autowired
     private ServicioItem servItem;
-    @GetMapping("admin/listaProductos")
+    @GetMapping("/admin/listaProductos")
     public String verListaProductos(Model model) {
         List<productosLista> listaProductos = new ArrayList<>();
         for(Producto p : servicioProduct.getAllProduct()) {
@@ -48,15 +51,22 @@ public class ProductosController {
         return "listProducts";
     }
 
+
     @PostMapping("/admin/addP")
-    public String guardarProducto(@RequestParam("file") MultipartFile file,@RequestParam("name") String nombre,
-                             @RequestParam("desc") String descripcion,@RequestParam("fabri") String fabricante,@RequestParam("vendedor") String vendedor,
-                                  @RequestParam("categoria") String categoria,@RequestParam("price") int precio) {
+    @Transactional
+    public String guardarProducto(@RequestParam("file") MultipartFile file, @RequestParam("name") String nombre,
+                                  @RequestParam("desc") String descripcion, @RequestParam("fabri") String fabricante, @RequestParam("vendedor") String vendedor,
+                                  @RequestParam("categoria") String categoria, @RequestParam("price") int precio) {
 
-        servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,categoria,precio);
 
 
-        return "redirect:/listaProductos";
+            servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,categoria,precio);
+
+
+
+
+
+        return "/admin/listProducts";
 
     }
     @GetMapping("/admin/deleteProd/{id}")

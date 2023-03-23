@@ -18,14 +18,15 @@ public class RepositoryUserDetailsService implements UserDetailsService {
     @Autowired
     private UsuarioRepo userRepository;
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         Usuario user = userRepository.findByUsername(username);
-        if(user.equals(null)){
-            new UsernameNotFoundException("User not found");
+        if(user==null){
+           throw new UsernameNotFoundException("User not found");
         }
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority("ROLE_" + user.getRol()));
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
     }
 }
