@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 @Controller
+@RequestMapping("/user")
 public class CarritoController {
 
     public class FilaCarrito extends Producto {
@@ -73,7 +74,7 @@ public class CarritoController {
 
         servCarrito.saveProductoEnCarrito(id,request);
 
-        return "redirect:/listaCarrito";
+        return "redirect:/user/listaCarrito";
 
     }
     @GetMapping("/DeleteFromCarrito/{id}")
@@ -82,7 +83,7 @@ public class CarritoController {
 
         servCarrito.deleteProductoInCarritoById(id,request);
 
-        return "redirect:/listaCarrito";
+        return "redirect:/user/listaCarrito";
 
     }
     @GetMapping("/VaciarCarrito")
@@ -90,7 +91,7 @@ public class CarritoController {
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
         servCarrito.vaciarCarritoByUsuario(u);
 
-        return "/listaCarrito";
+        return "/user/listaCarrito";
 
     }
 

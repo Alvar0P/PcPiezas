@@ -46,4 +46,38 @@ public class ServicioVenta {
     public List<Venta> getAllVentas() {
         return ventaRepo.findAll();
     }
+
+    public List<Venta> getVentasForBuyers(Usuario u){
+
+        List<Venta> listaVTemp = ventaRepo.findAll();
+        List<Venta> listaVenta = new ArrayList<>();
+
+        for (Venta venta : listaVTemp) {
+            if (venta.getComprador().equals(u)){
+                listaVenta.add(venta);
+            }
+
+        }
+
+        return listaVenta;
+    }
+    public List<Venta> getVentasForSellers(Usuario u){
+
+        List<Venta> listaVTemp = ventaRepo.findAll();
+        List<Venta> listaVenta = new ArrayList<>();
+
+
+        for (Venta venta : listaVTemp) {
+            List<Item> listaI = venta.getListaItems();
+            for (Item item:listaI) {
+                if (item.getProducto().getVendedor().equals(u)){
+                    listaVenta.add(venta);
+                }
+            }
+
+
+        }
+
+        return listaVenta;
+    }
 }

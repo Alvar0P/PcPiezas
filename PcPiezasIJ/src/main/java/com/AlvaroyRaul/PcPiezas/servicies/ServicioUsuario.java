@@ -37,6 +37,8 @@ public class ServicioUsuario  {
         u.setEmail(email);
         u.setPassword(passwordEncoder.encode(password));
         List<String> rol = new ArrayList<>();
+        u.setDireccion("");
+        u.setRol("COMPRADOR");
         rol.add("COMPRADOR");
         u.setRoles(rol);
 
@@ -44,7 +46,18 @@ public class ServicioUsuario  {
 
 
     }
+    public List<Usuario> getAllUsers()
+    {
+        return userRepo.findAll();
+    }
+    public void deleteUsuarioById(long id) {
+        Usuario u = userRepo.findById(id).get();
 
+        u.setCarrito(null);
+        userRepo.save(u);
+
+        userRepo.deleteById(id);
+    }
     public Usuario getUserObject(String uName) {
         return userRepo.findByUsername(uName);
     }

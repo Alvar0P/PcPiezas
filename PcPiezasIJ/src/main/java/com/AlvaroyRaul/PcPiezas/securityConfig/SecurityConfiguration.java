@@ -45,10 +45,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         //http.requiresChannel().anyRequest().requiresSecure();
         http.authorizeRequests().antMatchers("/inicio").permitAll();
+        http.authorizeRequests().antMatchers("/perifericos").permitAll();
+        http.authorizeRequests().antMatchers("/componentes").permitAll();
+        http.authorizeRequests().antMatchers("/ordenadores").permitAll();
+        http.authorizeRequests().antMatchers("/moviles").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll().and().formLogin();
         http.authorizeRequests().antMatchers("/register").permitAll();
         http.authorizeRequests().antMatchers("/addU").permitAll();
+        http.authorizeRequests().antMatchers("/admin/listaVentas").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_VENDEDOR","ROLE_COMPRADOR");
+        http.authorizeRequests().antMatchers("/admin/usuarios/**").hasAuthority("ROLE_ADMINISTRADOR");
         http.authorizeRequests().antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_VENDEDOR");
+        http.authorizeRequests().antMatchers("/user/**").hasAuthority("ROLE_COMPRADOR");
         http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll();
 
 

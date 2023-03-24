@@ -84,7 +84,7 @@ public class ProductosController {
 
 
 
-        return "/admin/listaProductos";
+        return "redirect:/admin/listaProductos";
 
     }
     @GetMapping("/deleteProd/{id}")

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class InventarioController {
     @Autowired
     private ItemRepo itemRepo;
@@ -21,7 +22,7 @@ public class InventarioController {
     private ProductoRepo productoRepo;
     @Autowired
     private ServicioItem sItem;
-    @GetMapping("/admin/listaItems")
+    @GetMapping("/listaItems")
     public String verListaItems(Model model) {
 
         List<Item> listaItems = sItem.getAllItemsInStock();
@@ -33,8 +34,11 @@ public class InventarioController {
         model.addAttribute("productos", listaProductos);
         model.addAttribute("items", listaItems);
         return "listItems";
+
+
+
     }
-    @GetMapping("/admin/listaItems(id={id})")
+    @GetMapping("/listaItems(id={id})")
     public String verListaItemsParaProducto(Model model, @PathVariable long id) {
 
         List<Item> listaItems = sItem.getAllItemsInStockForProduct(id);
@@ -50,15 +54,15 @@ public class InventarioController {
         return "listItems";
     }
 
-    @GetMapping("/admin/addItem")
+    @GetMapping("/addItem")
     public String verGuardarItem(Model model) {
 
         model.addAttribute("productos", productoRepo.findAll());
         return "addItem";
     }
-    @PostMapping("/admin/addI")
+    @PostMapping("/addI")
     public String guardarItem(@RequestParam("productoSeleccionado") long productoId,
-                                  @RequestParam("nSerie") String nSerie) {
+                              @RequestParam("nSerie") String nSerie) {
         /*producto = producto.replaceAll("\\D+","");
         long idProducto = Long.getLong(producto);*/
         Producto pItem = productoRepo.findById(productoId).get();
@@ -67,7 +71,7 @@ public class InventarioController {
         return "redirect:/admin/listaItems";
 
     }
-    @GetMapping("/admin/deleteItem/{nSerie}")
+    @GetMapping("/deleteItem/{nSerie}")
     public String deleteItem(@PathVariable String nSerie)
     {
         itemRepo.deleteById(nSerie);
