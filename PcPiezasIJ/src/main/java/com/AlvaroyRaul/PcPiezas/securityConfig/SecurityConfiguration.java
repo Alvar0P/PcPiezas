@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/register").permitAll();
         http.authorizeRequests().antMatchers("/addU").permitAll();
         http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMINISTRADOR");
-        http.authorizeRequests().antMatchers("css/**", "js/**", "fonts/**","images/**","vendor/**").hasAnyRole("ADMINISTRADOR","COMPRADOR","VENDEDOR").anyRequest().permitAll();
+        http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll();
 
 
 
