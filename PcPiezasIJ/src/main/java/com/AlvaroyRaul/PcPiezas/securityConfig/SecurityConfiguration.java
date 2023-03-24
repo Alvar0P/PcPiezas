@@ -2,6 +2,7 @@ package com.AlvaroyRaul.PcPiezas.securityConfig;
 
 import com.AlvaroyRaul.PcPiezas.servicies.RepositoryUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,7 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(10, new SecureRandom());
     }
 
-
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("resources/**", "static/**","templates/**","css/**", "js/**", "fonts/**","images/**","vendor/**");
@@ -48,9 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login").permitAll().and().formLogin();
         http.authorizeRequests().antMatchers("/register").permitAll();
         http.authorizeRequests().antMatchers("/addU").permitAll();
-        http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMINISTRADOR");
+        http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ROLE_ADMINISTRADOR");
         http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll();
-
 
 
         //http.authorizeRequests().anyRequest().authenticated();

@@ -56,7 +56,7 @@ public class InventarioController {
         model.addAttribute("productos", productoRepo.findAll());
         return "addItem";
     }
-    @PostMapping("/addI")
+    @PostMapping("/admin/addI")
     public String guardarItem(@RequestParam("productoSeleccionado") long productoId,
                                   @RequestParam("nSerie") String nSerie) {
         /*producto = producto.replaceAll("\\D+","");
@@ -64,7 +64,7 @@ public class InventarioController {
         Producto pItem = productoRepo.findById(productoId).get();
         Item itemNuevo = new Item(nSerie, pItem);
         itemRepo.save(itemNuevo);
-        return "redirect:/listaItems";
+        return "redirect:/admin/listaItems";
 
     }
     @GetMapping("/admin/deleteItem/{nSerie}")
@@ -72,7 +72,7 @@ public class InventarioController {
     {
         itemRepo.deleteById(nSerie);
 
-        return "redirect:/listaItems";
+        return "redirect:/admin/listaItems";
     }
 
 }

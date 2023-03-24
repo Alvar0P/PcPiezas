@@ -15,7 +15,6 @@
 	<description>Tienda de ordenadores por piezas </description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-security.version>5.7.0-SNAPSHOT</spring-security.version>
 	</properties>
 	<dependencies>
 		<dependency>
