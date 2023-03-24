@@ -45,5 +45,9 @@ public class ServicioUsuario  {
 
     }
 
+    public Usuario getUserObject(String uName) {
+        return userRepo.findByUsername(uName);
+    }
+
 
 }

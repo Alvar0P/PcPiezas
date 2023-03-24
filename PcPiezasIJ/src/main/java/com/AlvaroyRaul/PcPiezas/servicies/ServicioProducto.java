@@ -66,6 +66,11 @@ public class ServicioProducto {
     {
         return productRepo.findAll();
     }
+
+    public List<Producto> getProductsForSeller(Usuario vendedor)
+    {
+        return productRepo.findByVendedor(vendedor);
+    }
     public List<Producto> getProductoPorCategoria(String categoria)
     {
         return productRepo.findByCategoria(categoria);

@@ -1,11 +1,15 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -33,17 +37,24 @@ public class ProductosController {
         }
     }
     @Autowired
-    private ProductoRepo productoRepo;
-    @Autowired
     private ServicioProducto servicioProduct;
     @Autowired
-    private ServicioCarrito servCarrito;
+    private ServicioUsuario servU;
     @Autowired
     private ServicioItem servItem;
     @GetMapping("/admin/listaProductos")
     public String verListaProductos(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario currentUser = servU.getUserObject(authentication.getName());
         List<productosLista> listaProductos = new ArrayList<>();
-        for(Producto p : servicioProduct.getAllProduct()) {
+        List<Producto> listaPTemp;
+        if(currentUser.getRol().equals("ADMINISTRADOR")) {
+            listaPTemp = servicioProduct.getAllProduct();
+        }
+        else {
+            listaPTemp = servicioProduct.getProductsForSeller(currentUser);
+        }
+        for(Producto p : listaPTemp) {
             listaProductos.add(new productosLista(p, p.getStockProducto()));
         }
         model.addAttribute("productos", listaProductos);
