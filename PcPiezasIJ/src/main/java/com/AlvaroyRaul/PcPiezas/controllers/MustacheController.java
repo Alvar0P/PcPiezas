@@ -94,8 +94,6 @@ public class MustacheController {
         return "contact";
     }
 
-    @GetMapping("/admin/addProduct")
-    public String registroProducto(Model model){return "addProducto";}
 
 
 

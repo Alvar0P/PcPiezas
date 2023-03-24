@@ -62,16 +62,22 @@ public class ProductosController {
         return "listProducts";
     }
 
+    @GetMapping("/admin/addProduct")
+    public String registroProducto(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("vendedorU", authentication.getName());
+        return "addProducto";
+    }
 
     @PostMapping("/admin/addP")
     @Transactional
     public String guardarProducto(@RequestParam("file") MultipartFile file, @RequestParam("name") String nombre,
-                                  @RequestParam("desc") String descripcion, @RequestParam("fabri") String fabricante, @RequestParam("vendedor") String vendedor,
+                                  @RequestParam("desc") String descripcion, @RequestParam("fabri") String fabricante,
                                   @RequestParam("categoria") String categoria, @RequestParam("price") int precio) {
 
 
-
-            servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,vendedor,categoria,precio);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            servicioProduct.saveProductToDB(file,nombre,descripcion,fabricante,authentication.getName(),categoria,precio);
 
 
 
