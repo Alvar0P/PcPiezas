@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class ProductosController {
 
     public class productosLista extends Producto {
@@ -42,7 +43,7 @@ public class ProductosController {
     private ServicioUsuario servU;
     @Autowired
     private ServicioItem servItem;
-    @GetMapping("/admin/listaProductos")
+    @GetMapping("/listaProductos")
     public String verListaProductos(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario currentUser = servU.getUserObject(authentication.getName());
@@ -62,14 +63,14 @@ public class ProductosController {
         return "listProducts";
     }
 
-    @GetMapping("/admin/addProduct")
+    @GetMapping("/addProduct")
     public String registroProducto(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("vendedorU", authentication.getName());
         return "addProducto";
     }
 
-    @PostMapping("/admin/addP")
+    @PostMapping("/addP")
     @Transactional
     public String guardarProducto(@RequestParam("file") MultipartFile file, @RequestParam("name") String nombre,
                                   @RequestParam("desc") String descripcion, @RequestParam("fabri") String fabricante,
@@ -83,10 +84,10 @@ public class ProductosController {
 
 
 
-        return "/admin/listProducts";
+        return "/admin/listaProductos";
 
     }
-    @GetMapping("/admin/deleteProd/{id}")
+    @GetMapping("/deleteProd/{id}")
     public String deleteProduct(@PathVariable long id)
     {
 
@@ -94,14 +95,14 @@ public class ProductosController {
         return "redirect:/admin/listaProductos";
     }
 
-    @PostMapping("/admin/changeName/{id}")
+    @PostMapping("/changeName/{id}")
     public String changePname(@PathVariable("id") Long id,
                               @RequestParam("newPname") String name)
     {
         servicioProduct.changeProductName(id, name);
         return "redirect:/admin/listaProductos";
     }
-    @PostMapping("/admin/changeDescription/{id}")
+    @PostMapping("/changeDescription/{id}")
     public String changeDescription(@PathVariable("id") Long id ,
                                     @RequestParam("newDescription") String description)
     {
@@ -109,14 +110,14 @@ public class ProductosController {
         return "redirect:/admin/listaProductos";
     }
 
-    @PostMapping("/admin/changePrice/{id}")
+    @PostMapping("/changePrice/{id}")
     public String changePrice(@PathVariable("id") Long id ,
                               @RequestParam("newPrice") int price)
     {
         servicioProduct.changeProductPrice(id, price);
         return "redirect:/admin/listaProductos";
     }
-    @PostMapping("/admin/changeFabricante/{id}")
+    @PostMapping("/changeFabricante/{id}")
     public String changePrice(@PathVariable("id") Long id ,
                               @RequestParam("newFabricant") String Fabricante)
     {
@@ -124,7 +125,7 @@ public class ProductosController {
         return "redirect:/admin/listaProductos";
     }
 
-    @PostMapping("/admin/changeCategoria/{id}")
+    @PostMapping("/changeCategoria/{id}")
     public String changeCategoria(@PathVariable("id") Long id ,
                               @RequestParam("newCategoria") String categoria)
     {
