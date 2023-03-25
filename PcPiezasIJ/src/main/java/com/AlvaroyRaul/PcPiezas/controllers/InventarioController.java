@@ -2,14 +2,17 @@ package com.AlvaroyRaul.PcPiezas.controllers;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Item;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +25,24 @@ public class InventarioController {
     private ProductoRepo productoRepo;
     @Autowired
     private ServicioItem sItem;
+    @Autowired
+    private UsuarioRepo usuarioRepo;
     @GetMapping("/listaItems")
-    public String verListaItems(Model model) {
+    public String verListaItems(HttpServletRequest request, Model model) {
 
         List<Item> listaItems = sItem.getAllItemsInStock();
         List<Producto> listaProductos = new ArrayList<Producto>();
-        for(Item itemP : listaItems) {
-            listaProductos.add(itemP.getProducto());
+        Usuario u = usuarioRepo.findByUsername(request.getUserPrincipal().getName());
+        if (u.getRol().equals("ADMINISTRADOR")){
+            for(Item itemP : listaItems) {
+                listaProductos.add(itemP.getProducto());
+            }
+        }else {
+           listaItems =  sItem.getItemsSellers(u);
         }
+
+
+
         model.addAttribute("nombreProducto","");
         model.addAttribute("productos", listaProductos);
         model.addAttribute("items", listaItems);

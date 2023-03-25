@@ -2,6 +2,7 @@ package com.AlvaroyRaul.PcPiezas.servicies;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Item;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
@@ -9,6 +10,7 @@ import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +32,23 @@ public class ServicioItem {
     public List<Item> getAllItems()
     {
         return iRepo.findAll();
+    }
+    public List<Item> getItemsSellers(Usuario u){
+
+        List<Item> listItems = getAllItemsInStock();
+        List<Item> listaItems = new ArrayList<>();
+
+        for (Item i:listItems) {
+            Usuario user = i.getProducto().getVendedor();
+
+            if (user == u){
+                listaItems.add(i);
+            }
+
+        }
+        return listaItems;
+
+
     }
     public List<Item> getAllItemsInStock()
     {
