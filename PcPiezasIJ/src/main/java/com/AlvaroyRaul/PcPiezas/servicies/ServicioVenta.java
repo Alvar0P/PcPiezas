@@ -7,6 +7,7 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class ServicioVenta {
     private ItemRepo itemRepo;
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
+    @Value(value = "${kafka.topic.name}")
+    private String topic;
     public Venta nuevaVenta(List<Item> items, Usuario user){
         Venta v = new Venta();
         v.setComprador(user);
@@ -37,7 +40,7 @@ public class ServicioVenta {
         v.setFechaCompra(hoy);
         ventaRepo.save(v);
         //Usamos un microservicio para mandar los datos de la venta al cliente
-        kafkaTemplate.send(topicVenta, v);
+        kafkaTemplate.send(this.topic, v);
 
         return v;
 
