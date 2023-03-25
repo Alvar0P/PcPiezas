@@ -1,13 +1,13 @@
 package com.AlvaroyRaul.PcPiezas.controllers;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
-import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
-import com.AlvaroyRaul.PcPiezas.servicies.ServicioItem;
-import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
-import com.AlvaroyRaul.PcPiezas.servicies.ServicioVenta;
+import com.AlvaroyRaul.PcPiezas.servicies.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +23,26 @@ import java.util.List;
 public class VentasController {
     @Autowired
     private ServicioVenta servicioVenta;
-    @GetMapping("admin/listaVentas")
+    @Autowired
+    private ServicioUsuario servicioUsuario;
+    @GetMapping("/admin/listaVentas")
     public String verListaVentas(Model model) {
-        model.addAttribute("ventas", servicioVenta.getAllVentas());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario currentUser = servicioUsuario.getUserObject(authentication.getName());
+
+        List<Venta> listaVentas;
+
+        if(currentUser.getRol().equals("ADMINISTRADOR")) {
+            listaVentas = servicioVenta.getAllVentas();
+
+        }else if(currentUser.getRol().equals("COMPRADOR")) {
+
+            listaVentas = servicioVenta.getVentasForBuyers(currentUser);
+        }else{
+            listaVentas = servicioVenta.getVentasForSellers(currentUser);
+        }
+        model.addAttribute("ventas", listaVentas);
 
         return "listVentas";
     }

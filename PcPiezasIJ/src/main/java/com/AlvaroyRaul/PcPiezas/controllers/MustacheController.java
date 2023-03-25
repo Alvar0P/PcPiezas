@@ -44,18 +44,6 @@ public class MustacheController {
 
         return "inicio";
     }
-    @GetMapping("/private")
-    public String inicio2(Model model, HttpServletRequest request) {
-
-        String nomnbre = request.getUserPrincipal().getName();
-        Usuario user = userRep.findByUsername(nomnbre);
-
-        model.addAttribute("username",user.getUsername());
-        model.addAttribute("comprador",request.isUserInRole("COMPRADOR"));
-
-
-        return "inicio2";
-    }
 
 
     @GetMapping("/ordenadores")

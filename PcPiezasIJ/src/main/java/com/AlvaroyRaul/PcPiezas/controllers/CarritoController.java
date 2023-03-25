@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 @Controller
+@RequestMapping("/user")
 public class CarritoController {
 
     public class FilaCarrito extends Producto {
@@ -52,7 +53,7 @@ public class CarritoController {
             c.setProductos(productos);
             carritRepo.save(c);
             userRepo.save(u);
-        }//
+        }
         List<FilaCarrito> listaProductosCarrito = new ArrayList<>();
         for(Producto p : servCarrito.getAllProductInCarrito(u)) {
             String stock = "";
@@ -62,7 +63,13 @@ public class CarritoController {
             listaProductosCarrito.add(fila);
         }
 
-        float subtotal = u.getCarrito().calcularSubtotal();
+
+        float envio = 5;
+        if (u.isVIP()){
+            envio =0;
+        }
+        float subtotal = u.getCarrito().calcularSubtotal() + envio;
+        model.addAttribute("envio",envio);
         model.addAttribute("subtotal",subtotal);
         model.addAttribute("productos", listaProductosCarrito);
         return "shopping_cart";
@@ -73,7 +80,7 @@ public class CarritoController {
 
         servCarrito.saveProductoEnCarrito(id,request);
 
-        return "redirect:/listaCarrito";
+        return "redirect:/user/listaCarrito";
 
     }
     @GetMapping("/DeleteFromCarrito/{id}")
@@ -82,7 +89,7 @@ public class CarritoController {
 
         servCarrito.deleteProductoInCarritoById(id,request);
 
-        return "redirect:/listaCarrito";
+        return "redirect:/user/listaCarrito";
 
     }
     @GetMapping("/VaciarCarrito")
@@ -90,7 +97,7 @@ public class CarritoController {
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
         servCarrito.vaciarCarritoByUsuario(u);
 
-        return "/listaCarrito";
+        return "/user/listaCarrito";
 
     }
 

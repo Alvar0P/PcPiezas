@@ -19,9 +19,6 @@
                     <a class="nav-link font-weight-bold" href="/inicio">Ir a Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="/admin/addItem" >Añadir Item</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link font-weight-bold" href="/admin/listaItems">Lista de items</a>
                 </li>
                 <li class="nav-item">
@@ -33,31 +30,42 @@
             </ul>
         </nav>
         <hr>
-        <h3 class="text-center">Lista de stock</h3>
+        <h3 class="text-center">Lista de Usuario</h3>
         <hr>
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Imagen</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Nº de serie</th>
-                <th scope="col">eliminar item</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Tarjeta</th>
+                <th scope="col">Cuenta bancaria</th>
+                <th scope="col">Rol</th>
+                <th scope="col">VIP</th>
+                <th scope="col">Eliminar usuario</th>
             </tr>
             </thead>
             <tbody>
 
-                <ul> {{#items}}
-                    <tr>
-                    <th scope="row"><img alt="" src="data:image/jpeg;base64,{{producto.imagen}}" style="width: 100px;height: 100px;"></th>
-                    <td>{{producto.nombre}}</td>
+            <ul> {{#usuarios}}
+                <tr>
+
+                    <td>{{username}}</td>
+                    <td>{{email}}</td>
+                    <td>{{tlf}}</td>
+                    <td>{{direccion}}</td>
+                    <td>{{tarjeta}}</td>
+                    <td>{{cuentaBancaria}}</td>
+                    <td>{{rol}}</td>
+                    <td>{{VIP}}</td>
 
 
-                    <td>{{nSerie}}</td>
-                    <td><a href="/admin/deleteItem/{{nSerie}}"
+                    <td><a href="/admin/usuarios/deleteUsuario/{{idUsuario}}"
                            class="btn btn-danger mt-4">Borrar</a>
                     </td>
-                    </tr>
-                    {{/items}}
+                </tr>
+                {{/usuarios}}
 
 
 
