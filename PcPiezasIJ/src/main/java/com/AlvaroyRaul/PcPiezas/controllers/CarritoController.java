@@ -53,7 +53,7 @@ public class CarritoController {
             c.setProductos(productos);
             carritRepo.save(c);
             userRepo.save(u);
-        }//
+        }
         List<FilaCarrito> listaProductosCarrito = new ArrayList<>();
         for(Producto p : servCarrito.getAllProductInCarrito(u)) {
             String stock = "";
@@ -63,7 +63,13 @@ public class CarritoController {
             listaProductosCarrito.add(fila);
         }
 
-        float subtotal = u.getCarrito().calcularSubtotal();
+
+        float envio = 5;
+        if (u.isVIP()){
+            envio =0;
+        }
+        float subtotal = u.getCarrito().calcularSubtotal() + envio;
+        model.addAttribute("envio",envio);
         model.addAttribute("subtotal",subtotal);
         model.addAttribute("productos", listaProductosCarrito);
         return "shopping_cart";

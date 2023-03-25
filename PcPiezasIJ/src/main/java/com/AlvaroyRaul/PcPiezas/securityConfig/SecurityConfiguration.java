@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //http.requiresChannel().anyRequest().requiresSecure();
+        http.requiresChannel().anyRequest().requiresSecure();
         http.authorizeRequests().antMatchers("/inicio").permitAll();
         http.authorizeRequests().antMatchers("/perifericos").permitAll();
         http.authorizeRequests().antMatchers("/componentes").permitAll();
@@ -51,15 +51,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/moviles").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll().and().formLogin();
         http.authorizeRequests().antMatchers("/register").permitAll();
+        http.authorizeRequests().antMatchers("/registerVendedor").permitAll();
         http.authorizeRequests().antMatchers("/addU").permitAll();
+        http.authorizeRequests().antMatchers("/addUV").permitAll();
         http.authorizeRequests().antMatchers("/admin/listaVentas").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_VENDEDOR","ROLE_COMPRADOR");
         http.authorizeRequests().antMatchers("/admin/usuarios/**").hasAuthority("ROLE_ADMINISTRADOR");
         http.authorizeRequests().antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_VENDEDOR");
         http.authorizeRequests().antMatchers("/user/**").hasAuthority("ROLE_COMPRADOR");
-        http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll();
+        http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")|| request.getServletPath().endsWith(".html")).permitAll();
 
 
-        //http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated();
 
         //http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");

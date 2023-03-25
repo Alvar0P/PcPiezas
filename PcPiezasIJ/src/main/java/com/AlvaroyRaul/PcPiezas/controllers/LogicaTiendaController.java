@@ -37,31 +37,44 @@ public class LogicaTiendaController {
     @GetMapping("/compra")//id del carrito
     public String checkOut(HttpServletRequest request) throws IOException {
 
-        Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba
-        List<Producto> listaProductos = u.getCarrito().getProductos();
-        Carrito c = u.getCarrito();
+        Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
 
 
-        List<Item> itemsAdquiridos = new ArrayList<>();
-        for (Producto p:listaProductos) {
-             if(p.getStockProducto() > 0) {
-                 itemsAdquiridos.add(p.getItemsForSale().get(0));
-             }
+
+        if(u.getTarjeta() ==0){
+
+            return "redirect:/user/mostrarFormMas";
+
+
+        }else{
+
+            List<Producto> listaProductos = u.getCarrito().getProductos();
+            Carrito c = u.getCarrito();
+            List<Item> itemsAdquiridos = new ArrayList<>();
+            for (Producto p:listaProductos) {
+                if(p.getStockProducto() > 0) {
+                    itemsAdquiridos.add(p.getItemsForSale().get(0));
+                }
+            }
+            if(itemsAdquiridos.size() != 0) {
+                Venta v = new Venta();
+                v = servVenta.nuevaVenta(itemsAdquiridos, u);
+                servTienda.generaFactura(v);
+                servCarrito.deleteCarritoByUsuario(u);
+
+
+            }
+
+
+            return "redirect:/inicio";
         }
-        if(itemsAdquiridos.size() != 0) {
-            Venta v = new Venta();
-            v = servVenta.nuevaVenta(itemsAdquiridos, u);
-            servTienda.generaFactura(v);
-            servCarrito.deleteCarritoByUsuario(u);
-
-            //userRepo.save(u);
-            //carritoRepo.save(c);
-        }
 
 
-        return "redirect:/inicio";
     }
+
+}
+
 
 
     
-}
+

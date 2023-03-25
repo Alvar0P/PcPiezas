@@ -25,7 +25,24 @@ public class UsuariosController {
     private UsuarioRepo usuarioRepo;
     @Autowired
     private ServicioUsuario servicioUsuario;
+    @GetMapping("/registerVendedor")
+    public String formularioRegistroVendedor(HttpServletRequest request) {
+        if(request.getUserPrincipal() == null){
+            return "registerVendedor";
+        }
 
+        return "redirect:/admin/listaVentas";
+    }
+    @PostMapping("/addUV")
+    public String guardarVendedor(@RequestParam("username") String username, @RequestParam("email") String email,
+                                 @RequestParam("password") String pass,@RequestParam("direccion")String direccion,@RequestParam("cuentaBancaria")String cuentaBancaria,@RequestParam("tlf")long tlf) {
+
+        servicioUsuario.saveVendedorToDB(username,email,pass,direccion,cuentaBancaria,tlf);
+
+
+        return "/inicio";
+
+    }
     @GetMapping("/register")
     public String formularioRegistro(HttpServletRequest request) {
         if(request.getUserPrincipal() == null){
@@ -65,5 +82,17 @@ public class UsuariosController {
 
         servicioUsuario.deleteUsuarioById(id);
         return "redirect:/admin/usuarios/listaUsuarios";
+    }
+    @GetMapping("/user/mostrarFormMas")
+    public String mostrarFormMas(){
+        return "datosAdicionales";
+    }
+
+    @PostMapping("/user/addDatosA")
+    public String datosAdicionales(HttpServletRequest request,@RequestParam("direccion")String direccion,@RequestParam("tarjeta")long tarjeta,@RequestParam("tlf")long tlf,@RequestParam("vip")boolean vip ){
+        servicioUsuario.guardarDatosAdicionales(request,direccion,tarjeta,tlf,vip);
+        return "redirect:/inicio";
+
+
     }
 }
