@@ -1,10 +1,6 @@
-package com.AlvaroyRaul.PcPiezas.kafka.entity;
-
-import com.AlvaroyRaul.PcPiezas.database.entity.Item;
-import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
+package com.AlvaroyRaul.PcPiezasMailService.kafkaEntity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class simplifiedVenta {
