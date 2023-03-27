@@ -52,9 +52,9 @@ public class simplifiedVenta {
     private long idVenta;
     private String dirEnvio;
     private float total;
-    private LocalDate FechaCompra;
+    //private LocalDate FechaCompra;
     private List<SimpleItem> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
-    private Usuario comprador;
+    //private Usuario comprador;
 
     public long getIdVenta() {
         return idVenta;
@@ -68,27 +68,22 @@ public class simplifiedVenta {
         return total;
     }
 
-    public LocalDate getFechaCompra() {
-        return FechaCompra;
-    }
 
     public List<SimpleItem> getListaItems() {
         return listaItems;
     }
 
-    public Usuario getComprador() {
-        return comprador;
-    }
 
-    public simplifiedVenta3(long idVenta, String dirEnvio, float total, LocalDate fechaCompra, List<Item> listaItems, Usuario comprador) {
+
+    public simplifiedVenta(long idVenta, String dirEnvio, float total, LocalDate fechaCompra, List<Item> listaItems, Usuario comprador) {
         this.idVenta = idVenta;
         this.dirEnvio = dirEnvio;
         this.total = total;
-        FechaCompra = fechaCompra;
+        //FechaCompra = fechaCompra;
         this.listaItems = new ArrayList<>();
-        for(Item i : listaItems) {
-            this.listaItems.add(new SimpleItem(i.getnSerie(), i.getProducto().getFabricante(), i.getProducto().getNombre(), i.getProducto().getDescripcion(), i.getProducto().getCategoria(), i.getProducto().getPrecio()));
-        }
-        this.comprador = comprador;
+        //for(Item i : listaItems) {
+        //    this.listaItems.add(new SimpleItem(i.getnSerie(), i.getProducto().getFabricante(), i.getProducto().getNombre(), i.getProducto().getDescripcion(), i.getProducto().getCategoria(), i.getProducto().getPrecio()));
+        //}
+        //this.comprador = comprador;
     }
 }

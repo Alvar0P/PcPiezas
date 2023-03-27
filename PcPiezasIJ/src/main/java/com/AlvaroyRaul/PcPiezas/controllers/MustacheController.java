@@ -28,8 +28,7 @@ public class MustacheController {
     private CarritoRepo carritoRepo;
     @Autowired
     private UsuarioRepo userRep;
-    @Autowired
-    private sendVenta sendConfEmail;
+
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -41,7 +40,6 @@ public class MustacheController {
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
-        sendConfEmail.sendMessage();
 
 
 
