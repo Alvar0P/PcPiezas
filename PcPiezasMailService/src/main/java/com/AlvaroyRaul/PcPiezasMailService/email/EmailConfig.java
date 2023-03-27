@@ -13,7 +13,7 @@ public class EmailConfig {
         mailSender.setHost("smtp.mail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("pcpiezas@europe.com");
+        mailSender.setUsername("pccpiezas@gmail.com");
         mailSender.setPassword("FWZ8HUN9GenafCa");
 
         Properties props = mailSender.getJavaMailProperties();

@@ -3,16 +3,14 @@ package com.AlvaroyRaul.PcPiezas.controllers;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.publisher.RabbitMQProducer;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ import java.util.List;
 @Controller
 public class UsuariosController {
 
+    private RabbitMQProducer producer;
     @Autowired
     private UsuarioRepo usuarioRepo;
     @Autowired
@@ -58,7 +57,9 @@ public class UsuariosController {
                                   @RequestParam("password") String pass) {
 
         servicioUsuario.saveClientToDB(username,email,pass);
+        Usuario u = usuarioRepo.findByUsername(username);
 
+        producer.sendMessage(u);
 
         return "/inicio";
 
