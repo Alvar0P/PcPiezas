@@ -4,6 +4,7 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.kafka.sendVenta;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class MustacheController {
     private CarritoRepo carritoRepo;
     @Autowired
     private UsuarioRepo userRep;
+    @Autowired
+    private sendVenta sendConfEmail;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -38,6 +41,7 @@ public class MustacheController {
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
+        sendConfEmail.sendMessage();
 
 
 

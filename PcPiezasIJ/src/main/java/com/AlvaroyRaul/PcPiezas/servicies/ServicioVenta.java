@@ -22,10 +22,6 @@ public class ServicioVenta {
 
     @Autowired
     private ItemRepo itemRepo;
-    @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
-    @Value(value = "${kafka.topic.name}")
-    private String topic;
     public Venta nuevaVenta(List<Item> items, Usuario user){
         Venta v = new Venta();
         v.setComprador(user);
@@ -40,7 +36,6 @@ public class ServicioVenta {
         v.setFechaCompra(hoy);
         ventaRepo.save(v);
         //Usamos un microservicio para mandar los datos de la venta al cliente
-        kafkaTemplate.send(this.topic, v);
 
         return v;
 
