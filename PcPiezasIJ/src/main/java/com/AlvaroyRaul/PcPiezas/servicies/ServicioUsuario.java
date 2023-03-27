@@ -40,6 +40,7 @@ public class ServicioUsuario  {
         u.setPassword(passwordEncoder.encode(password));
         List<String> rol = new ArrayList<>();
         u.setDireccion("");
+        u.setCuentaBancaria("");
         u.setRol("COMPRADOR");
         rol.add("COMPRADOR");
         u.setRoles(rol);

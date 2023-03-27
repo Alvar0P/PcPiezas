@@ -52,18 +52,6 @@ public class UsuariosController {
     }
 
 
-    @PostMapping("/addU")
-    public String guardarCliente(@RequestParam("username") String username, @RequestParam("email") String email,
-                                  @RequestParam("password") String pass) {
-
-        servicioUsuario.saveClientToDB(username,email,pass);
-        Usuario u = usuarioRepo.findByUsername(username);
-
-        //producer.sendMessage(u);
-
-        return "/inicio";
-
-    }
 
     @GetMapping("/admin/usuarios/listaUsuarios")
     public String verListaProductos(Model model) {

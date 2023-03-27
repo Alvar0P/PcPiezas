@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+        //http.cors().and().csrf().disable();
         http.requiresChannel().anyRequest().requiresSecure();
         http.authorizeRequests().antMatchers("/inicio").permitAll();
         http.authorizeRequests().antMatchers("/perifericos").permitAll();
@@ -61,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")|| request.getServletPath().endsWith(".html")).permitAll();
 
 
-        http.authorizeRequests().anyRequest().authenticated();
+        //http.authorizeRequests().anyRequest().authenticated();
 
         //http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");

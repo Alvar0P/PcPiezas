@@ -1,16 +1,15 @@
-package com.AlvaroyRaul.PcPiezas.database.entity;
+package com.AlvaroyRaul.PcPiezasMailService.dto;
 
-import javax.persistence.*;
+
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
 
-
-@Entity
-@Table(name = "venta")
+@Data
 public class Venta {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+
     private long idVenta;
     private String dirEnvio;
     private float total;
@@ -18,10 +17,9 @@ public class Venta {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "ventaId", nullable = true)
+
     private List<Item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
-    @OneToOne( cascade = CascadeType.REMOVE)
+
     private Usuario comprador;//Un comprador
     public Venta(){
 

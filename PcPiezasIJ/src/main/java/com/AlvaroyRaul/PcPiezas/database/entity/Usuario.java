@@ -44,6 +44,8 @@ public class Usuario {
         setEmail(email);
         setPassword(password);
         setUsername(username);
+        setCuentaBancaria("");
+        setDireccion("");
 
 
     }

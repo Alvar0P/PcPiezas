@@ -8,7 +8,7 @@ import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,14 +36,12 @@ public class ServicioVenta {
            total+= i.getProducto().getPrecio();
            i.setVenta(v);
         }
+        v.setDirEnvio(user.getDireccion());
         v.setTotal(total);
         LocalDate hoy = LocalDate.now();
         v.setFechaCompra(hoy);
         ventaRepo.save(v);
-        /*
-        //Usamos un microservicio para mandar los datos de la venta al cliente
-        kafkaTemplate.send(this.topic, v);
-*/
+
         return v;
 
     }

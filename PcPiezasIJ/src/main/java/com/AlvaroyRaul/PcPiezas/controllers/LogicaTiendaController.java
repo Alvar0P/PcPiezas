@@ -4,29 +4,36 @@ import com.AlvaroyRaul.PcPiezas.database.entity.*;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.publisher.RabbitMQProducer;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioLogicaTienda;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioVenta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class LogicaTiendaController {
+
+    private RabbitMQProducer producer;
+
+    public LogicaTiendaController(RabbitMQProducer producer) {
+        this.producer = producer;
+    }
+
     @Autowired
     private UsuarioRepo userRepo;
-    @Autowired
-    private ItemRepo itemRepo;
-    @Autowired
-    private CarritoRepo carritoRepo;
     @Autowired
     private ServicioVenta servVenta;
     @Autowired
@@ -34,8 +41,8 @@ public class LogicaTiendaController {
     @Autowired
     private ServicioCarrito servCarrito;
 
-    @GetMapping("/compra")//id del carrito
-    public String checkOut(HttpServletRequest request) throws IOException {
+    @PostMapping("/compra")//id del carrito
+    public void checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
 
@@ -43,7 +50,8 @@ public class LogicaTiendaController {
 
         if(u.getTarjeta() ==0){
 
-            return "redirect:/user/mostrarFormMas";
+            response.sendRedirect("/user/mostrarFormMas");
+
 
 
         }else{
@@ -59,7 +67,7 @@ public class LogicaTiendaController {
             if(itemsAdquiridos.size() != 0) {
                 Venta v = new Venta();
                 v = servVenta.nuevaVenta(itemsAdquiridos, u);
-                v.setDirEnvio(u.getDireccion());
+                producer.sendMessage2(v);
                 servTienda.generaFactura(v);
                 servCarrito.deleteCarritoByUsuario(u);
 
@@ -67,7 +75,7 @@ public class LogicaTiendaController {
             }
 
 
-            return "redirect:/inicio";
+            response.sendRedirect("/inicio");
         }
 
 

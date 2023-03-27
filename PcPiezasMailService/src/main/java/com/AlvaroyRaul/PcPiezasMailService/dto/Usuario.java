@@ -6,13 +6,21 @@ import lombok.Data;
 @Data
 public class Usuario {
 
+
     private long idUsuario;//Para todos
 
     private String username;//Para todos
 
     private String password;//Para todos
 
+    private String rol;
+
     private String email;//Para todos
+    private String direccion;//usuario y vendedor
+    private long tlf;//usuario y vendedor
+    private boolean VIP;//Solo usuario
+    private long tarjeta;//Solo usuario
+    private String cuentaBancaria;//Solo vendedor
 
     public long getIdUsuario() {
         return idUsuario;
