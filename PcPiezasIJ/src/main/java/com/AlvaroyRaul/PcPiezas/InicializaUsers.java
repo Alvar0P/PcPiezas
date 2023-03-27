@@ -2,11 +2,13 @@ package com.AlvaroyRaul.PcPiezas;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.AlvaroyRaul.PcPiezas.database.entity.Carrito;
+import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 
+import com.AlvaroyRaul.PcPiezas.servicies.ServicioProducto;
 import org.junit.jupiter.api.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +22,7 @@ public class InicializaUsers implements CommandLineRunner {
     @Autowired
     private UsuarioRepo userRepo;
     @Autowired
-    private ProductoRepo productRepo;
+    private ServicioProducto sProducto;
     @Autowired
     private CarritoRepo carritRepo;
     @Autowired
@@ -48,10 +50,6 @@ public class InicializaUsers implements CommandLineRunner {
                 vendedor = new Usuario();
                 vendedor.anadirUser("Pro1Performance", "ramon@pro1performance.com", passwordEncoder.encode("12345"), "VENDEDOR");
                 userRepo.save(vendedor);
-
-
-
-
 
             }}
     }
