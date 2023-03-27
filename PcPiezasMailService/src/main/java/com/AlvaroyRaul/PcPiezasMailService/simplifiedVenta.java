@@ -1,7 +1,5 @@
-package com.AlvaroyRaul.PcPiezas.kafka.entity;
+package com.AlvaroyRaul.PcPiezasMailService;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.Item;
-import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,15 +73,7 @@ public class simplifiedVenta {
 
 
 
-    public simplifiedVenta(long idVenta, String dirEnvio, float total, LocalDate fechaCompra, List<Item> listaItems, Usuario comprador) {
-        this.idVenta = idVenta;
-        this.dirEnvio = dirEnvio;
-        this.total = total;
-        FechaCompra = fechaCompra;
-        this.listaItems = new ArrayList<>();
-        for(Item i : listaItems) {
-            this.listaItems.add(new SimpleItem(i.getnSerie(), i.getProducto().getFabricante(), i.getProducto().getNombre(), i.getProducto().getDescripcion(), i.getProducto().getCategoria(), i.getProducto().getPrecio()));
-        }
-        this.comprador = comprador.getUsername();
+    public simplifiedVenta() {
+
     }
 }
