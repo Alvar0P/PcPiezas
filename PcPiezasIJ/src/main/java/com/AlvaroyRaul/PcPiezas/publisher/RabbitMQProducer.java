@@ -31,15 +31,16 @@ public class RabbitMQProducer {
 
     public void sendMessage(Usuario usuario){
 
-        //LOGGER.info(String.format("Message sent -> %s",usuario.toString()));
+
+        LOGGER.info(String.format("Message sent -> %s",usuario.toString()));
         rabbitTemplate.convertAndSend(exchange,routingKey,usuario);
 
     }
 
-    public void sendMessage2(Venta venta){
+    public void sendMessage2(Usuario usuario){
 
         //LOGGER.info(String.format("Message sent -> %s",usuario.toString()));
-        rabbitTemplate.convertAndSend(exchange,routingKey2,venta);
+        rabbitTemplate.convertAndSend(exchange,routingKey2,usuario);
 
     }
 }

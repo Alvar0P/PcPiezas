@@ -34,6 +34,7 @@ public class LogicaTiendaController {
 
     @Autowired
     private UsuarioRepo userRepo;
+
     @Autowired
     private ServicioVenta servVenta;
     @Autowired
@@ -41,7 +42,7 @@ public class LogicaTiendaController {
     @Autowired
     private ServicioCarrito servCarrito;
 
-    @PostMapping("/compra")//id del carrito
+    @GetMapping("/compra")//id del carrito
     public void checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
@@ -67,11 +68,13 @@ public class LogicaTiendaController {
             if(itemsAdquiridos.size() != 0) {
                 Venta v = new Venta();
                 v = servVenta.nuevaVenta(itemsAdquiridos, u);
-                producer.sendMessage2(v);
-                servTienda.generaFactura(v);
+
+
                 servCarrito.deleteCarritoByUsuario(u);
+                u.setVenta(servTienda.generaFactura(v));
 
 
+                producer.sendMessage2(u);
             }
 
 

@@ -7,14 +7,18 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
+
 @Service
 public class ServicioLogicaTienda {
 
 
-    public void generaFactura(Venta venta) throws IOException {
+    public String generaFactura(Venta venta) throws IOException {
 
         LocalDate hoy=venta.getFechaCompra();
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -46,7 +50,8 @@ public class ServicioLogicaTienda {
                     salida.println("\n");
 
                 }
-
+                salida.println("Dirección de envío: "+venta.getDirEnvio());
+                salida.println("\n");
                 salida.println("---------------------------------------------------------------------------------");
                 salida.println("IMPORTE: " + venta.getTotal());
                 salida.println("\n");
@@ -55,5 +60,22 @@ public class ServicioLogicaTienda {
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
         }
+
+        File archivo = new File(rutaFicheroFactura);
+        Scanner scanner;
+
+        scanner = new Scanner(archivo);
+
+        StringBuilder builder = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            builder.append(scanner.nextLine());
+            builder.append("\n");
+        }
+        scanner.close();
+        String texto = builder.toString();
+
+        return texto;
     }
+
+
 }

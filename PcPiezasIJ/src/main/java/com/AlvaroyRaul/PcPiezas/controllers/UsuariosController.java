@@ -80,7 +80,7 @@ public class UsuariosController {
     @PostMapping("/user/addDatosA")
     public String datosAdicionales(HttpServletRequest request,@RequestParam("direccion")String direccion,@RequestParam("tarjeta")long tarjeta,@RequestParam("tlf")long tlf,@RequestParam("vip")boolean vip ){
         servicioUsuario.guardarDatosAdicionales(request,direccion,tarjeta,tlf,vip);
-        return "redirect:/inicio";
+        return "redirect:/user/listaCarrito";
 
 
     }

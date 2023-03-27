@@ -41,6 +41,7 @@ public class ServicioUsuario  {
         List<String> rol = new ArrayList<>();
         u.setDireccion("");
         u.setCuentaBancaria("");
+        u.setVenta("");
         u.setRol("COMPRADOR");
         rol.add("COMPRADOR");
         u.setRoles(rol);
@@ -58,6 +59,7 @@ public class ServicioUsuario  {
         u.setDireccion(dir);
         u.setCuentaBancaria(cuentaBancaria);
         u.setTlf(tlf);
+        u.setVenta("");
         u.setRol("VENDEDOR");
         rol.add("VENDEDOR");
         u.setRoles(rol);

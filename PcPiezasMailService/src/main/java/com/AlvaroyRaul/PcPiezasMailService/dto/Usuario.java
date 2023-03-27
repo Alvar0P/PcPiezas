@@ -3,8 +3,11 @@ package com.AlvaroyRaul.PcPiezasMailService.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Data
-public class Usuario {
+public class Usuario implements Serializable {
 
 
     private long idUsuario;//Para todos
@@ -21,6 +24,19 @@ public class Usuario {
     private boolean VIP;//Solo usuario
     private long tarjeta;//Solo usuario
     private String cuentaBancaria;//Solo vendedor
+    private List<Producto> productos;//Solo vendedor
+
+    private Carrito carrito;
+    private String venta;
+
+    public String getVenta() {
+        return venta;
+    }
+
+    public void setVenta(String venta) {
+        this.venta = venta;
+    }
+
 
     public long getIdUsuario() {
         return idUsuario;

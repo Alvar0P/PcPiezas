@@ -1,7 +1,9 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 import com.sun.istack.NotNull;
 
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -35,6 +37,8 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//Si se borra el usuario se borra el carrito
     private Carrito carrito;
 
+    private String venta;
+
     public Usuario() {
 
     }
@@ -46,8 +50,17 @@ public class Usuario {
         setUsername(username);
         setCuentaBancaria("");
         setDireccion("");
+        setVenta("");
 
 
+    }
+
+    public String getVenta() {
+        return venta;
+    }
+
+    public void setVenta(String venta) {
+        this.venta = venta;
     }
 
     public long getIdUsuario() {
