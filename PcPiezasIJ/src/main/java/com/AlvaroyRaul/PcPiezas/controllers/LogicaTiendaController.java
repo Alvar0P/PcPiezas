@@ -59,6 +59,7 @@ public class LogicaTiendaController {
             if(itemsAdquiridos.size() != 0) {
                 Venta v = new Venta();
                 v = servVenta.nuevaVenta(itemsAdquiridos, u);
+                v.setDirEnvio(u.getDireccion());
                 servTienda.generaFactura(v);
                 servCarrito.deleteCarritoByUsuario(u);
 
