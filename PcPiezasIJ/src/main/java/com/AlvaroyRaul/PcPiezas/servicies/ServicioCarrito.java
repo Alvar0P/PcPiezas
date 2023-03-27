@@ -24,9 +24,8 @@ public class ServicioCarrito {
     @Autowired
     private UsuarioRepo userRepo;
 
-    public void saveCarritoToDB(){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
-        Usuario u = new Usuario();//Prueba
-        u = userRepo.findById((long)2).get();
+    public void saveCarritoToDB(Usuario u){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
+
 
 
         Carrito c = new Carrito();
@@ -51,11 +50,11 @@ public class ServicioCarrito {
         u = userRepo.findByUsername(request.getUserPrincipal().getName());
 
         Carrito c = new Carrito();
-        c =u.getCarrito();
+        c = u.getCarrito();
 
         if (c==null){
-            saveCarritoToDB();
-            c =u.getCarrito();
+            saveCarritoToDB(u);
+            c = u.getCarrito();
         }
         c.getProductos().add(p);
 
