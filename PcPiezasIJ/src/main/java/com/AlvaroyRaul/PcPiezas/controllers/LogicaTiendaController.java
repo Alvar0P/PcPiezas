@@ -41,12 +41,12 @@ public class LogicaTiendaController {
 
 
 
-        if(u.getTarjeta() ==0){
+        if(u.getTarjeta() == 0 || u.getDireccion().equals("")) {
 
             return "redirect:/user/mostrarFormMas";
 
 
-        }else{
+        }
 
             List<Producto> listaProductos = u.getCarrito().getProductos();
             Carrito c = u.getCarrito();
@@ -59,6 +59,7 @@ public class LogicaTiendaController {
             if(itemsAdquiridos.size() != 0) {
                 Venta v = new Venta();
                 v = servVenta.nuevaVenta(itemsAdquiridos, u);
+                v.setDirEnvio(u.getDireccion());
                 servTienda.generaFactura(v);
                 servCarrito.deleteCarritoByUsuario(u);
 
@@ -72,7 +73,7 @@ public class LogicaTiendaController {
 
     }
 
-}
+
 
 
 

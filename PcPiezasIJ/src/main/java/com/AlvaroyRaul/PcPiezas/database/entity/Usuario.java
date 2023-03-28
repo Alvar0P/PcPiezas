@@ -38,12 +38,15 @@ public class Usuario {
     public Usuario() {
 
     }
-    public void anadirUser(String username,String email ,String password, String Rol){
+    public void anadirUser(String username,String email ,String password,String Rol){
 
         setRol(Rol);
         setEmail(email);
         setPassword(password);
         setUsername(username);
+        setDireccion("");
+        setCuentaBancaria("");
+        setTarjeta(0);
 
 
     }

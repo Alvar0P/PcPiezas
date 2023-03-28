@@ -38,6 +38,7 @@ public class ServicioVenta {
         v.setTotal(total);
         LocalDate hoy = LocalDate.now();
         v.setFechaCompra(hoy);
+        v.setDirEnvio(user.getDireccion());
         ventaRepo.save(v);
         //Usamos un microservicio para mandar los datos de la venta al cliente
         sendConfEmail.sendMessage(v);
