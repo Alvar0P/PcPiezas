@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class LogicaTiendaController {
 
@@ -43,19 +43,17 @@ public class LogicaTiendaController {
     private ServicioCarrito servCarrito;
 
     @GetMapping("/compra")//id del carrito
-    public void checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
 
 
+        if(u.getTarjeta() == 0 || u.getDireccion().equals("")) {
 
-        if(u.getTarjeta() ==0){
-
-            response.sendRedirect("/user/mostrarFormMas");
-
+            return "redirect:/user/mostrarFormMas";
 
 
-        }else{
+        }
 
             List<Producto> listaProductos = u.getCarrito().getProductos();
             Carrito c = u.getCarrito();
@@ -74,17 +72,17 @@ public class LogicaTiendaController {
                 u.setVenta(servTienda.generaFactura(v));
 
 
-                producer.sendMessage2(u);
+                //producer.sendMessage2(u);
             }
 
 
-            response.sendRedirect("/inicio");
+        return "redirect:/inicio";
         }
 
 
     }
 
-}
+
 
 
 

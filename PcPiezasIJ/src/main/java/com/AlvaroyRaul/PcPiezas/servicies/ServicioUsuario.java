@@ -3,6 +3,7 @@ package com.AlvaroyRaul.PcPiezas.servicies;
 import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
+import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,8 @@ import java.util.List;
 public class ServicioUsuario  {
     @Autowired
     private UsuarioRepo userRepo;
+    @Autowired
+    private VentaRepo vRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -83,12 +86,12 @@ public class ServicioUsuario  {
         return userRepo.findAll();
     }
     public void deleteUsuarioById(long id) {
-        Usuario u = userRepo.findById(id).get();
+        Usuario u = userRepo.findByIdUsuario(id).get();
 
         u.setCarrito(null);
-        userRepo.save(u);
+        vRepo.deleteByComprador(u);
 
-        userRepo.deleteById(id);
+        userRepo.deleteByIdUsuario(id);
     }
     public Usuario getUserObject(String uName) {
         return userRepo.findByUsername(uName);

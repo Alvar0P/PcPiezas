@@ -27,9 +27,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
+            <artifactId>spring-rabbit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.14.2</version>
+        </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -97,7 +103,11 @@
             <artifactId>spring-security-crypto</artifactId>
             <version>5.7.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>2.4.8</version>
+        </dependency>
 
 
     </dependencies>

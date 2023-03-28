@@ -12,4 +12,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     public Usuario findByCarrito(Carrito carrito);
     Collection<Usuario> findByRol(String rol);
     Optional<Boolean> existsByRol(String rol);
+
+    Optional<Usuario> findByIdUsuario(long IdUsuario);
+    void deleteByIdUsuario(long IdUsuario);
 }

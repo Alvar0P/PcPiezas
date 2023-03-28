@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RabbitMQProducer {
-
+/*
     @Value("${rabbitmq.exchange.name}")
     private String exchange;
     @Value("${rabbitmq.routing.json.key}")//Para bienvenida
@@ -43,4 +43,6 @@ public class RabbitMQProducer {
         rabbitTemplate.convertAndSend(exchange,routingKey2,usuario);
 
     }
+
+ */
 }

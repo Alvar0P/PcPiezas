@@ -21,7 +21,7 @@ public class Venta {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ventaId", nullable = true)
     private List<Item> listaItems; //Cuando se procese la compra se escoge un item que corresponda a ese producto
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Usuario comprador;//Un comprador
     public Venta(){
 
