@@ -97,18 +97,12 @@ Web para la compra de ordenadores a piezas y perifericos.
 ## Fase 3
 * Comunicacion con RabbitMq entre la aplicacion y el servicio de envio de correo electronica
 
-## Instrucciones desplegable openstack
-
-Iniciar Rabbitmq en un contenedor Docker
-```
-docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management&
-```
-
+### Instrucciones para desplegar openstack
+## Maquina Local
 Clonar el repositorio
 ```
 git clone https://github.com/Alvar0P/PcPiezas --tag FASE-3
 ```
-
 Ir a la ruta de la aplicaion principal
 ```
 cd PcPiezas/PcPiezasIJ/
@@ -125,13 +119,48 @@ Compilar con maven
 ```
 mvn clean package
 ```
-Volvemos al drirecto raiz del repositorio
-Ejecutar ambas amplicaciones en segundo plano
+#Transferir los ejecutables al servidor
 ```
-java -jar PcPiezasIJ/target/PcPiezas-0.0.1-SNAPSHOT.jar
+scp PcPiezas-0.0.1-SNAPSHOT.jar (usuario)@(direccion-ip):/PcPiezasEjecutables
+scp PcPiezasMailService-0.0.1-SNAPSHOT.jar (usuario)@(direccion-ip):/PcPiezasEjecutables
+```
+
+## Maquina Remota
+
+#Instalacion mysql
+Añadimos el repositorio
+```
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+sudo dpkg -i mysql-apt-config*
+```
+Instalamos mysql-server siguiendo los pasos del instalador
+```
+sudo apt update
+sudo apt install mysql-server
+```
+Abrimos la consola mysql
+```
+mysql -u root -p
+```
+Configuramos la base de datos
+```
+create database pcpiezas;
+CREATE USER 'PcPiezasAdmin'@'localhost' IDENTIFIED BY 'bgnkwekwgrkqjvfq';
+GRANT ALL PRIVILEGES ON * . * TO 'PcPiezasAdmin'@'localhost';
+FLUSH PRIVILEGES;
+quit
+```
+
+Iniciar Rabbitmq en un contenedor Docker
+```
+docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management&
+```
+Ejecutar ambas aplicaciones en segundo plano
+```
+java -jar PcPiezas-0.0.1-SNAPSHOT.jar
 ```
 ```
-java -jar PcPiezasMailService/target/PcPiezasMailService-0.0.1-SNAPSHOT.jar
+java -jar PcPiezasMailService-0.0.1-SNAPSHOT.jar
 ```
 
 
