@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-public class RabbitMQConfig { /*
+public class RabbitMQConfig {
 
 
     @Value("${rabbitmq.queue.json.name}")//Para benvenida
@@ -62,5 +62,4 @@ public class RabbitMQConfig { /*
 
     }
 
-*/
 }

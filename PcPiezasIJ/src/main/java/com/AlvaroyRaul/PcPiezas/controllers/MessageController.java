@@ -37,7 +37,7 @@ public class MessageController {
         servicioUsuario.saveClientToDB(username,email,pass);
         Usuario u = usuarioRepo.findByUsername(username);
 
-        //producer.sendMessage(u);
+        producer.sendMessage(u);
 
 
 

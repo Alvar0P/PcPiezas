@@ -72,7 +72,7 @@ public class LogicaTiendaController {
                 u.setVenta(servTienda.generaFactura(v));
 
 
-                //producer.sendMessage2(u);
+                producer.sendMessage2(u);
             }
 
 
