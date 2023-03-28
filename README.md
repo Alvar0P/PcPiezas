@@ -94,3 +94,8 @@ Web para la compra de ordenadores a piezas y perifericos.
 
 
 
+## Fase 3
+* Comunicacion con RabbitMq entre la aplicacion y el servicio de envio de correo electronica
+
+
+
