@@ -97,7 +97,7 @@ Web para la compra de ordenadores a piezas y perifericos.
 ## Fase 3
 * Comunicacion con RabbitMq entre la aplicacion y el servicio de envio de correo electronica
 
-### Instrucciones para desplegar openstack
+# Instrucciones para desplegar openstack
 ## Maquina Local
 Clonar el repositorio
 ```
@@ -127,7 +127,7 @@ scp PcPiezasMailService-0.0.1-SNAPSHOT.jar (usuario)@(direccion-ip):/PcPiezasEje
 
 ## Maquina Remota
 
-#Instalacion mysql
+Instalacion mysql
 Añadimos el repositorio
 ```
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
