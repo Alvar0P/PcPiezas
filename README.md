@@ -97,5 +97,45 @@ Web para la compra de ordenadores a piezas y perifericos.
 ## Fase 3
 * Comunicacion con RabbitMq entre la aplicacion y el servicio de envio de correo electronica
 
+## Instrucciones desplegable openstack
+
+Iniciar Rabbitmq en un contenedor Docker
+```
+docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management&
+```
+
+Clonar el repositorio
+```
+git clone https://github.com/Alvar0P/PcPiezas --tag FASE-3
+```
+
+Ir a la ruta de la aplicaion principal
+```
+cd PcPiezas/PcPiezasIJ/
+```
+Compilar con maven
+```
+mvn clean package
+```
+Ir a la ruta del servicio de correo
+```
+cd PcPiezas/PcPiezasMailService/
+```
+Compilar con maven
+```
+mvn clean package
+```
+Volvemos al drirecto raiz del repositorio
+Ejecutar ambas amplicaciones en segundo plano
+```
+java -jar PcPiezasIJ/target/PcPiezas-0.0.1-SNAPSHOT.jar
+```
+```
+java -jar PcPiezasMailService/target/PcPiezasMailService-0.0.1-SNAPSHOT.jar
+```
+
+
+
+
 
 
