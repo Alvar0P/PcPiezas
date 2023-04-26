@@ -1,0 +1,10 @@
+version: '2'
+services:
+    pcpiezasapp:
+        image: pcpiezasapp
+        container_name: pcpiezasapp1
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.24.109:6033/pcpiezas
+        ports:
+            - 8443:8443
+   

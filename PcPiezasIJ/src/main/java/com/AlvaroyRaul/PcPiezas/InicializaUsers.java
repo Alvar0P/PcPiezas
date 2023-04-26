@@ -35,8 +35,7 @@ public class InicializaUsers implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(args.length >= 1) {
-            if(args[0].equalsIgnoreCase("buildUsers")) {
+        if(userRepo.existsByRol("ADMINISTRADOR").get() == false) {
                 admin = new Usuario();
                 admin.anadirUser("PcPiezas","admin@pcpiezas.es", passwordEncoder.encode("12345"), "ADMINISTRADOR");
                 userRepo.save(admin);
@@ -51,6 +50,6 @@ public class InicializaUsers implements CommandLineRunner {
                 vendedor.anadirUser("Pro1Performance", "ramon@pro1performance.com", passwordEncoder.encode("12345"), "VENDEDOR");
                 userRepo.save(vendedor);
 
-            }}
+            }
     }
 }
