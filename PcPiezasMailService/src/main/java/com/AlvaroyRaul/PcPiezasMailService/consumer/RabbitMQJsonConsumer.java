@@ -51,50 +51,12 @@ public class RabbitMQJsonConsumer {
         String Subeject = "Recibo de compra";
         String email =u.getEmail();
         String msg ="Hola!, aquí tienes tu recibo de compra.\n"+ u.getVenta();
-        /*
-        Venta v = new Venta();
-        v.setComprador(venta.getComprador());
-        v.setDirEnvio(venta.getDirEnvio());
-        v.setFechaCompra(venta.getFechaCompra());
-        v.setTotal(venta.getTotal());
-        v.setListaItems(venta.getListaItems());
-        //u.setUsername(v.getComprador().getUsername());
 
-        LocalDate hoy=v.getFechaCompra();
-        DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String fn = hoy.format(formatoCorto);
-
-
-
-
-        String msg = "Hola, "+v.getComprador().getUsername()+" \n Aquí tienes el recibo de tu compra"+
-                "\n-------------------------------- Venta Producto --------------------------------"+
-                "\n"+
-                "-------------------------------- Fecha: " + fn + " -------------------------------"+
-                "\n"+"\n"+"\n"+"\n"+
-                "Comprador: "+v.getComprador().getUsername()+
-                "\n "+
-                v.getListaItems().toString()+"\n"+
-
-                "Todo será enviado a la dirección: "+v.getDirEnvio()+"\n"+
-
-                "---------------------------------------------------------------------------------"+
-                "\nIMPORTE: " + v.getTotal()+"\n"+
-                "-------------------------------------------------------------------------------";
-        */
 
         emailService.sendSimpleMessage(email,Subeject,msg);
 
         LOGGER.info(String.format("Received JSON message -> %s",user.toString()));
     }
 
-/*
-    @RabbitListener(queues = {"${rabbitmq.queue3.json.name}"})//Para Venta
-    public String consumeJson3(String texto){
 
-
-
-        LOGGER.info(String.format("Received JSON message -> %s",texto));
-        return texto;
-    }*/
 }

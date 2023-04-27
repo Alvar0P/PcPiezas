@@ -7,6 +7,8 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
@@ -22,7 +24,7 @@ public class ServicioProducto {
     private ProductoRepo productRepo;
     @Autowired
     private UsuarioRepo userRepo;
-
+    @CacheEvict(allEntries = true)
     public void saveProductToDBDNoPicture(String nombre, String descripcion, String fabricant, Usuario vendedor, int precio){
 
         Producto p = new Producto();
@@ -34,7 +36,7 @@ public class ServicioProducto {
         productRepo.save(p);
 
     }
-
+    @CacheEvict(allEntries = true)
     public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,String vendedor,String categoria,int precio){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
         //Todo cambiar por "usuario vendedor" al final
         Producto p = new Producto();
@@ -62,19 +64,22 @@ public class ServicioProducto {
         productRepo.save(p);
 
     }
+    @Cacheable
     public List<Producto> getAllProduct()
     {
         return productRepo.findAll();
     }
-
+    @Cacheable
     public List<Producto> getProductsForSeller(Usuario vendedor)
     {
         return productRepo.findByVendedor(vendedor);
     }
+    @Cacheable
     public List<Producto> getProductoPorCategoria(String categoria)
     {
         return productRepo.findByCategoria(categoria);
     }
+    @CacheEvict(allEntries = true)
     public void deleteProductById(long id) {
         Producto p = productRepo.findById(id).get();
 
@@ -83,6 +88,7 @@ public class ServicioProducto {
 
         productRepo.deleteById(id);
     }
+    @CacheEvict(allEntries = true)
     public void changeProductName(long id ,String name)
     {
         Producto p = new Producto();
@@ -90,6 +96,7 @@ public class ServicioProducto {
         p.setNombre(name);
         productRepo.save(p);
     }
+    @CacheEvict(allEntries = true)
     public void changeProductDescription(long id , String description)
     {
         Producto p = new Producto();
@@ -97,12 +104,14 @@ public class ServicioProducto {
         p.setDescripcion(description);
         productRepo.save(p);
     }
+    @CacheEvict(allEntries = true)
     public void changeProductFabricante(long id, String fabricante){
         Producto p = new Producto();
         p= productRepo.findById(id).get();
         p.setFabricante(fabricante);
         productRepo.save(p);
     }
+    @CacheEvict(allEntries = true)
     public void changeProductPrice(long id,int price)
     {
         Producto p = new Producto();
@@ -110,7 +119,7 @@ public class ServicioProducto {
         p.setPrecio(price);
         productRepo.save(p);
     }
-
+    @CacheEvict(allEntries = true)
     public void changeProductCategoria(long id, String categoria){
         Producto p = new Producto();
         p = productRepo.findById(id).get();

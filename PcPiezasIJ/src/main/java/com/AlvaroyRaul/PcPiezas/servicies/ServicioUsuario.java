@@ -6,6 +6,8 @@ import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class ServicioUsuario  {
     private PasswordEncoder passwordEncoder;
 
 
-
+    @CacheEvict(allEntries = true)
     public void saveClientToDB(String username,String email,String password) {//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -53,6 +55,7 @@ public class ServicioUsuario  {
 
 
     }
+    @CacheEvict(allEntries = true)
     public void saveVendedorToDB(String username,String email,String password, String dir, String cuentaBancaria, long tlf){
         Usuario u = new Usuario();
         u.setUsername(username);
@@ -69,6 +72,7 @@ public class ServicioUsuario  {
 
         userRepo.save(u);
     }
+    @CacheEvict(allEntries = true)
     public void guardarDatosAdicionales(HttpServletRequest request, String dir, long tarj, long tlf, boolean vip){
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
@@ -80,7 +84,7 @@ public class ServicioUsuario  {
 
 
     }
-
+    @Cacheable
     public List<Usuario> getAllUsers()
     {
         return userRepo.findAll();
@@ -93,6 +97,7 @@ public class ServicioUsuario  {
 
         userRepo.deleteByIdUsuario(id);
     }
+    @Cacheable
     public Usuario getUserObject(String uName) {
         return userRepo.findByUsername(uName);
     }
