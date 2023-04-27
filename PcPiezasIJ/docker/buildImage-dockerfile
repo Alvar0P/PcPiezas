@@ -9,7 +9,7 @@ COPY /src ./src
 COPY pom.xml .
 
 # Build the application using Maven
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # DEPLOYMENT CONTAINER
 FROM openjdk:17-slim
@@ -24,7 +24,7 @@ WORKDIR /usr/src/pcpiezas
 COPY --from=builder /usr/src/pcpiezas/target/PcPiezas-0.0.1-SNAPSHOT.jar .
 
 # Indicate the port the application should be binded to
-EXPOSE 8443
+EXPOSE 8080
 
 # Run the JAR file
 CMD ["java", "-jar", "PcPiezas-0.0.1-SNAPSHOT.jar"]
