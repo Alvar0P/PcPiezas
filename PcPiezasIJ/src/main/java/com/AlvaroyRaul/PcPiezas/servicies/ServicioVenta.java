@@ -1,20 +1,13 @@
 package com.AlvaroyRaul.PcPiezas.servicies;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Item;
-import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -29,7 +22,6 @@ public class ServicioVenta {
     private KafkaTemplate<String, Object> kafkaTemplate;
     @Value(value = "${kafka.topic.name}")
     private String topic;*/
-    @CacheEvict(allEntries = true)
     public Venta nuevaVenta(List<Item> items, Usuario user){
         Venta v = new Venta();
         v.setComprador(user);
@@ -48,16 +40,13 @@ public class ServicioVenta {
         return v;
 
     }
-    @Cacheable
     public List<Item> getProductosForVenta(Venta venta) {
         List<Item> productosComprados = itemRepo.findByVenta(venta).stream().toList();
         return productosComprados;
     }
-    @Cacheable
     public List<Venta> getAllVentas() {
         return ventaRepo.findAll();
     }
-    @Cacheable
     public List<Venta> getVentasForBuyers(Usuario u){
 
         List<Venta> listaVTemp = ventaRepo.findAll();
@@ -72,7 +61,6 @@ public class ServicioVenta {
 
         return listaVenta;
     }
-    @Cacheable
     public List<Venta> getVentasForSellers(Usuario u){
 
         List<Venta> listaVTemp = ventaRepo.findAll();

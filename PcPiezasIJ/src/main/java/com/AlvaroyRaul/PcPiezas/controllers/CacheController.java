@@ -16,10 +16,14 @@ public class CacheController {
     @Autowired
     private CacheManager cacheManager;
 
+
+
     @GetMapping(value="/cache")
     public Map<Object, Object> getCacheContent() {
         ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
-        ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("anuncios");
+        ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("usuarios");
         return cache.getNativeCache();
     }
+
+
 }

@@ -7,8 +7,6 @@ import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +24,6 @@ public class ServicioCarrito {
     @Autowired
     private UsuarioRepo userRepo;
 
-    @CacheEvict(allEntries = true)
     public void saveCarritoToDB(Usuario u){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -43,7 +40,7 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-    @CacheEvict(allEntries = true)
+
     public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
@@ -71,7 +68,7 @@ public class ServicioCarrito {
         carritRepo.save(c);
         productRepo.save(p);
     }
-    @Cacheable
+
     public List<Producto> getAllProductInCarrito(Usuario u)
     {
         //Aquí luego habrá que buscar por usuario su carrito con la lista de productos
@@ -79,7 +76,7 @@ public class ServicioCarrito {
         c = u.getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
-    @CacheEvict
+
     public void deleteCarritoByUsuario(Usuario u) {//Borra el carrito
 
 
@@ -90,7 +87,7 @@ public class ServicioCarrito {
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-    @CacheEvict(allEntries = true)
+
     public void vaciarCarritoByUsuario(Usuario u){
         //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
@@ -106,7 +103,7 @@ public class ServicioCarrito {
 
 
     }
-    @CacheEvict(allEntries = true)
+
     public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();
         u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba

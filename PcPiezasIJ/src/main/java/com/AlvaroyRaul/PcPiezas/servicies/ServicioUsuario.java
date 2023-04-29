@@ -1,25 +1,15 @@
 package com.AlvaroyRaul.PcPiezas.servicies;
 
-import com.AlvaroyRaul.PcPiezas.database.entity.Producto;
+
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 
@@ -34,7 +24,6 @@ public class ServicioUsuario  {
     private PasswordEncoder passwordEncoder;
 
 
-    @CacheEvict(allEntries = true)
     public void saveClientToDB(String username,String email,String password) {//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -55,7 +44,6 @@ public class ServicioUsuario  {
 
 
     }
-    @CacheEvict(allEntries = true)
     public void saveVendedorToDB(String username,String email,String password, String dir, String cuentaBancaria, long tlf){
         Usuario u = new Usuario();
         u.setUsername(username);
@@ -72,7 +60,6 @@ public class ServicioUsuario  {
 
         userRepo.save(u);
     }
-    @CacheEvict(allEntries = true)
     public void guardarDatosAdicionales(HttpServletRequest request, String dir, long tarj, long tlf, boolean vip){
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
@@ -84,7 +71,6 @@ public class ServicioUsuario  {
 
 
     }
-    @Cacheable
     public List<Usuario> getAllUsers()
     {
         return userRepo.findAll();
@@ -97,7 +83,6 @@ public class ServicioUsuario  {
 
         userRepo.deleteByIdUsuario(id);
     }
-    @Cacheable
     public Usuario getUserObject(String uName) {
         return userRepo.findByUsername(uName);
     }

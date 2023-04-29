@@ -24,7 +24,7 @@ public class PcPiezasApplication {
     @Bean
     public CacheManager cacheManager() {
         LOG.info("Activating cache...");
-        return new ConcurrentMapCacheManager("Cache PcPiezas");
+        return new ConcurrentMapCacheManager("usuarios");
     }
 
 }

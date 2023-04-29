@@ -8,13 +8,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 @CacheConfig(cacheNames = "usuarios")
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     @Cacheable
-    public Usuario findByUsername(String username);
+    Usuario findByUsername(String username);
     @Cacheable
-    public Usuario findByCarrito(Carrito carrito);
+    List<Usuario> findAll();
+
+    @Cacheable
+    Usuario findByCarrito(Carrito carrito);
     @Cacheable
     Collection<Usuario> findByRol(String rol);
     @Cacheable
@@ -23,4 +27,6 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByIdUsuario(long IdUsuario);
     @CacheEvict
     void deleteByIdUsuario(long IdUsuario);
+    @CacheEvict
+    Usuario save(Usuario usuario);
 }
