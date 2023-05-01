@@ -3,9 +3,8 @@ services:
     pcpiezasapp:
         image: pcpiezasapp
         environment:
-            - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.24.109:6033/pcpiezas
             - SPRING_RABBITMQ_HOST=192.168.24.125
             - SPRING_RABBITMQ_PORT=5672
         ports:
-            - 8440-8443:8443
+            - 5670-5672:5672
    
