@@ -3,7 +3,6 @@ package com.AlvaroyRaul.PcPiezas.servicies;
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +18,6 @@ public class RepositoryUserDetailsService implements UserDetailsService {
     @Autowired
     private UsuarioRepo userRepository;
     @Override
-    @Cacheable
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Usuario user = userRepository.findByUsername(username);
