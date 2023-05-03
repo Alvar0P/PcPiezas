@@ -10,4 +10,5 @@ services:
             #No comitear la info del login para evitar que roben la cuenta
         ports:
             - 5670-5672:5672
+        restart: always
    

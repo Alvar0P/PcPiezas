@@ -30,7 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                                ModelAndView modelAndView) throws Exception {
             if (modelAndView != null) {
-                response.addCookie(new Cookie("AYMICUQUI", request.getSession().getId()));
+                response.addCookie(new Cookie("JSESSIONID", request.getSession().getId()));
             }
         }
     }
