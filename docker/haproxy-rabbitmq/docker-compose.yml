@@ -1,0 +1,22 @@
+version : '3'
+services:
+  loadbalancer:
+    image: haproxy:2.7.3
+    ports:
+      - "9443:443" # Only service that is exposed to the host is the lb
+      - "8404:8404" # Haproxy Stats
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+      - "./mydomain.pem:/etc/cert/server.pem:ro"      
+    restart: unless-stopped
+    
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped

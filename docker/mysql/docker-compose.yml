@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+ PcPiezasDB:
+    restart: always
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: pcpiezas
+      MYSQL_USER: PcPiezasAdmin
+      MYSQL_PASSWORD: gfsdgsfg#SD1
+    ports:
+     - "6033:3306"
+    networks:
+      - piezasnet
+    volumes:
+      - dbdata:/var/lib/mysql
+networks:
+ piezasnet:
+
+volumes:
+  dbdata:
