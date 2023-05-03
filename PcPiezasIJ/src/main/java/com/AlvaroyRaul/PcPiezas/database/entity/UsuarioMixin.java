@@ -14,4 +14,7 @@ public abstract class UsuarioMixin {
 
     @JsonIgnore
     abstract List<Producto> getProductos();
+
+    @JsonIgnore
+    abstract Carrito getCarrito();
 }
