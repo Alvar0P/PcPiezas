@@ -163,6 +163,20 @@ java -jar PcPiezas-0.0.1-SNAPSHOT.jar
 java -jar PcPiezasMailService-0.0.1-SNAPSHOT.jar
 ```
 
+## Fase 4
+
+### Arquitectura de la aplicación
+<p align="center">
+  <img src="/Other resources/diagramaDAD4.png?raw=true" alt="PcPiezasLogo"/>
+</p>
+La aplicacion se encuentra en 5 maquinas virtuales de openstack, cada una de estas maquínas virtuales tiene uno o mas contenedores docker, las funciones de cada máquina virtual son las siguientes
+
+* haproxy-rabbitmq: ejecuta 2 contenedores uno con el balanceador de carga haproxy y otra con rabbitmq, esta es la unica máquina con su ip publica expuesta para recibir conexiones por parte de los clientes
+* PcPiezasApp1/2: estas máquinas son identicas y cada una ejecuta 4 instancias de la aplicación web principal
+* PcPiezasMailService: esta máquina ejecuta dos instancias del servicio interno
+* mysql: esta máquina ejecuta una instancia de la base de datos sql
+
+
 
 
 
