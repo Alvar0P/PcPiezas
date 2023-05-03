@@ -1,10 +1,13 @@
 version: '2'
 services:
-    pcpiezasapp:
-        image: pcpiezasapp
+    pcpiezasmail:
+        image: alvaromz/pcpiezas-mail:latest
         environment:
             - SPRING_RABBITMQ_HOST=192.168.24.125
             - SPRING_RABBITMQ_PORT=5672
+            - SPRING_MAIL_USERNAME=<correo gmail>
+            - SPRING_MAIL_USERNAME=<clave gmail>
+            #No comitear la info del login para evitar que roben la cuenta
         ports:
             - 5670-5672:5672
    
