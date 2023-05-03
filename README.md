@@ -177,7 +177,66 @@ La aplicacion se encuentra en 5 maquinas virtuales de openstack, cada una de est
 * mysql: esta máquina ejecuta una instancia de la base de datos sql
 
 
+### Instrucciones despligue
+Primero debemos crear las 5 máquinas virtuales en openstack y instalar docker en estas
+Para hacer este proceso mas facil podemos docker en una máquina y despues crear un snapshot de esta para crear el resto
+Para instalar docker ejecutaremos los siguientes comandos:
+```
+curl https://get.docker.com > dockerInstall.sh
+chmod +x ./dockerInstall.sh
+sudo ./dockerInstall.sh
+```
+#### Maquina local
+Ahora compialremos las imagenes de docker del servicio interno y la aplicacion principal y las subiremos a dockerhub
 
+Empezaremos por clonar el repositorio
+```
+git clone https://github.com/Alvar0P/PcPiezas
+```
+Despues nos dirijiremos al directorio ./PcPiezasIJ, construimos y subimos la imagen con los siguientes comandos
+```
+sudo docker build . -t <usuario>/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push <usuario>/pcpiezas-app:latest -f 
+```
+en mi caso
+```
+sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push alvaromz/pcpiezas-app:latest -f 
+```
+Despues nos dirijiremos al directorio ./PcPiezasMailService, construimos y subimos la imagen con los siguientes comandos
+```
+sudo docker build . -t <usuario>/pcpiezas-mail:latest -f ./docker/buildImage-dockerfile 
+sudo docker push <usuario>/pcpiezas-mail:latest -f 
+```
+en mi caso
+```
+sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push alvaromz/pcpiezas-app:latest -f 
+```
+
+###Servidores 
+Ahora debemos transferir los archivos docker compose a los servidores correspondientes 
+* ./docker/mysql/docker-compose.yml -> mysql
+* ./docker/haproxy-rabbitmq/ -> haproxy rabbitmq
+* -/PcPiezasIJ/docker/docker-compose.yml -> PcPiezasApp
+* -/PcPiezasIJ/docker/docker-compose.yml -> PcPiezasMail
+
+Antes de transferir los archivos se recomienda editarlos para poner las IPs correspondientes de cada maquina, ademas de el login del correo en el caso de PcPiezasMailService y el archivo haproxy.cfg para indicar las IPs de los nodos
+
+Para esto usaremos scp ejecutando los siguientes comandos en nuestra maquina local
+```
+scp -i sshFile -r ./docker/mysql/docker-compose.yml debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/haproxy-rabbitmq/ debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/PcPiezasIJ/docker/docker-compose.yml debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/PcPiezasMailService/docker/docker-compose.yml debian@<ip-addres>:/home/debian/
+```
+
+Por ultimo debemos ejecutar
+
+```
+sudo docker compose up
+```
+En todas las maquinas virtuales y ya tendriamos la aplicacion desplegada
 
 
 
