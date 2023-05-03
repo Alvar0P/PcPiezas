@@ -198,7 +198,7 @@ Despues nos dirijiremos al directorio ./PcPiezasIJ, construimos y subimos la ima
 sudo docker build . -t <usuario>/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
 sudo docker push <usuario>/pcpiezas-app:latest -f 
 ```
-en mi caso
+en nuestro caso
 ```
 sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
 sudo docker push alvaromz/pcpiezas-app:latest -f 
@@ -208,13 +208,12 @@ Despues nos dirijiremos al directorio ./PcPiezasMailService, construimos y subim
 sudo docker build . -t <usuario>/pcpiezas-mail:latest -f ./docker/buildImage-dockerfile 
 sudo docker push <usuario>/pcpiezas-mail:latest -f 
 ```
-en mi caso
+en nuestro caso
 ```
 sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
 sudo docker push alvaromz/pcpiezas-app:latest -f 
 ```
 
-###Servidores 
 Ahora debemos transferir los archivos docker compose a los servidores correspondientes 
 * ./docker/mysql/docker-compose.yml -> mysql
 * ./docker/haproxy-rabbitmq/ -> haproxy rabbitmq
