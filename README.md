@@ -163,7 +163,79 @@ java -jar PcPiezas-0.0.1-SNAPSHOT.jar
 java -jar PcPiezasMailService-0.0.1-SNAPSHOT.jar
 ```
 
+## Fase 4
 
+### Arquitectura de la aplicación
+<p align="center">
+  <img src="/Other resources/diagramaDAD4.png?raw=true" alt="PcPiezasLogo"/>
+</p>
+La aplicacion se encuentra en 5 maquinas virtuales de openstack, cada una de estas maquínas virtuales tiene uno o mas contenedores docker, las funciones de cada máquina virtual son las siguientes
+
+* haproxy-rabbitmq: ejecuta 2 contenedores uno con el balanceador de carga haproxy y otra con rabbitmq, esta es la unica máquina con su ip publica expuesta para recibir conexiones por parte de los clientes
+* PcPiezasApp1/2: estas máquinas son identicas y cada una ejecuta 4 instancias de la aplicación web principal
+* PcPiezasMailService: esta máquina ejecuta dos instancias del servicio interno
+* mysql: esta máquina ejecuta una instancia de la base de datos sql
+
+
+### Instrucciones despligue
+Primero debemos crear las 5 máquinas virtuales en openstack y instalar docker en estas
+Para hacer este proceso mas facil podemos docker en una máquina y despues crear un snapshot de esta para crear el resto
+Para instalar docker ejecutaremos los siguientes comandos:
+```
+curl https://get.docker.com > dockerInstall.sh
+chmod +x ./dockerInstall.sh
+sudo ./dockerInstall.sh
+```
+#### Maquina local
+Ahora compialremos las imagenes de docker del servicio interno y la aplicacion principal y las subiremos a dockerhub
+
+Empezaremos por clonar el repositorio
+```
+git clone https://github.com/Alvar0P/PcPiezas
+```
+Despues nos dirijiremos al directorio ./PcPiezasIJ, construimos y subimos la imagen con los siguientes comandos
+```
+sudo docker build . -t <usuario>/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push <usuario>/pcpiezas-app:latest -f 
+```
+en nuestro caso
+```
+sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push alvaromz/pcpiezas-app:latest -f 
+```
+Despues nos dirijiremos al directorio ./PcPiezasMailService, construimos y subimos la imagen con los siguientes comandos
+```
+sudo docker build . -t <usuario>/pcpiezas-mail:latest -f ./docker/buildImage-dockerfile 
+sudo docker push <usuario>/pcpiezas-mail:latest -f 
+```
+en nuestro caso
+```
+sudo docker build . -t alvaromz/pcpiezas-app:latest -f ./docker/buildImage-dockerfile 
+sudo docker push alvaromz/pcpiezas-app:latest -f 
+```
+
+Ahora debemos transferir los archivos docker compose a los servidores correspondientes 
+* ./docker/mysql/docker-compose.yml -> mysql
+* ./docker/haproxy-rabbitmq/ -> haproxy rabbitmq
+* -/PcPiezasIJ/docker/docker-compose.yml -> PcPiezasApp
+* -/PcPiezasIJ/docker/docker-compose.yml -> PcPiezasMail
+
+Antes de transferir los archivos se recomienda editarlos para poner las IPs correspondientes de cada maquina, ademas de el login del correo en el caso de PcPiezasMailService y el archivo haproxy.cfg para indicar las IPs de los nodos
+
+Para esto usaremos scp ejecutando los siguientes comandos en nuestra maquina local
+```
+scp -i sshFile -r ./docker/mysql/docker-compose.yml debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/haproxy-rabbitmq/ debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/PcPiezasIJ/docker/docker-compose.yml debian@<ip-addres>:/home/debian/
+scp -i sshFile -r ./docker/PcPiezasMailService/docker/docker-compose.yml debian@<ip-addres>:/home/debian/
+```
+
+Por ultimo debemos ejecutar
+
+```
+sudo docker compose up
+```
+En todas las maquinas virtuales y ya tendriamos la aplicacion desplegada
 
 
 
