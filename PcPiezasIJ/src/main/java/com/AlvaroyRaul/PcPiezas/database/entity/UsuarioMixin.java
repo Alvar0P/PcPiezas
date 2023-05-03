@@ -9,11 +9,9 @@ import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public abstract class UsuarioMixin {
-    UsuarioMixin() {}
+    UsuarioMixin() {
+    }
 
     @JsonIgnore
     abstract List<Producto> getProductos();
-
-    @JsonIgnore
-    abstract Carrito getCarrito();
 }
