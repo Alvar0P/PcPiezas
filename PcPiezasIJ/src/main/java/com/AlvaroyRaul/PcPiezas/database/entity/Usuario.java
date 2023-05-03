@@ -33,7 +33,7 @@ public class Usuario {
     private List<String> roles;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
+    @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)// Si borra el vendedor se borran sus productos a la venta
     private List<Producto> productos;//Solo vendedor
 
     @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//Si se borra el usuario se borra el carrito
