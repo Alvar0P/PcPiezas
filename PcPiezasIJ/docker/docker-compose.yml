@@ -8,5 +8,4 @@ services:
             - SPRING_RABBITMQ_PORT=5672
         ports:
             - 8440-8443:8443
-        restart: always
    
