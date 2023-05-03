@@ -19,13 +19,13 @@ import java.util.List;
 @CacheConfig(cacheNames = "usuarios")
 public interface ProductoRepo extends JpaRepository<Producto, Long> {
 
-    @Cacheable
+
     List<Producto> findAll();
-    @Cacheable
-     List<Producto> findByCategoria(String categoria);
-    @Cacheable
+
+    List<Producto> findByCategoria(String categoria);
+
     @Query("SELECT i FROM Producto i WHERE i.Vendedor = ?1")
-     List<Producto> findByVendedor(Usuario Venededor);
+    List<Producto> findByVendedor(Usuario Venededor);
 
     @CacheEvict
     Producto save(Producto producto);

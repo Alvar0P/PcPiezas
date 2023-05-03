@@ -34,7 +34,7 @@ public class Usuario {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<Producto> productos;//Solo vendedor
 
