@@ -16,7 +16,7 @@ import org.springframework.session.hazelcast.config.annotation.web.http.EnableHa
 import java.util.Collections;
 
 @EnableCaching
-//@EnableHazelcastHttpSession
+@EnableHazelcastHttpSession
 @SpringBootApplication
 public class PcPiezasApplication {
 
@@ -32,7 +32,7 @@ public class PcPiezasApplication {
         LOG.info("Activating cache...");
         return new ConcurrentMapCacheManager("usuarios");
     }
-/*
+
     @Bean
     public Config config() {
 
@@ -44,6 +44,6 @@ public class PcPiezasApplication {
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(Collections.singletonList("127.0.0.1"));
 
         return config;
-    }*/
+    }
 
 }
