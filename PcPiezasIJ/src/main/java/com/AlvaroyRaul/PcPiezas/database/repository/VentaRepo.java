@@ -6,15 +6,17 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @CacheConfig(cacheNames = "usuarios")
+@Repository
 public interface VentaRepo extends JpaRepository<Venta,Long> {
 
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     void deleteByComprador(Usuario comprador);
 
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     Venta save(Venta venta);
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     Venta deleteById(long id);
 }

@@ -1,4 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuario")
+@JsonIgnoreProperties({"carrito", "venta"})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

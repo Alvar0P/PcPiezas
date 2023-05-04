@@ -1,10 +1,18 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 
+import com.jayway.jsonpath.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+
+
 
 @Entity
 @Table(name = "item")
 public class Item {
+
     @Id
     private String nSerie;
 

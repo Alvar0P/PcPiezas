@@ -5,15 +5,21 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
+@CacheConfig (cacheNames = "usuarios")
 public class ServicioVenta {
     @Autowired
     private VentaRepo ventaRepo;
+
 
     @Autowired
     private ItemRepo itemRepo;
@@ -22,6 +28,7 @@ public class ServicioVenta {
     private KafkaTemplate<String, Object> kafkaTemplate;
     @Value(value = "${kafka.topic.name}")
     private String topic;*/
+    @CacheEvict (allEntries = true)
     public Venta nuevaVenta(List<Item> items, Usuario user){
         Venta v = new Venta();
         v.setComprador(user);

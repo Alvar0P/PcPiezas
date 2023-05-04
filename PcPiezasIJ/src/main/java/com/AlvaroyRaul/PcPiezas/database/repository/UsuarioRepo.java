@@ -5,12 +5,14 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 @CacheConfig(cacheNames = "usuarios")
+@Repository
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     @Cacheable
     Usuario findByUsername(String username);
@@ -24,8 +26,8 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     Optional<Boolean> existsByRol(String rol);
     @Cacheable
     Optional<Usuario> findByIdUsuario(long IdUsuario);
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     void deleteByIdUsuario(long IdUsuario);
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     Usuario save(Usuario usuario);
 }

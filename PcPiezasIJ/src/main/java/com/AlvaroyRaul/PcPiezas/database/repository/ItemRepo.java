@@ -8,10 +8,12 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @CacheConfig(cacheNames = "usuarios")
+@Repository
 public interface ItemRepo extends JpaRepository<Item,String> {
 
     @Query("SELECT i FROM Item i WHERE i.Producto = ?1")
@@ -19,7 +21,7 @@ public interface ItemRepo extends JpaRepository<Item,String> {
 
     List<Item> findByVenta(Venta venta);
 
-    @CacheEvict
+    @CacheEvict (allEntries = true)
     Item save(Item item);
 
 
