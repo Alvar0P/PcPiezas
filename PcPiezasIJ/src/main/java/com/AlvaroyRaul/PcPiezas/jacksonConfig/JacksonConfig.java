@@ -1,3 +1,4 @@
+/*
 package com.AlvaroyRaul.PcPiezas.jacksonConfig;
 
 import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
@@ -29,3 +30,5 @@ public class JacksonConfig {
         return builder;
     }
 }
+
+ */

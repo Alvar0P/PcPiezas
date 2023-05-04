@@ -1,3 +1,4 @@
+/*
 package com.AlvaroyRaul.PcPiezas.database.entity;
 
 
@@ -17,4 +18,7 @@ public abstract class UsuarioMixin {
 
     @JsonIgnore
     abstract Carrito getCarrito();
-}
+
+
+
+} */
