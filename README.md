@@ -240,8 +240,9 @@ Para iniciar varias instancias en el caso de la maquína PcPiezasApp
 ```
 sudo docker compose up --scale pcpiezasapp=4
 ```
+# Video demo
 
-
+https://youtu.be/DBiVsDWWCUM
 
 
 
