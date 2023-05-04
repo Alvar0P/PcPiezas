@@ -5,8 +5,6 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Usuario;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +15,6 @@ import java.util.List;
 
 @Service
 @Transactional
-@CacheConfig(cacheNames = "usuarios")
 public class ServicioUsuario  {
     @Autowired
     private UsuarioRepo userRepo;
@@ -26,8 +23,8 @@ public class ServicioUsuario  {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CacheEvict
-    public void saveClientToDB(String username,String email,String password) {//La idea aquÃ­ es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
+
+    public void saveClientToDB(String username,String email,String password) {//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
 
@@ -43,11 +40,10 @@ public class ServicioUsuario  {
         rol.add("COMPRADOR");
         u.setRoles(rol);
 
-        userRepo.save(u);
+         userRepo.save(u);
 
 
     }
-    @CacheEvict
     public void saveVendedorToDB(String username,String email,String password, String dir, String cuentaBancaria, long tlf){
         Usuario u = new Usuario();
         u.setUsername(username);
@@ -64,7 +60,6 @@ public class ServicioUsuario  {
 
         userRepo.save(u);
     }
-    @CacheEvict
     public void guardarDatosAdicionales(HttpServletRequest request, String dir, long tarj, long tlf, boolean vip){
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
@@ -80,7 +75,6 @@ public class ServicioUsuario  {
     {
         return userRepo.findAll();
     }
-    @CacheEvict
     public void deleteUsuarioById(long id) {
         Usuario u = userRepo.findByIdUsuario(id).get();
 

@@ -7,8 +7,6 @@ import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@CacheConfig(cacheNames = "usuarios")
+
 @Service
 public class ServicioCarrito {
     @Autowired
@@ -26,8 +24,6 @@ public class ServicioCarrito {
     @Autowired
     private UsuarioRepo userRepo;
 
-
-    @CacheEvict
     public void saveCarritoToDB(Usuario u){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -44,7 +40,7 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-    @CacheEvict
+
     public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
@@ -80,7 +76,7 @@ public class ServicioCarrito {
         c = u.getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
-    @CacheEvict
+
     public void deleteCarritoByUsuario(Usuario u) {//Borra el carrito
 
 
@@ -91,7 +87,7 @@ public class ServicioCarrito {
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-    @CacheEvict
+
     public void vaciarCarritoByUsuario(Usuario u){
         //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
@@ -107,7 +103,6 @@ public class ServicioCarrito {
 
 
     }
-    @CacheEvict
 
     public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();

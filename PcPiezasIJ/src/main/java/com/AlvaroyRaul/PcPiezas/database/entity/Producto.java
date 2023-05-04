@@ -1,7 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +81,6 @@ public class Producto {
     }
 
     public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItems() {
-        Hibernate.initialize(Item);
         return Item;
     }
 

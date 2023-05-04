@@ -1,13 +1,10 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 import com.sun.istack.NotNull;
-import net.minidev.json.annotate.JsonIgnore;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
-
 
 @Entity
 @Table(name = "usuario")
@@ -34,11 +31,10 @@ public class Usuario {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
-    //@JsonIgnore
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<Producto> productos;//Solo vendedor
 
-    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)//Si se borra el usuario se borra el carrito
+    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//Si se borra el usuario se borra el carrito
     private Carrito carrito;
 
     private String venta;

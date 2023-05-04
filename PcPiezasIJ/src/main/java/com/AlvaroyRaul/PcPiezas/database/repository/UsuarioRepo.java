@@ -16,6 +16,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     Usuario findByUsername(String username);
     @Cacheable
     List<Usuario> findAll();
+
     @Cacheable
     Usuario findByCarrito(Carrito carrito);
     @Cacheable
