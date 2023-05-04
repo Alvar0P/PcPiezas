@@ -10,23 +10,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-@CacheConfig(cacheNames = "usuarios")
+//@CacheConfig(cacheNames = "usuarios")
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
-    @Cacheable
+    //@Cacheable
     Usuario findByUsername(String username);
-    @Cacheable
+    //@Cacheable
     List<Usuario> findAll();
 
-    @Cacheable
+    //@Cacheable
     Usuario findByCarrito(Carrito carrito);
-    @Cacheable
+    //@Cacheable
     Collection<Usuario> findByRol(String rol);
-    @Cacheable
+    //@Cacheable
     Optional<Boolean> existsByRol(String rol);
-    @Cacheable
+    //@Cacheable
     Optional<Usuario> findByIdUsuario(long IdUsuario);
-    @CacheEvict
+    //@CacheEvict
     void deleteByIdUsuario(long IdUsuario);
-    @CacheEvict
+    //@CacheEvict
     Usuario save(Usuario usuario);
 }
