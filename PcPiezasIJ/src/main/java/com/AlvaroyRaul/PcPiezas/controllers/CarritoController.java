@@ -7,6 +7,8 @@ import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 @Controller
 @RequestMapping("/user")
+@CacheConfig(cacheNames = "usuarios")
+
 public class CarritoController {
 
     public class FilaCarrito extends Producto {
@@ -83,6 +87,7 @@ public class CarritoController {
         return "redirect:/user/listaCarrito";
 
     }
+    @CacheEvict(allEntries = true)
     @GetMapping("/DeleteFromCarrito/{id}")
     public String borrarDelCarrito(@PathVariable("id") long id,HttpServletRequest request) {
 
@@ -92,6 +97,8 @@ public class CarritoController {
         return "redirect:/user/listaCarrito";
 
     }
+    @CacheEvict(allEntries = true)
+
     @GetMapping("/VaciarCarrito")
     public String vaciarCarrito(HttpServletRequest request){
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());

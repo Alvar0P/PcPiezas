@@ -7,6 +7,8 @@ import com.AlvaroyRaul.PcPiezas.database.repository.CarritoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.ProductoRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,8 @@ import java.util.List;
 
 
 @Service
+@CacheConfig(cacheNames = "usuarios")
+
 public class ServicioCarrito {
     @Autowired
     private ProductoRepo productRepo;
@@ -40,7 +44,7 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-
+    @CacheEvict(allEntries = true)
     public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
@@ -76,6 +80,7 @@ public class ServicioCarrito {
         c = u.getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
+    @CacheEvict(allEntries = true)
 
     public void deleteCarritoByUsuario(Usuario u) {//Borra el carrito
 
@@ -87,7 +92,7 @@ public class ServicioCarrito {
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-
+    @CacheEvict(allEntries = true)
     public void vaciarCarritoByUsuario(Usuario u){
         //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
@@ -103,6 +108,7 @@ public class ServicioCarrito {
 
 
     }
+    @CacheEvict(allEntries = true)
 
     public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();
