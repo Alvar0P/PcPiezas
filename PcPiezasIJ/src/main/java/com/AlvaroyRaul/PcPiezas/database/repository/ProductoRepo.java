@@ -22,7 +22,7 @@ public interface ProductoRepo extends JpaRepository<Producto, Long> {
     public List<Producto> findAll();
     @Cacheable
     public List<Producto> findByCategoria(String categoria);
-    @Cacheable
+
     @Query("SELECT i FROM Producto i WHERE i.Vendedor = ?1")
     public List<Producto> findByVendedor(Usuario Venededor);
 
@@ -30,7 +30,7 @@ public interface ProductoRepo extends JpaRepository<Producto, Long> {
     Producto save(Producto producto);
 
     @CacheEvict(allEntries = true)
-    void deleteProductById(long id);
+    void deleteById(long id);
 
 
 }
