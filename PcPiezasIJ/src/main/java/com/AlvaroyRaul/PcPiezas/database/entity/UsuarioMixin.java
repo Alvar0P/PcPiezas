@@ -11,10 +11,10 @@ import java.util.List;
 public abstract class UsuarioMixin {
     UsuarioMixin() {
     }
-/*
+
     @JsonIgnore
     abstract List<Producto> getProductos();
 
     @JsonIgnore
-    abstract Carrito getCarrito(); */
+    abstract Carrito getCarrito();
 }
