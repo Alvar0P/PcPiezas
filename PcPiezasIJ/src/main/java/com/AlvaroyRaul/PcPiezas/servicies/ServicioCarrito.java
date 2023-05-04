@@ -9,6 +9,7 @@ import com.AlvaroyRaul.PcPiezas.database.repository.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,7 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-    @CacheEvict(allEntries = true)
+    @CachePut
     public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
@@ -91,7 +92,7 @@ public class ServicioCarrito {
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-    @CacheEvict(allEntries = true)
+    @CachePut
     public void vaciarCarritoByUsuario(Usuario u){
         //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
@@ -107,7 +108,7 @@ public class ServicioCarrito {
 
 
     }
-    @CacheEvict(allEntries = true)
+    @CachePut
     public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();
         u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba

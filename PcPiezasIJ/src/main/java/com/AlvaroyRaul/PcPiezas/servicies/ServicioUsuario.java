@@ -7,6 +7,7 @@ import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,7 +65,7 @@ public class ServicioUsuario  {
 
         userRepo.save(u);
     }
-    @CacheEvict(allEntries = true)
+    @CachePut
     public void guardarDatosAdicionales(HttpServletRequest request, String dir, long tarj, long tlf, boolean vip){
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
