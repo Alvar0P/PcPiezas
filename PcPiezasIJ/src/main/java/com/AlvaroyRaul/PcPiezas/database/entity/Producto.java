@@ -1,5 +1,7 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
 
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class Producto {
 
     @ManyToOne//Varios productos para un vendedor
     private Usuario Vendedor;
-    @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
+    @OneToMany(mappedBy = "Producto",cascade = CascadeType.REMOVE)//copia para el item, si se borra el producto es que no hay existencias y se borra el item de los carritos.O se pone que esta agotado
     private List<Item> Item;//Puede haber muchos items en un carrito pero hasta que no se compre no se "Transforma" en producto.
 
     /*public producto(String nombre, String descripcion,String fabricante, usuario vendedor, float precio) {
@@ -81,6 +83,7 @@ public class Producto {
     }
 
     public List<com.AlvaroyRaul.PcPiezas.database.entity.Item> getItems() {
+        Hibernate.initialize(Item);
         return Item;
     }
 
