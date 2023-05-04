@@ -9,6 +9,8 @@ import com.AlvaroyRaul.PcPiezas.servicies.ServicioCarrito;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioLogicaTienda;
 import com.AlvaroyRaul.PcPiezas.servicies.ServicioVenta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,6 +68,8 @@ public class LogicaTiendaController {
             if(itemsAdquiridos.size() != 0) {
                 Venta v = new Venta();
                 v = servVenta.nuevaVenta(itemsAdquiridos, u);
+
+
 
 
                 servCarrito.deleteCarritoByUsuario(u);

@@ -1,4 +1,5 @@
 package com.AlvaroyRaul.PcPiezas.database.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 
 
@@ -30,9 +31,10 @@ public class Usuario {
     @NotNull
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "Vendedor", cascade = CascadeType.REMOVE)// Si borra el vendedor se borran sus productos a la venta
     private List<Producto> productos;//Solo vendedor
+    @JsonBackReference
 
     @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//Si se borra el usuario se borra el carrito
     private Carrito carrito;

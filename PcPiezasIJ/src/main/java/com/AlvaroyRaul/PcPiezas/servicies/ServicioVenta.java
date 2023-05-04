@@ -6,17 +6,21 @@ import com.AlvaroyRaul.PcPiezas.database.entity.Venta;
 import com.AlvaroyRaul.PcPiezas.database.repository.ItemRepo;
 import com.AlvaroyRaul.PcPiezas.database.repository.VentaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Service
+
 public class ServicioVenta {
     @Autowired
     private VentaRepo ventaRepo;
 
     @Autowired
     private ItemRepo itemRepo;
+
+
     /*
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
