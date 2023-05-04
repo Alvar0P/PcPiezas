@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 @Controller
 @RequestMapping("/user")
-@CacheConfig(cacheNames = "usuarios")
 
 public class CarritoController {
 
@@ -87,7 +86,6 @@ public class CarritoController {
         return "redirect:/user/listaCarrito";
 
     }
-    @CacheEvict(allEntries = true)
     @GetMapping("/DeleteFromCarrito/{id}")
     public String borrarDelCarrito(@PathVariable("id") long id,HttpServletRequest request) {
 
@@ -97,7 +95,6 @@ public class CarritoController {
         return "redirect:/user/listaCarrito";
 
     }
-    @CacheEvict(allEntries = true)
 
     @GetMapping("/VaciarCarrito")
     public String vaciarCarrito(HttpServletRequest request){

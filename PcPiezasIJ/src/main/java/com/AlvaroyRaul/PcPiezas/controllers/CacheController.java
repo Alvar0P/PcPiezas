@@ -21,7 +21,7 @@ public class CacheController {
     @GetMapping(value="/cache")
     public Map<Object, Object> getCacheContent() {
         ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
-        ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("usuarios");
+        ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("productos");
         return cache.getNativeCache();
     }
 

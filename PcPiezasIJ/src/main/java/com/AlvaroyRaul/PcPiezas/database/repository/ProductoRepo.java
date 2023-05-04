@@ -26,8 +26,11 @@ public interface ProductoRepo extends JpaRepository<Producto, Long> {
     @Query("SELECT i FROM Producto i WHERE i.Vendedor = ?1")
     public List<Producto> findByVendedor(Usuario Venededor);
 
-    @Cacheable
-    Producto save(Producto producto)
+    @CacheEvict(allEntries = true)
+    Producto save(Producto producto);
+
+    @CacheEvict(allEntries = true)
+    void deleteProductById(long id);
 
 
 }

@@ -26,7 +26,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-@CacheConfig(cacheNames = "usuarios")
 public class LogicaTiendaController {
 
     private RabbitMQProducer producer;
@@ -44,7 +43,6 @@ public class LogicaTiendaController {
     private ServicioLogicaTienda servTienda;
     @Autowired
     private ServicioCarrito servCarrito;
-    @CacheEvict(allEntries = true)
 
     @GetMapping("/compra")//id del carrito
     public String checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
