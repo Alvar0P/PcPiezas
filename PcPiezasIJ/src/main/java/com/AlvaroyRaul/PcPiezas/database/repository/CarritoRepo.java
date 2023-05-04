@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public interface CarritoRepo extends JpaRepository<Carrito,Long> {
 
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Carrito save(Carrito carrito);
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Carrito deleteById(long id);
 
 

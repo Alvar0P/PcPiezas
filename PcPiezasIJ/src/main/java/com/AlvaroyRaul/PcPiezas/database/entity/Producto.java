@@ -70,7 +70,7 @@ public class Producto {
 
     @Override
     public String toString(){
-        return "Producto{"+ "id="+idProducto+"nombre="+nombre+"descricion="+descripcion+"fabricant="+fabricante+"vendedor="+Vendedor+"categoria"+categoria+"precio="+precio+"imagen="+imagen +" }";
+        return "Producto{"+ "id="+idProducto+"nombre="+nombre+"descricion="+descripcion+"fabricant="+fabricante+"vendedor="+Vendedor+"categoria"+categoria+"precio="+precio+"imagen="+imagen.toString() +" }";
 
     }
 

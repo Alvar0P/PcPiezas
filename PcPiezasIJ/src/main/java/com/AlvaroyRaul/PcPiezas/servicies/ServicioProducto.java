@@ -36,7 +36,7 @@ public class ServicioProducto {
         productRepo.save(p);
 
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void saveProductToDB(MultipartFile file,String nombre, String descripcion,String fabricant,String vendedor,String categoria,int precio){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
         //Todo cambiar por "usuario vendedor" al final
         Producto p = new Producto();
@@ -77,6 +77,7 @@ public class ServicioProducto {
     {
         return productRepo.findByCategoria(categoria);
     }
+    @CacheEvict(allEntries = true)
     public void deleteProductById(long id) {
         Producto p = productRepo.findById(id).get();
 
@@ -85,7 +86,7 @@ public class ServicioProducto {
 
         productRepo.deleteById(id);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void changeProductName(long id ,String name)
     {
         Producto p = new Producto();
@@ -93,7 +94,7 @@ public class ServicioProducto {
         p.setNombre(name);
         productRepo.save(p);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void changeProductDescription(long id , String description)
     {
         Producto p = new Producto();
@@ -101,14 +102,14 @@ public class ServicioProducto {
         p.setDescripcion(description);
         productRepo.save(p);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void changeProductFabricante(long id, String fabricante){
         Producto p = new Producto();
         p= productRepo.findById(id).get();
         p.setFabricante(fabricante);
         productRepo.save(p);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void changeProductPrice(long id,int price)
     {
         Producto p = new Producto();
@@ -116,7 +117,7 @@ public class ServicioProducto {
         p.setPrecio(price);
         productRepo.save(p);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void changeProductCategoria(long id, String categoria){
         Producto p = new Producto();
         p = productRepo.findById(id).get();

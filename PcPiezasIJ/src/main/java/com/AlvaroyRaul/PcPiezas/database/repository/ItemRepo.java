@@ -19,7 +19,7 @@ public interface ItemRepo extends JpaRepository<Item,String> {
 
     List<Item> findByVenta(Venta venta);
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Item save(Item item);
 
 

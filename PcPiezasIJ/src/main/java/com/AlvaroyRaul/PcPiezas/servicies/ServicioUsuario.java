@@ -26,7 +26,7 @@ public class ServicioUsuario  {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void saveClientToDB(String username,String email,String password) {//La idea aquÃ­ es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -47,7 +47,7 @@ public class ServicioUsuario  {
 
 
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void saveVendedorToDB(String username,String email,String password, String dir, String cuentaBancaria, long tlf){
         Usuario u = new Usuario();
         u.setUsername(username);
@@ -64,7 +64,7 @@ public class ServicioUsuario  {
 
         userRepo.save(u);
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void guardarDatosAdicionales(HttpServletRequest request, String dir, long tarj, long tlf, boolean vip){
 
         Usuario u = userRepo.findByUsername(request.getUserPrincipal().getName());
@@ -80,7 +80,7 @@ public class ServicioUsuario  {
     {
         return userRepo.findAll();
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void deleteUsuarioById(long id) {
         Usuario u = userRepo.findByIdUsuario(id).get();
 

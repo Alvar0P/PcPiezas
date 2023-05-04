@@ -27,7 +27,7 @@ public class ServicioCarrito {
     private UsuarioRepo userRepo;
 
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void saveCarritoToDB(Usuario u){//La idea aquí es pillar el nombre del vendedor logeado y que se autorellen, de momento lo hacemos manualmente
 
 
@@ -44,7 +44,7 @@ public class ServicioCarrito {
         userRepo.save(u);
 
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void saveProductoEnCarrito(Long idProducto, HttpServletRequest request){
 
         Producto p = new Producto();
@@ -80,7 +80,7 @@ public class ServicioCarrito {
         c = u.getCarrito();//Probamos con el carrito de juan
         return c.getProductos();
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void deleteCarritoByUsuario(Usuario u) {//Borra el carrito
 
 
@@ -91,7 +91,7 @@ public class ServicioCarrito {
 
         carritRepo.deleteById(c.getIdCarrito());
     }
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     public void vaciarCarritoByUsuario(Usuario u){
         //Usuario  u = userRepo.findById((long)2).get();//Prueba
         List<Producto> productos = u.getCarrito().getProductos();
@@ -107,8 +107,7 @@ public class ServicioCarrito {
 
 
     }
-    @CacheEvict
-
+    @CacheEvict(allEntries = true)
     public void deleteProductoInCarritoById(long idProducto,HttpServletRequest request){
         Usuario u = new Usuario();
         u = userRepo.findByUsername(request.getUserPrincipal().getName());//Prueba

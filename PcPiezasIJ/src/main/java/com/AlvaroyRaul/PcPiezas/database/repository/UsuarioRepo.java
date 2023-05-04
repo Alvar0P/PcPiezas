@@ -24,8 +24,8 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     Optional<Boolean> existsByRol(String rol);
     @Cacheable
     Optional<Usuario> findByIdUsuario(long IdUsuario);
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     void deleteByIdUsuario(long IdUsuario);
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Usuario save(Usuario usuario);
 }

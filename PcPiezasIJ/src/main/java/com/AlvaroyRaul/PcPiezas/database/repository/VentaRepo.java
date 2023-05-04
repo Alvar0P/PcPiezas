@@ -10,11 +10,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @CacheConfig(cacheNames = "usuarios")
 public interface VentaRepo extends JpaRepository<Venta,Long> {
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     void deleteByComprador(Usuario comprador);
 
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Venta save(Venta venta);
-    @CacheEvict
+    @CacheEvict(allEntries = true)
     Venta deleteById(long id);
 }
